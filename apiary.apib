@@ -1,0 +1,474 @@
+HOST: http://www.xxxxxxx.fr/
+
+--- Keep It Simple & Smart ---
+
+---
+KISS API documentation
+---
+
+-- 
+Customer
+
+> A customer is _TODO add a textual definition_
+>
+> * customerId (string) : the identifier of the customer (for instance : 1069422)
+> * customerLastName (string) : the last name of the customer (for instance : 1069422)
+
+
+--
+
+> # Description
+>
+> * read a customer given its {customerId}.
+>
+> # Parameters
+>
+> * none
+>
+> # Returns
+>
+> * customerId : the customer identifier
+> * ...
+ 
+GET /v1/customers/{customerId}
+< 200
+< Content-Type: application/json
+{ "requestId": "95a314b0-380d-11e3-aa6e-0800200c9a66" }
+
+
+> # Description
+>
+> * search a customer according to a query.
+>
+> # Parameters
+>
+> * query : a simple string which represent a clue
+>
+> # Returns
+>
+> * listOfCustomers : a table of customers
+>    * customerId : the customer identifier
+
+POST /v1/customers/search
+{ "query": "Dupont" }
+< 200
+< Content-Type: application/json
+{ "listOfCustomers" : 
+    [{ "customerId": "95a314b0-380d-11e3-aa6e-0800210c9a68" },
+    { "customerId": "95a314b0-380d-11e3-aa6e-0800201c9a69" }]
+}
+
+--
+Interaction
+
+> An interaction corresponds to an incoming contact
+>
+> * interactionId (string) : _TODO add the nomenclature_ (for instance : 1-3DLSYN1)
+> * customerId (string) : the identifier of the customer engaged in the interaction (for instance : 1069422)
+> * channelId (string) : the channel used by the customer _TODO add the list of values_ (for instance : CHAT)
+> * holderId (string) : the identifier of the holder of the interaction (for instance : UPCXQAC)
+> * creationDate (number) : the date of the creation of the interaction (for instance : 1310669017000)
+> * creatorId (string) : the identifier of the creator of the interaction (for instance : UPCXQAC)
+> * lastChangeDate (number) : the date of the last change made on the interaction (for instance : 1310669017000)
+> * lastChangeOperatorId (string) : the identifier of the operator who has made the last change on the interaction (for instance : UPCXQAC)
+> * status (string) : the status of the interaction _TODO add the list of values_
+
+--
+
+> # Description
+>
+> * read an interaction given its {interactionId} 
+>
+> # Parameters
+>
+> * interactionId : the interaction identifier
+>
+> # Returns
+>
+> * interactionId
+> * customerId
+> * interactionType
+> * holderId
+> * creationDate
+> * creatorId
+> * lastChangeDate
+> * lastChangeOperatorId
+> * status
+
+GET /v1/interactions/{interactionId}
+< 200
+< Content-Type: application/json
+{ "interactionId": "1-3DLSYN1",
+  "customerId": "1069422",
+  "interactionType": "valueOf(CHAT)",
+  "holderId": "UPCXQAC",
+  "creationDate": "1310669017000",
+  "creatorId": "UPCXQAC",
+  "lastChangeDate": "1310669017000",
+  "lastChangeOperatorId": "UPCXQAC",
+  "status": "valueOf(CLOSED)" }
+
+-- 
+Request
+
+> A request support the object of a contact and its resolution
+>
+> * requestId (string) : _TODO add the nomenclature_ (for instance : 2d704ab0-3cc3-11e3-aa6e-0800200c9a66)
+> * requesterType (string) : the type of the requester who has initiated the request _TODO add the list of values_ (for instance : CUSTOMER)
+> * customerId (string) : the identifier of the customer involved in the request (for instance : 1069422)
+> * operatorId (string) : the identifier of the operator responsible of the resolution of the request _TODO add the list of values_ (for instance : CANAL+)
+> * channelId (string) : the channel used by the customer _TODO add the list of values_ (for instance : CHAT)
+> * topicId (string) : the topic selected at the request creation _TODO add the list of values_ (for instance : SUBSCRIPTION)
+> * subTopicId (string) : the sub topic selected at the request creation _TODO add the list of values_ (for instance : OPTION/PRODUCT/SUBSCRIPTION CHANGE)
+> * climateId (string) : the current climate (relationship ?) _TODO add the list of values_ (for instance : OK)
+> * holderId (string) : the identifier of the holder of the request (for instance : UPCXQAC)
+> * creationDate (number) : the date of the creation of the request (for instance : 1310669017000)
+> * creatorId (string) : the identifier of the creator of the request (for instance : UPCXQAC)
+> * lastChangeDate (number) : the date of the last change made on the request (for instance : 1310669017000)
+> * lastChangeOperatorId (string) : the identifier of the operator who has made the last change on the request (for instance : UPCXQAC)
+> * status (number) : the status of the request _TODO add the list of values_
+> * result (number) : the result of the request _TODO add the list of values_ (for instance : TREATED)
+
+--
+
+> # Description
+>
+> * read a request given its {requestId}.
+>
+> # Parameters
+>
+> * none
+>
+> # Returns
+>
+> * requestId : the request identifier
+> * ...
+ 
+GET /v1/requests/{requestId}
+< 200
+< Content-Type: application/json
+{ "requestId": "95a314b0-380d-11e3-aa6e-0800200c9a66" }
+
+> # Description
+>
+> * update a request.
+>
+> # Parameters
+>
+> * requestId : the request identifier
+> * requester : the requester identifier
+>
+> # Returns
+>
+> * none
+
+PUT /v1/requests/{requestId}
+{ "requestId": "95a314b0-380d-11e3-aa6e-0800200c9a66","requester": "Dupont" }
+< 200
+
+> # Description
+>
+> * search a request according to a query.
+>
+> # Parameters
+>
+> * query : a simple string which represent a clue
+>
+> # Returns
+>
+> * listOfRequests : a table of requests
+>    * requestId : the request identifier
+>    * requester : the requester identifier
+
+POST /v1/requests/search
+{ "query": "Dupont" }
+< 200
+< Content-Type: application/json
+{ "listOfRequests" : 
+    [{ "requestId": "95a314b0-380d-11e3-aa6e-0800200c9a66","requester": "Dupont" },
+    { "requestId": "95a314b0-380d-11e3-aa6e-0800200c9a67","requester": "Dupond" }]
+}
+
+-- 
+Activity
+An activity is ...
+
+# Identifier
+TODO
+--
+
+> # Description
+>
+> * read an activity given its {activityId}.
+>
+> # Parameters
+>
+> * none
+>
+> # Returns
+>
+> * activityId : the activity identifier
+> * ...
+ 
+GET /v1/activities/{activityId}
+< 200
+< Content-Type: application/json
+{ "activityId": "95a314b0-380d-11e3-aa6e-0800200c9a66" }
+
+> # Description
+>
+> * update an activity.
+>
+> # Parameters
+>
+> * activityId : the request identifier
+> * target : the targeted people identifier
+>
+> # Returns
+>
+> * none
+
+PUT /v1/activities/{activityId}
+{ "activityId": "95a314b0-380d-11e3-aa6e-0800200c9a66","target": "Dupont" }
+< 200
+
+> # Description
+>
+> * search an activity according to a query.
+>
+> # Parameters
+>
+> * query : a simple string which represent a clue
+>
+> # Returns
+>
+> * listOfActivities : a table of activities
+>    * activityId : the activity identifier
+>    * target : the targeted people identifier
+
+
+POST /v1/activities/search
+{ "query": "Dupont" }
+< 200
+< Content-Type: application/json
+{ "listOfActivities" : 
+    [{ "activityId": "95a314b0-380d-11e3-aa6e-0800200c9a68","target": "Dupont" },
+    { "activityId": "95a314b0-380d-11e3-aa6e-0800200c9a69","target": "Dupont" }]
+}
+
+
+-- 
+Prospect
+A prospect is ...
+
+# Identifier
+TODO
+--
+
+> # Description
+>
+> * search a prospect according to a query.
+>
+> # Parameters
+>
+> * query : a simple string which represent a clue
+>
+> # Returns
+>
+> * listOfProspects : a table of prospects
+>    * prospectId : the prospect identifier
+
+POST /v1/prospects/search
+{ "query": "Dupont" }
+< 200
+< Content-Type: application/json
+{ "listOfProspects" : 
+    [{ "prospectId": "96a314b0-380d-11e3-aa6e-0800210c9a68" },
+    { "prospectId": "95a316b0-380d-11e3-aa6e-0800201c9a69" }]
+}
+
+
+--
+Subject
+A subject can be a user or an informatic process which have an access to Canal+ Information System.
+
+# Identifier
+* case 1 : the subject is a user; his identifier is his name in upperCamelCase
+* case 2 : the subject is an informatic process; its identifier is the application identifier listed at http://xxx
+--
+
+> # Description
+>
+> * authenticate a subject. 
+>
+> # Parameters
+>
+> * subjectId : the subject identification
+> * subjectPassword : the subject password
+>
+> # Returns
+>
+> * token : the token provided by the authentication service
+
+POST /v1/subjects/authenticate
+{ "subjectId": "MyCananlPlusId", "subjectPassword": "root" }
+< 200
+< Content-Type: application/json
+{ "token": "02HKiPoin4f49GRMsOdFmhTgi_0nR7BBAflopdnD3gtixujECWpxr9klAw" }
+
+
+--
+Calendar
+A calendar is...
+
+# Identifier
+TODO
+--
+
+> # Description
+>
+> * read a calendar given its {calendarId} 
+>
+> # Parameters
+>
+> * calendarId : the calendar identification
+>
+> # Returns
+>
+> * calendarId : the calendar identification
+> * ...
+
+POST /v1/calendars/{calendarId}
+< 200
+< Content-Type: application/json
+{ "calendarId": "?????" }
+
+> # Description
+>
+> * verify whether the prospect can subscribe to an offer.
+>
+> # Parameters
+>
+> * TODO
+>
+> # Returns
+>
+> * isEligible :
+>    * true : the prospect meets the conditions to subscribe an offer
+>    * false : the prospect does not meet the conditions to subscribe an offer
+
+POST /v1/prospects/isEligible
+{ "xxxx": "xxxx" }
+< 200
+< Content-Type: application/json
+{ "isEligible" : true }
+
+-- 
+Address
+(Use the former SOAP service)
+--
+
+-- 
+Offer
+An offer is ...
+
+# Identifier
+TODO
+--
+
+> # Description
+>
+> * search an offer according to a query.
+>
+> # Parameters
+>
+> * query : a simple string which represent a clue
+>
+> # Returns
+>
+> * listOfOffers : a table of offers
+>    * offerId : the offer identifier
+
+POST /v1/offers/search
+{ "query": "xxxx" }
+< 200
+< Content-Type: application/json
+{ "listOfOffers" : 
+    [{ "offerId": "95a314b0-390d-11e3-aa6e-0800210c9a68" },
+    { "offerId": "95a314b0-381d-11e3-aa6e-0800201c9a69" }]
+}
+
+-- 
+Contract
+A contract is ...
+
+# Identifier
+TODO
+--
+
+> # Description
+>
+> * search a contract according to a query.
+>
+> # Parameters
+>
+> * query : a simple string which represent a clue
+>
+> # Returns
+>
+> * listOfContracts : a table of contracts
+>    * contractId : the contract identifier
+
+POST /v1/contracts/search
+{ "query": "xxxx" }
+< 200
+< Content-Type: application/json
+{ "listOfContracts" : 
+    [{ "contractId": "25a314b0-390d-11e3-aa6e-0800210c9a68" },
+    { "contractId": "45a314b0-381d-11e3-aa6e-0800201c9a69" }]
+}
+
+-- 
+Equipment
+An equipment is ...
+
+# Identifier
+TODO
+--
+
+> # Description
+>
+> * search an equipment according to a query.
+>
+> # Parameters
+>
+> * query : a simple string which represent a clue
+>
+> # Returns
+>
+> * listOfEquipments : a table of equipments
+>    * equipmentId : the equipment identifier
+
+POST /v1/equipments/search
+{ "query": "xxxx" }
+< 200
+< Content-Type: application/json
+{ "listOfEquipments" : 
+    [{ "equipmentId": "25a314b0-390d-13e3-aa6e-0800210c9a68" },
+    { "equipmentId": "45a314b0-381f-11e3-aa6e-0800201c9a69" }]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
