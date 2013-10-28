@@ -24,12 +24,13 @@ Customer
 >
 > # Parameters
 >
-> * none
+> * customerId
 >
 > # Returns
 >
-> * customerId : the customer identifier
-> * ...
+> * customerId
+> * customerLastName
+> * customerFirstName
  
 GET /v1/customers/{customerId}
 < 200
@@ -55,8 +56,8 @@ POST /v1/customers/search
 < 200
 < Content-Type: application/json
 { "listOfCustomers" : 
-    [{ "customerId": "95a314b0-380d-11e3-aa6e-0800210c9a68" },
-    { "customerId": "95a314b0-380d-11e3-aa6e-0800201c9a69" }]
+    [{ "customerId": "1069422", "customerLastName": "Dupont", "customerFirstName": "Jean" },
+    { "customerId": "1059623", "customerLastName": "Dupond", "customerFirstName": "Jean" }]
 }
 
 --
