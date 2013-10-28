@@ -13,8 +13,8 @@ Customer
 > A customer is _TODO add a textual definition_
 >
 > * customerId (string) : the identifier of the customer (for instance : 1069422)
-> * customerLastName (string) : the last name of the customer (for instance : 1069422)
->
+> * customerLastName (string) : the last name of the customer (for instance : DUPONT)
+> * customerFirstName (string) : the first name of the customer (for instance : Jean)
 
 --
 
@@ -34,7 +34,7 @@ Customer
 GET /v1/customers/{customerId}
 < 200
 < Content-Type: application/json
-{ "customerId": "1069422" }
+{ "customerId": "1069422", "customerLastName": "Dupont", "customerFirstName": "Jean"}
 
 
 > # Description
