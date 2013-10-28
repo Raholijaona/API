@@ -49,7 +49,9 @@ GET /v1/customers/{customerId}
 > # Returns
 >
 > * listOfCustomers : a table of customers
->    * customerId : the customer identifier
+>    * customerId
+>    * customerLastName
+>    * customerFirstName
 
 POST /v1/customers/search
 { "query": "Dupont" }
