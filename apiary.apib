@@ -38,7 +38,10 @@ GET /v1/customers/{customerId}
 < X-UserId: test
 < Content-Type: application/json
 { "customerId": "1069422", "customerLastName": "Dupont", "customerFirstName": "Jean"}
-
++++++
+< 401
+< Content-Type: application/json; charset=utf-8
+{"message":"You have not provided proper request token"}
 
 > # Description
 >
