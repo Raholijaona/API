@@ -376,8 +376,27 @@ POST /v1/prospects/isEligible
 Address
 An address is a geolocalisation information used for reaching a customer or a prospect. It must be compliant with AFNOR NF Z10-011.
 
-
+# Identifier
+TODO
 --
+
+> # Description
+>
+> * read an address given its {addressId} 
+>
+> # Parameters
+>
+> * addressId : the address identification
+>
+> # Returns
+>
+> * addressId : the address identification
+> * ...
+
+POST /v1/addresses/{addressId}
+< 200
+< Content-Type: application/json
+{ "addressId": "?????" }
 
 -- 
 Offer
