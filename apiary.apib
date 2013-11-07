@@ -67,6 +67,38 @@ POST /v1/customers/search
     { "customerId": "1059623", "customerLastName": "Dupond", "customerFirstName": "Jean" }]
 }
 
+-- 
+Discount
+
+> A discount is _TODO define what is a discount_
+>
+> * discountId (string) : _TODO explain what is the nomenclature of the discountId_
+> * shortLabel (string) : the short label of the discount in french
+> * description (string) : the description of the discount in french
+> * startDate (long) : the start date of the discount validity in POSIX format
+> * endDate (long) : the end date of the discount validity in POSIX format
+--
+
+> # Description
+>
+> * read the full list of valid discounts
+>
+> # Parameters
+>
+> * lowerBoundDate (long) : the lower bound date of the search (for instance : 1380585600000 corresponds to 01/10/2013)
+> * upperBoundDate (long) : the upper bound date of the search (for instance : 1388448000000 corresponds to 31/12/2013)
+> * The lower bound date must be lower than the upper bound date of the search
+>
+> # Returns
+>
+> * promotionId (mandatory)
+> * shortLabel (mandatory)
+ 
+GET /v1/discounts/search?lowerBoundDate=1380585600000&upperBoundDate=1388448000000
+< 200
+< Content-Type: application/json
+{ "": "" }
+
 --
 Interaction
 
@@ -488,37 +520,6 @@ POST /v1/equipments/search
     [{ "equipmentId": "25a314b0-390d-13e3-aa6e-0800210c9a68" },
     { "equipmentId": "45a314b0-381f-11e3-aa6e-0800201c9a69" }]
 }
-
--- 
-Discount
-
-> A discount is _TODO define what is a discount_
->
-> * discountId (string) : _TODO explain what is the nomenclature of the discountId_
-> * shortLabel (string) : the short label of the discount in french
-> * description (string) : the description of the discount in french
-> * startDate (long) : the start date of the discount validity in POSIX format
-> * endDate (long) : the end date of the discount validity in POSIX format
---
-
-> # Description
->
-> * read the full list of valid discounts
->
-> # Parameters
->
-> * lowerBoundDate (long) : the lower bound date of the search (for instance : 1380585600000 corresponds to 01/10/2013)
-> * upperBoundDate (long) : the upper bound date of the search (for instance : 1388448000000 corresponds to 31/12/2013)
->
-> # Returns
->
-> * promotionId (mandatory)
-> * shortLabel (mandatory)
- 
-GET /v1/discounts/search?lowerBoundDate=1380585600000&upperBoundDate=1388448000000
-< 200
-< Content-Type: application/json
-{ "activityId": "95a314b0-380d-11e3-aa6e-0800200c9a66" }
 
 
 
