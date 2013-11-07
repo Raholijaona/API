@@ -461,7 +461,7 @@ POST /v1/contracts/search
 -- 
 Device
 
-> A device is _TODO define what is a deviceId_
+> A device is _TODO define what is a device_
 >
 > * deviceId : _TODO explain what is the nomenclature of the deviceId_
 > * _TODO define the informational model of a device_
@@ -489,6 +489,39 @@ POST /v1/equipments/search
     { "equipmentId": "45a314b0-381f-11e3-aa6e-0800201c9a69" }]
 }
 
+-- 
+Discount
+
+> A discount is _TODO define what is a discount_
+>
+> * discountId (string) : _TODO explain what is the nomenclature of the discountId_
+> * shortLabel (string) : the short label of the discount in french
+> * description (string) : the description of the discount in french
+> * startDate (long) : the start date of the discount validity in POSIX format
+> * endDate (long) : the end date of the discount validity in POSIX format
+--
+
+> # Description
+>
+> * search an equipment according to a query.
+>
+> # Parameters
+>
+> * query : a simple string which represent a clue
+>
+> # Returns
+>
+> * listOfEquipments : a table of equipments
+>    * equipmentId : the equipment identifier
+
+POST /v1/equipments/search
+{ "query": "xxxx" }
+< 200
+< Content-Type: application/json
+{ "listOfEquipments" : 
+    [{ "equipmentId": "25a314b0-390d-13e3-aa6e-0800210c9a68" },
+    { "equipmentId": "45a314b0-381f-11e3-aa6e-0800201c9a69" }]
+}
 
 
 
