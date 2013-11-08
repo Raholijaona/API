@@ -92,14 +92,15 @@ Discount
 > * listOfDiscounts : a table of discounts
 >     * discountId (mandatory)
 >     * shortLabel (mandatory)
+>     * description (mandatory)
+>     * startDate (mandatory)
+>     * endDate (mandatory)
  
-GET /v1/discounts/search?lowerBoundDate=1380585600000&upperBoundDate=1388448000000
+GET /v1/discounts/{discountId}
 < 200
 < Content-Type: application/json
-{"listOfDiscounts" : 
-    [ {"discountId" : "PAN1309" , "shortLabel" : "Promotion nationale Panorama 1309"} ,
-    {"discountId" : "SER1309" ,  "shortLabel" : "Promotion nationale Series Cinema 1309"}]
-}
+{"discountId" : "PAN1309" , "shortLabel" : "Promotion nationale Panorama 1309", "description" : "description de la promotion nationale Panorama 1309","startdate" : "05/10/2013", "endDate" : "31/12/2013"}
+
 
 > # Description
 >
