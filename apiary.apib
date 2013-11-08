@@ -75,8 +75,8 @@ Promotion
 > * promotionId (string) : _TODO explain what is the nomenclature of the promotionId_
 > * shortLabel (string) : the short label of the discount in french
 > * description (string) : the description of the discount in french
-> * startDate (long) : the start date of the discount validity in POSIX format
-> * endDate (long) : the end date of the discount validity in POSIX format
+> * startDate (date) : the start date of the discount validity in POSIX format
+> * endDate (date) : the end date of the discount validity in POSIX format
 --
 
 > # Description
@@ -104,7 +104,7 @@ GET /v1/promotions/{promotionId}
 
 > # Description
 >
-> * read the full list of valid discounts between a lower bound date and a upper bound date
+> * read the full list of valid promotions between a lower bound date and a upper bound date
 > * PROMOLISTWS_RG1 : the lower bound date must be lower than the upper bound date of the search
 >
 > # Parameters
@@ -121,7 +121,7 @@ GET /v1/promotions/{promotionId}
 GET /v1/promotions/search?startDate=01102013&endDate=31122013
 < 200
 < Content-Type: application/json
-{"listOfPomotions" : 
+{"listOfPromotions" : 
     [ {"promotionId" : "PAN1309" , "shortLabel" : "Promotion nationale Panorama 1309"} ,
     {"discountId" : "SER1309" ,  "shortLabel" : "Promotion nationale Series Cinema 1309"}]
 }
