@@ -73,10 +73,10 @@ Promotion
 > A promotion is _TODO define what is a promotion_
 >
 > * promotionId (string) : _TODO explain what is the nomenclature of the promotionId_
-> * shortLabel (string) : the short label of the discount in french
-> * description (string) : the description of the discount in french
-> * startDate (date) : the start date of the discount validity in POSIX format
-> * endDate (date) : the end date of the discount validity in POSIX format
+> * shortLabel (string) : the short label of the promotion in french
+> * description (string) : the description of the promotion in french
+> * startDate (date) : the start date of the promotion validity in POSIX format
+> * endDate (date) : the end date of the promotion validity in POSIX format
 --
 
 > # Description
@@ -114,7 +114,7 @@ GET /v1/promotions/{promotionId}
 >
 > # Returns
 >
-> * listOfPromotions : a table of discounts
+> * listOfPromotions : a table of promotions
 >     * promotionId (mandatory)
 >     * shortLabel (mandatory)
  
@@ -123,7 +123,7 @@ GET /v1/promotions/search?startDate=01102013&endDate=31122013
 < Content-Type: application/json
 {"listOfPromotions" : 
     [ {"promotionId" : "PAN1309" , "shortLabel" : "Promotion nationale Panorama 1309"} ,
-    {"discountId" : "SER1309" ,  "shortLabel" : "Promotion nationale Series Cinema 1309"}]
+    {"promotionId" : "SER1309" ,  "shortLabel" : "Promotion nationale Series Cinema 1309"}]
 }
 +++++
 < 400
