@@ -68,11 +68,11 @@ POST /v1/customers/search
 }
 
 -- 
-Discount
+Promotion
 
-> A discount is _TODO define what is a discount_
+> A promotion is _TODO define what is a promotion_
 >
-> * discountId (string) : _TODO explain what is the nomenclature of the discountId_
+> * promotionId (string) : _TODO explain what is the nomenclature of the promotionId_
 > * shortLabel (string) : the short label of the discount in french
 > * description (string) : the description of the discount in french
 > * startDate (long) : the start date of the discount validity in POSIX format
@@ -81,25 +81,25 @@ Discount
 
 > # Description
 >
-> * read a discount given its {discountId}
+> * read a promotion given its {promotionId}
 >
 > # Parameters
 >
-> * discountId
+> * promotionId
 >
 > # Returns
 >
-> * listOfDiscounts : a table of discounts
->     * discountId (mandatory)
+> * listOfPromotions : a table of promotions
+>     * promotionId (mandatory)
 >     * shortLabel (mandatory)
 >     * description (mandatory)
 >     * startDate (mandatory)
 >     * endDate (mandatory)
  
-GET /v1/discounts/{discountId}
+GET /v1/promotions/{promotionId}
 < 200
 < Content-Type: application/json
-{"discountId" : "PAN1309" , "shortLabel" : "Promotion nationale Panorama 1309", "description" : "description de la promotion nationale Panorama 1309","startdate" : "05/10/2013", "endDate" : "31/12/2013"}
+{"promotionId" : "PAN1309" , "shortLabel" : "Promotion nationale Panorama 1309", "description" : "description de la promotion nationale Panorama 1309","startdate" : "05/10/2013", "endDate" : "31/12/2013"}
 
 
 > # Description
@@ -109,20 +109,20 @@ GET /v1/discounts/{discountId}
 >
 > # Parameters
 >
-> * lowerBoundDate (long) : the lower bound date of the search (for instance : 1380585600000 corresponds to 01/10/2013)
-> * upperBoundDate (long) : the upper bound date of the search (for instance : 1388448000000 corresponds to 31/12/2013)
+> * startDate (date) : the lower bound date of the search (for instance : 01102013 corresponds to 01/10/2013)
+> * endDate (date) : the upper bound date of the search (for instance : 31122013 corresponds to 31/12/2013)
 >
 > # Returns
 >
-> * listOfDiscounts : a table of discounts
->     * discountId (mandatory)
+> * listOfPromotions : a table of discounts
+>     * promotionId (mandatory)
 >     * shortLabel (mandatory)
  
-GET /v1/discounts/search?lowerBoundDate=1380585600000&upperBoundDate=1388448000000
+GET /v1/promotions/search?startDate=01102013&endDate=31122013
 < 200
 < Content-Type: application/json
-{"listOfDiscounts" : 
-    [ {"discountId" : "PAN1309" , "shortLabel" : "Promotion nationale Panorama 1309"} ,
+{"listOfPomotions" : 
+    [ {"promotionId" : "PAN1309" , "shortLabel" : "Promotion nationale Panorama 1309"} ,
     {"discountId" : "SER1309" ,  "shortLabel" : "Promotion nationale Series Cinema 1309"}]
 }
 +++++
