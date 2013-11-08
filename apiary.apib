@@ -9,65 +9,6 @@ Under GITHUB since the 25/10/2013
 ---
 
 -- 
-Customer
-
-> A customer is _TODO add a textual definition_
->
-> * customerId (string) : the identifier of the customer (for instance : 1069422)
-> * customerLastName (string) : the last name of the customer (for instance : DUPONT)
-> * customerFirstName (string) : the first name of the customer (for instance : Jean)
-
---
-
-> # Description
->
-> * read a customer given its {customerId}.
->
-> # Parameters
->
-> * customerId
->
-> # Returns
->
-> * customerId
-> * customerLastName
-> * customerFirstName
- 
-GET /v1/customers/{customerId}
-< 200
-< X-Token: test
-< Content-Type: application/json
-{ "customerId": "1069422", "customerLastName": "Dupont", "customerFirstName": "Jean"}
-+++++
-< 401
-< Content-Type: application/json; charset=utf-8
-{"message":"You have not provided proper request token"}
-
-> # Description
->
-> * search a customer according to a query.
->
-> # Parameters
->
-> * query : a simple string which represent a clue
->
-> # Returns
->
-> * listOfCustomers : a table of customers
->    * customerId
->    * customerLastName
->    * customerFirstName
-
-POST /v1/customers/search
-{ "query": "Dupont" }
-< 200
-< Content-Type: application/json
-{ "listOfCustomers" : 
-    [{ "customerId": "1069422", "customerLastName": "Dupont", "customerFirstName": "Jean" },
-    { "customerId": "1059623", "customerLastName": "Dupond", "customerFirstName": "Jean" }]
-}
-
--- 
 Promotion
 
 > A promotion is _TODO define what is a promotion_
@@ -129,6 +70,65 @@ GET /v1/promotions/search?startDate=01102013&endDate=31122013
 < 400
 < Content-Type: application/json
 {"message":"The lower bound date must be lower than the upper bound date of the search."}
+
+-- 
+Customer
+
+> A customer is _TODO add a textual definition_
+>
+> * customerId (string) : the identifier of the customer (for instance : 1069422)
+> * customerLastName (string) : the last name of the customer (for instance : DUPONT)
+> * customerFirstName (string) : the first name of the customer (for instance : Jean)
+
+--
+
+> # Description
+>
+> * read a customer given its {customerId}.
+>
+> # Parameters
+>
+> * customerId
+>
+> # Returns
+>
+> * customerId
+> * customerLastName
+> * customerFirstName
+ 
+GET /v1/customers/{customerId}
+< 200
+< X-Token: test
+< Content-Type: application/json
+{ "customerId": "1069422", "customerLastName": "Dupont", "customerFirstName": "Jean"}
++++++
+< 401
+< Content-Type: application/json; charset=utf-8
+{"message":"You have not provided proper request token"}
+
+> # Description
+>
+> * search a customer according to a query.
+>
+> # Parameters
+>
+> * query : a simple string which represent a clue
+>
+> # Returns
+>
+> * listOfCustomers : a table of customers
+>    * customerId
+>    * customerLastName
+>    * customerFirstName
+
+POST /v1/customers/search
+{ "query": "Dupont" }
+< 200
+< Content-Type: application/json
+{ "listOfCustomers" : 
+    [{ "customerId": "1069422", "customerLastName": "Dupont", "customerFirstName": "Jean" },
+    { "customerId": "1059623", "customerLastName": "Dupond", "customerFirstName": "Jean" }]
+}
 
 --
 Interaction
