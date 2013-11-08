@@ -30,7 +30,7 @@ Promotion
 >
 > # Returns
 >
-> * listOfPromotions : a table of promotions
+> * promotion : an object representing a promotion
 >     * promotionId (mandatory)
 >     * shortLabel (mandatory)
 >     * description (mandatory)
@@ -41,11 +41,12 @@ GET /v1/promotions/{promotionId}
 < 200
 < Content-Type: application/json
 {
-"promotions" : [ {"promotionId" : "PAN1309" , "shortLabel" : "Promotion nationale Panorama 1309"} ,
-    {"promotionId" : "SER1309" ,  "shortLabel" : "Promotion nationale Series Cinema 1309"} 
-  ]
+"promotion" :  {"promotionId" : "PAN1309" , 
+                "shortLabel" : "Promotion nationale Panorama 1309",
+                "description" : "description de la promotion nationale Panorama 1309",
+                "startdate" : "05/10/2013",
+                "endDate" : "31/12/2013"}
 }
-
 
 > # Description
 >
@@ -59,16 +60,17 @@ GET /v1/promotions/{promotionId}
 >
 > # Returns
 >
-> * listOfPromotions : a table of promotions
+> * promotions : a table of promotions
 >     * promotionId (mandatory)
 >     * shortLabel (mandatory)
  
 GET /v1/promotions/search?startDate=01102013&endDate=31122013
 < 200
 < Content-Type: application/json
-{"listOfPromotions" : 
-    [ {"promotionId" : "PAN1309" , "shortLabel" : "Promotion nationale Panorama 1309"} ,
-    {"promotionId" : "SER1309" ,  "shortLabel" : "Promotion nationale Series Cinema 1309"}]
+{
+"promotions" : [ {"promotionId" : "PAN1309" , "shortLabel" : "Promotion nationale Panorama 1309"} ,
+    {"promotionId" : "SER1309" ,  "shortLabel" : "Promotion nationale Series Cinema 1309"} 
+  ]
 }
 +++++
 < 400
