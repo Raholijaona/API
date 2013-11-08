@@ -40,7 +40,11 @@ Promotion
 GET /v1/promotions/{promotionId}
 < 200
 < Content-Type: application/json
-{"promotionId" : "PAN1309" , "shortLabel" : "Promotion nationale Panorama 1309", "description" : "description de la promotion nationale Panorama 1309","startdate" : "05/10/2013", "endDate" : "31/12/2013"}
+{
+"promotions" : [ {"promotionId" : "PAN1309" , "shortLabel" : "Promotion nationale Panorama 1309"} ,
+    {"promotionId" : "SER1309" ,  "shortLabel" : "Promotion nationale Series Cinema 1309"} 
+  ]
+}
 
 
 > # Description
