@@ -81,7 +81,8 @@ Discount
 
 > # Description
 >
-> * read the full list of valid discounts
+> * read the full list of valid discounts between lowerBoundDate and upperBoundDate
+> 
 >
 > # Parameters
 >
@@ -91,13 +92,17 @@ Discount
 >
 > # Returns
 >
-> * promotionId (mandatory)
-> * shortLabel (mandatory)
+> * listOfDiscounts : a table of discounts
+>     * discountId (mandatory)
+>     * shortLabel (mandatory)
  
 GET /v1/discounts/search?lowerBoundDate=1380585600000&upperBoundDate=1388448000000
 < 200
 < Content-Type: application/json
-{ "": "" }
+{"listOfDiscounts" : 
+    [ {"discountId" : "PAN1309" , "shortLabel" : "Promotion nationale Panorama 1309"} ,
+    {"discountId" : "SER1309" ,  "shortLabel" : "Promotion nationale Series Cinema 1309"}]
+}
 
 --
 Interaction
