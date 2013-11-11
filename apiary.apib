@@ -80,7 +80,7 @@ GET /v1/promotions/search?startDate=01102013&endDate=31122013
 -- 
 Customer
 
-> A customer is _TODO add a textual definition_
+> A customer can be : a subscriber or a prospect.
 >
 > * customerId (string) : the identifier of the customer (for instance : 1069422)
 > * customerLastName (string) : the last name of the customer (for instance : DUPONT)
@@ -111,6 +111,11 @@ GET /v1/customers/{customerId}
 < 401
 < Content-Type: application/json; charset=utf-8
 {"message":"You have not provided proper request token"}
+
+--
+GET /v1/customers/{customerId}/addresses
+
+
 
 > # Description
 >
