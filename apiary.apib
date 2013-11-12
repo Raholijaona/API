@@ -49,6 +49,12 @@ GET /v1/promotions/{promotionId}
                 "endDate" : "31/12/2013"}
 }
 
+GET /v1/promotions/123
+< 404
+< Content-Type: application/json
+{"message":"ça marche pas"}
+
+
 > # Description
 >
 > * read the full list of valid promotions between a lower bound date and a upper bound date
