@@ -14,14 +14,14 @@ Generic error handling
 
 {
   "success": false,
-  "payload": {
-    /* Application-specific data would go here. */
-  },
   "error": {
-    "code": 123,
-    "message": "An error occurred!"
+    "returnCode": 123,
+    "severity": ERROR,
+    "message": "An error occurred!",
+    "data": "a table of data representing the response "
   }
 }
+
 --
 
 -- 
@@ -64,14 +64,16 @@ GET /v1/promotions/{promotionId}
                 "endDate" : "31/12/2013"}
 }
 
-GET /v1/promotions/123
+GET /v1/promotions/12A3
 < 200
 < Content-Type: application/json
 {
   "success": false,
   "error": {
-    "code": 404,
-    "message": "Resource not found !"
+    "returnCode": 123,
+    "severity": ERROR,
+    "message": "Incorrect promotion id",
+    "data": "/v1/promotions/12A3"
   }
 }
 
