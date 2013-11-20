@@ -67,7 +67,13 @@ GET /v1/promotions/{promotionId}
 GET /v1/promotions/123
 < 404
 < Content-Type: application/json
-{"message":"ça marche pas"}
+{
+  "success": false,
+  "error": {
+    "code": 404,
+    "message": "Resource not found !"
+  }
+}
 
 
 > # Description
