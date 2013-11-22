@@ -10,17 +10,31 @@ Under GITHUB since the 25/10/2013
 ---
 
 -- 
-Generic error handling
+Functional error handling
 
+< 200
+< Content-Type: application/json
+{
+  "header":
+  {
+    "timestamp" : 1310669017000,
+    "returnCode" : 1024, --> ça ne marche pas; voir tableau logs pour plus d'information, pas la peine de tenter de récupérer une donnée viable
+    "message" : "Validation Failed", --> obligatoire en cas d'erreur mais ne pas utiliser dans la logique de gestion d'erreur, utiliser le code retour
+  }
+  "logs" : 
+  [
     {
-      "success": false,
-      "error": {
-        "returnCode": 123,
-        "severity": 1,
-        "message": "An error occurred!",
-        "data": "a table of data representing the response "
-      }
+      "code" : 5432,
+      "message" : "First name cannot have fancy characters",
+      "severity": 0 --> WARNING
+    },
+    {
+      "code" : 5622,
+      "message" : "Password cannot be blank",
+      "severity": 1 --> ERROR 
     }
+  ]
+}
 
 --
 
