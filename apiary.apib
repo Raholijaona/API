@@ -827,7 +827,51 @@ GET /v1/advisors/{advisorId}/requests{?status}
     }
 }
 
+-- 
+Person
+A person is ...
 
+# Identifier
+TODO
+--
+
+> # Description
+>
+> * read a person's requests given its {personId}.
+>
+> # Parameters
+>
+> * personId (string) : id of the advisor (for instance : ALEDILHUIT)
+>
+> # Returns
+>
+> * responseWrapper : standard response for KISS REST Services
+>     * returnCode : return code given by the service
+>     * severity : severity of the error (NORMAL, WARNING, ERROR)
+>     * message : return message given by the service 
+>     * data : a table of data representing the response 
+>         * listOfRequests : a table of requests
+>             * requestId : the request identifier
+>             * requester : the requester identifier
+ 
+GET /v1/persons/{personId}/requests
+< 200
+< Content-Type: application/json
+{   "returnCode":"0",
+    "severity":"NORMAL",
+    "message":"OK - pas d'erreur",
+    "data":
+    {"listOfRequests" : 
+        [   {"comment":"Lorem ipsum dolor sit amet consectetuer", "attachment":"false", "requestId":"001_CONTRAT_001", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"TVI","themeId":"GESTION ABONNEMENT","topicId":"SOUSCRIPTION CONTRAT","subTopicId":"PRISE ABO CONTRAT MD","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Dictumst urna", "attachment":"true", "requestId":"001_ENCAISSEMENT_001", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"SVI","themeId":"GESTION ABONNEMENT","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"KHOUNNOU","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Augue", "attachment":"true", "requestId":"006qsdqsddqsscc", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"SVI","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"JVINCENT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Lacinia sed Nunc quis Duis Aliquam eget quis tellus", "attachment":"true", "requestId":"007n5454fd2121dd", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"SVI","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"DCHASSAGNAC","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Et pede urna id dolor eu iaculis", "attachment":"true", "requestId":"006b0215e1878975", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"COURRIER","themeId":"DEMANDE RESILIATION","topicId":"COURRIER","subTopicId":"COURRIER REFID","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Enim Curabitur senectus justo Vivamus sem", "attachment":"true", "requestId":"006b233132123133", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"COURRIER","themeId":"FINANCES","topicId":"ENCAISSEMENT COURRIER","subTopicId":"MOYEN DE PAIEMENT SEUL","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Quisque non leo ut magnis porta pede","attachment":"true", "requestId":"001_RESILIATION_002", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"COURRIER","themeId":"ACTUALITE","topicId":"ACTUALITE GENERALE","subTopicId":"EVENEMENT MEDIA 1","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null}
+        ]
+    }
+}
 
 
 
