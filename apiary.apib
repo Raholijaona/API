@@ -827,6 +827,183 @@ GET /v1/advisors/{advisorId}/requests{?status}
     }
 }
 
+> # Description
+>
+> * MOCKUP for advisor aledilhuit - read all requests belonging to an advisor given its {advisorId}.
+>
+> # Parameters
+>
+> * personId (string) : id of the advisor (for instance : aledilhuit)
+>
+> # Returns
+>
+> * responseWrapper : standard response for KISS REST Services
+>     * returnCode : return code given by the service
+>     * severity : severity of the error (NORMAL, WARNING, ERROR)
+>     * message : return message given by the service 
+>     * data : a table of data representing the response 
+>         * listOfRequests : a table of requests
+>             * requestId : the request identifier
+>             * requester : the requester identifier
+ 
+GET /v1/advisors/aledilhuit/requests{?status}
+< 200
+< Content-Type: application/json
+{   "returnCode":"0",
+    "severity":"NORMAL",
+    "message":"OK - pas d'erreur",
+    "data":
+    {"listOfRequests" : 
+        [   {"comment":"Lorem ipsum dolor sit amet consectetuer", "attachment":"false", "requestId":"001_CONTRAT_001", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"ALEDILHUIT","channelId":"TVI","themeId":"GESTION ABONNEMENT","topicId":"SOUSCRIPTION CONTRAT","subTopicId":"PRISE ABO CONTRAT MD","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Dictumst urna", "attachment":"true", "requestId":"001_ENCAISSEMENT_001", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"ALEDILHUIT","channelId":"SVI","themeId":"GESTION ABONNEMENT","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"KHOUNNOU","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Augue", "attachment":"true", "requestId":"006qsdqsddqsscc", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"ALEDILHUIT","channelId":"SVI","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"JVINCENT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Lacinia sed Nunc quis Duis Aliquam eget quis tellus", "attachment":"true", "requestId":"007n5454fd2121dd", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"ALEDILHUIT","channelId":"SVI","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"DCHASSAGNAC","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Et pede urna id dolor eu iaculis", "attachment":"true", "requestId":"006b0215e1878975", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"ALEDILHUIT","channelId":"COURRIER","themeId":"DEMANDE RESILIATION","topicId":"COURRIER","subTopicId":"COURRIER REFID","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Enim Curabitur senectus justo Vivamus sem", "attachment":"true", "requestId":"006b233132123133", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"ALEDILHUIT","channelId":"COURRIER","themeId":"FINANCES","topicId":"ENCAISSEMENT COURRIER","subTopicId":"MOYEN DE PAIEMENT SEUL","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Quisque non leo ut magnis porta pede","attachment":"true", "requestId":"001_RESILIATION_002", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"ALEDILHUIT","channelId":"COURRIER","themeId":"ACTUALITE","topicId":"ACTUALITE GENERALE","subTopicId":"EVENEMENT MEDIA 1","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null}
+        ]
+    }
+}
+
+> # Description
+>
+> * MOCKUP for advisor jvincent - read all requests belonging to an advisor given its {advisorId}.
+>
+> # Parameters
+>
+> * personId (string) : id of the advisor (for instance : jvincent)
+>
+> # Returns
+>
+> * responseWrapper : standard response for KISS REST Services
+>     * returnCode : return code given by the service
+>     * severity : severity of the error (NORMAL, WARNING, ERROR)
+>     * message : return message given by the service 
+>     * data : a table of data representing the response 
+>         * listOfRequests : a table of requests
+>             * requestId : the request identifier
+>             * requester : the requester identifier
+ 
+GET /v1/advisors/jvincent/requests{?status}
+< 200
+< Content-Type: application/json
+{   "returnCode":"0",
+    "severity":"NORMAL",
+    "message":"OK - pas d'erreur",
+    "data":
+    {"listOfRequests" : 
+        [   {"comment":"Lorem ipsum dolor sit amet consectetuer", "attachment":"false", "requestId":"001_CONTRAT_001", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"JVINCENT","channelId":"TVI","themeId":"GESTION ABONNEMENT","topicId":"SOUSCRIPTION CONTRAT","subTopicId":"PRISE ABO CONTRAT MD","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Dictumst urna", "attachment":"true", "requestId":"001_ENCAISSEMENT_001", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"JVINCENT","channelId":"SVI","themeId":"GESTION ABONNEMENT","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"KHOUNNOU","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Augue", "attachment":"true", "requestId":"006qsdqsddqsscc", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"JVINCENT","channelId":"SVI","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"JVINCENT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Lacinia sed Nunc quis Duis Aliquam eget quis tellus", "attachment":"true", "requestId":"007n5454fd2121dd", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"JVINCENT","channelId":"SVI","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"DCHASSAGNAC","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Et pede urna id dolor eu iaculis", "attachment":"true", "requestId":"006b0215e1878975", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"JVINCENT","channelId":"COURRIER","themeId":"DEMANDE RESILIATION","topicId":"COURRIER","subTopicId":"COURRIER REFID","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Enim Curabitur senectus justo Vivamus sem", "attachment":"true", "requestId":"006b233132123133", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"JVINCENT","channelId":"COURRIER","themeId":"FINANCES","topicId":"ENCAISSEMENT COURRIER","subTopicId":"MOYEN DE PAIEMENT SEUL","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Quisque non leo ut magnis porta pede","attachment":"true", "requestId":"001_RESILIATION_002", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"JVINCENT","channelId":"COURRIER","themeId":"ACTUALITE","topicId":"ACTUALITE GENERALE","subTopicId":"EVENEMENT MEDIA 1","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Proin Quisque Ut", "attachment":"true", "requestId":"006a01d1e5f21c78", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"JVINCENT","channelId":"EC","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Aenean Sed turpis lacus massa magna", "attachment":"true", "requestId":"006b0215e1c5665a", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"JVINCENT","channelId":"EC","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Nisl laoreet tincidunt ligula et pellentesque tincidunt ultrices", "attachment":"true", "requestId":"010_Agent_024", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"JVINCENT","channelId":"EC","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Vestibulum lacus Mauris laoreet ut est Aenean malesuada Nulla", "attachment":"true", "requestId":"010_Agent_025", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"JVINCENT","channelId":"SVI","themeId":"ACTUALITE","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Platea Fusce enim magna In massa pede Quisque tellus", "attachment":"true", "requestId":"010_Agent_026", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"JVINCENT","channelId":"SVI","themeId":"ACTUALITE","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Nunc at turpis", "attachment":"true", "requestId":"001_RESILIATION_001", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"JVINCENT","channelId":"COURRIER","themeId":"ACTUALITE","topicId":"ACTUALITE GENERALE","subTopicId":"EVENEMENT MEDIA 1","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Id justo sed interdum Quisque augue facilisis ipsum in", "attachment":"true", "requestId":"001_RESILIATION_002", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"JVINCENT","channelId":"COURRIER","themeId":"ACTUALITE","topicId":"ACTUALITE GENERALE","subTopicId":"EVENEMENT MEDIA 1","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Semper", "attachment":"true", "requestId":"006b0215e1c5665a", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"JVINCENT","channelId":"EC","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null}
+        ]
+    }
+}
+
+> # Description
+>
+> * MOCKUP for advisor khounnou - read all requests belonging to an advisor given its {advisorId}.
+>
+> # Parameters
+>
+> * personId (string) : id of the advisor (for instance : khounnou)
+>
+> # Returns
+>
+> * responseWrapper : standard response for KISS REST Services
+>     * returnCode : return code given by the service
+>     * severity : severity of the error (NORMAL, WARNING, ERROR)
+>     * message : return message given by the service 
+>     * data : a table of data representing the response 
+>         * listOfRequests : a table of requests
+>             * requestId : the request identifier
+>             * requester : the requester identifier
+ 
+GET /v1/advisors/jvincent/requests{?status}
+< 200
+< Content-Type: application/json
+{   "returnCode":"0",
+    "severity":"NORMAL",
+    "message":"OK - pas d'erreur",
+    "data":
+    {"listOfRequests" : 
+        [   {"comment":"Lorem ipsum dolor sit amet consectetuer", "attachment":"false", "requestId":"001_CONTRAT_001", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"TVI","themeId":"GESTION ABONNEMENT","topicId":"SOUSCRIPTION CONTRAT","subTopicId":"PRISE ABO CONTRAT MD","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Dictumst urna", "attachment":"true", "requestId":"001_ENCAISSEMENT_001", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"SVI","themeId":"GESTION ABONNEMENT","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"KHOUNNOU","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Augue", "attachment":"true", "requestId":"006qsdqsddqsscc", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"SVI","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"JVINCENT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Lacinia sed Nunc quis Duis Aliquam eget quis tellus", "attachment":"true", "requestId":"007n5454fd2121dd", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"SVI","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"DCHASSAGNAC","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Et pede urna id dolor eu iaculis", "attachment":"true", "requestId":"006b0215e1878975", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"COURRIER","themeId":"DEMANDE RESILIATION","topicId":"COURRIER","subTopicId":"COURRIER REFID","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Enim Curabitur senectus justo Vivamus sem", "attachment":"true", "requestId":"006b233132123133", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"COURRIER","themeId":"FINANCES","topicId":"ENCAISSEMENT COURRIER","subTopicId":"MOYEN DE PAIEMENT SEUL","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Quisque non leo ut magnis porta pede","attachment":"true", "requestId":"001_RESILIATION_002", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"COURRIER","themeId":"ACTUALITE","topicId":"ACTUALITE GENERALE","subTopicId":"EVENEMENT MEDIA 1","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Proin Quisque Ut", "attachment":"true", "requestId":"006a01d1e5f21c78", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"EC","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Aenean Sed turpis lacus massa magna", "attachment":"true", "requestId":"006b0215e1c5665a", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"EC","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Nisl laoreet tincidunt ligula et pellentesque tincidunt ultrices", "attachment":"true", "requestId":"010_Agent_024", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"EC","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Vestibulum lacus Mauris laoreet ut est Aenean malesuada Nulla", "attachment":"true", "requestId":"010_Agent_025", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"SVI","themeId":"ACTUALITE","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Platea Fusce enim magna In massa pede Quisque tellus", "attachment":"true", "requestId":"010_Agent_026", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"SVI","themeId":"ACTUALITE","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Nunc at turpis", "attachment":"true", "requestId":"001_RESILIATION_001", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"COURRIER","themeId":"ACTUALITE","topicId":"ACTUALITE GENERALE","subTopicId":"EVENEMENT MEDIA 1","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Id justo sed interdum Quisque augue facilisis ipsum in", "attachment":"true", "requestId":"001_RESILIATION_002", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"COURRIER","themeId":"ACTUALITE","topicId":"ACTUALITE GENERALE","subTopicId":"EVENEMENT MEDIA 1","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Semper", "attachment":"true", "requestId":"006b0215e1c5665a", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"KHOUNNOU","channelId":"EC","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null}
+        ]
+    }
+}
+
+
+> # Description
+>
+> * MOCKUP for advisor phoules - read all requests belonging to an advisor given its {advisorId}.
+>
+> # Parameters
+>
+> * personId (string) : id of the advisor (for instance : phoules)
+>
+> # Returns
+>
+> * responseWrapper : standard response for KISS REST Services
+>     * returnCode : return code given by the service
+>     * severity : severity of the error (NORMAL, WARNING, ERROR)
+>     * message : return message given by the service 
+>     * data : a table of data representing the response 
+>         * listOfRequests : a table of requests
+>             * requestId : the request identifier
+>             * requester : the requester identifier
+ 
+GET /v1/advisors/phoules/requests{?status}
+< 200
+< Content-Type: application/json
+{   "returnCode":"0",
+    "severity":"NORMAL",
+    "message":"OK - pas d'erreur",
+    "data":
+    {"listOfRequests" : 
+        [   {"comment":"Lorem ipsum dolor sit amet consectetuer", "attachment":"false", "requestId":"001_CONTRAT_001", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"PHOULES","channelId":"TVI","themeId":"GESTION ABONNEMENT","topicId":"SOUSCRIPTION CONTRAT","subTopicId":"PRISE ABO CONTRAT MD","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Dictumst urna", "attachment":"true", "requestId":"001_ENCAISSEMENT_001", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"PHOULES","channelId":"SVI","themeId":"GESTION ABONNEMENT","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"KHOUNNOU","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Augue", "attachment":"true", "requestId":"006qsdqsddqsscc", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"PHOULES","channelId":"SVI","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"JVINCENT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Lacinia sed Nunc quis Duis Aliquam eget quis tellus", "attachment":"true", "requestId":"007n5454fd2121dd", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"PHOULES","channelId":"SVI","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"DCHASSAGNAC","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Et pede urna id dolor eu iaculis", "attachment":"true", "requestId":"006b0215e1878975", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"PHOULES","channelId":"COURRIER","themeId":"DEMANDE RESILIATION","topicId":"COURRIER","subTopicId":"COURRIER REFID","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Enim Curabitur senectus justo Vivamus sem", "attachment":"true", "requestId":"006b233132123133", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"PHOULES","channelId":"COURRIER","themeId":"FINANCES","topicId":"ENCAISSEMENT COURRIER","subTopicId":"MOYEN DE PAIEMENT SEUL","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Quisque non leo ut magnis porta pede","attachment":"true", "requestId":"001_RESILIATION_002", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"PHOULES","channelId":"COURRIER","themeId":"ACTUALITE","topicId":"ACTUALITE GENERALE","subTopicId":"EVENEMENT MEDIA 1","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Proin Quisque Ut", "attachment":"true", "requestId":"006a01d1e5f21c78", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"PHOULES","channelId":"EC","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Aenean Sed turpis lacus massa magna", "attachment":"true", "requestId":"006b0215e1c5665a", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"PHOULES","channelId":"EC","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Nisl laoreet tincidunt ligula et pellentesque tincidunt ultrices", "attachment":"true", "requestId":"010_Agent_024", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"PHOULES","channelId":"EC","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Vestibulum lacus Mauris laoreet ut est Aenean malesuada Nulla", "attachment":"true", "requestId":"010_Agent_025", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"PHOULES","channelId":"SVI","themeId":"ACTUALITE","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Platea Fusce enim magna In massa pede Quisque tellus", "attachment":"true", "requestId":"010_Agent_026", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"PHOULES","channelId":"SVI","themeId":"ACTUALITE","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Nunc at turpis", "attachment":"true", "requestId":"001_RESILIATION_001", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"PHOULES","channelId":"COURRIER","themeId":"ACTUALITE","topicId":"ACTUALITE GENERALE","subTopicId":"EVENEMENT MEDIA 1","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Id justo sed interdum Quisque augue facilisis ipsum in", "attachment":"true", "requestId":"001_RESILIATION_002", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"PHOULES","channelId":"COURRIER","themeId":"ACTUALITE","topicId":"ACTUALITE GENERALE","subTopicId":"EVENEMENT MEDIA 1","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
+            {"comment":"Semper", "attachment":"true", "requestId":"006b0215e1c5665a", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"PHOULES","channelId":"EC","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null}
+        ]
+    }
+}
+
 -- 
 Person
 A person is ...
