@@ -18,20 +18,20 @@ Functional error handling
       "header":
       {
         "timestamp" : 1310669017000,
-        "returnCode" : 1024, --> ça ne marche pas; voir tableau logs pour plus d'information, pas la peine de tenter de récupérer une donnée viable
-        "message" : "Validation Failed", --> obligatoire en cas d'erreur mais ne pas utiliser dans la logique de gestion d'erreur, utiliser le code retour
+        "returnCode" : 1024,
+        "message" : "Validation Failed"
       }
       "logs" : 
       [
         {
           "code" : 5432,
           "message" : "First name cannot have fancy characters",
-          "severity": 0 --> WARNING
+          "severity": 0
         },
         {
           "code" : 5622,
           "message" : "Password cannot be blank",
-          "severity": 1 --> ERROR 
+          "severity": 1
         }
       ]
     }
