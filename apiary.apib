@@ -697,37 +697,6 @@ POST /v1/contracts/search
 }
 
 -- 
-Device
-
-> A device is _TODO define what is a device_
->
-> * deviceId : _TODO explain what is the nomenclature of the deviceId_
-> * _TODO define the informational model of a device_
---
-
-> # Description
->
-> * search an equipment according to a query.
->
-> # Parameters
->
-> * query : a simple string which represent a clue
->
-> # Returns
->
-> * listOfEquipments : a table of equipments
->    * equipmentId : the equipment identifier
-
-POST /v1/equipments/search
-{ "query": "xxxx" }
-< 200
-< Content-Type: application/json
-{ "listOfEquipments" : 
-    [{ "equipmentId": "25a314b0-390d-13e3-aa6e-0800210c9a68" },
-    { "equipmentId": "45a314b0-381f-11e3-aa6e-0800201c9a69" }]
-}
-
--- 
 Advisor
 An advisor is a person in charge off a call in a call center blablabla...
 Resources Leader : Jérôme VINCENT
@@ -1180,3 +1149,33 @@ POST /v1/addresses/{addressId}
 < Content-Type: application/json
 { "addressId": "?????" }
 
+-- 
+Device (obsolete, will be remove the 13/12/2013)
+
+> A device is _TODO define what is a device_
+>
+> * deviceId : _TODO explain what is the nomenclature of the deviceId_
+> * _TODO define the informational model of a device_
+--
+
+> # Description
+>
+> * search an equipment according to a query.
+>
+> # Parameters
+>
+> * query : a simple string which represent a clue
+>
+> # Returns
+>
+> * listOfEquipments : a table of equipments
+>    * equipmentId : the equipment identifier
+
+POST /v1/equipments/search
+{ "query": "xxxx" }
+< 200
+< Content-Type: application/json
+{ "listOfEquipments" : 
+    [{ "equipmentId": "25a314b0-390d-13e3-aa6e-0800210c9a68" },
+    { "equipmentId": "45a314b0-381f-11e3-aa6e-0800201c9a69" }]
+}
