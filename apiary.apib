@@ -7,36 +7,11 @@ HOST: http://frcp03vdv0216:8084/
 KISS API documentation
 
 Under GITHUB since the 25/10/2013
+
+Interoperabily conventions (functional error handling,...)
+http://172.30.2.160/mediawiki/index.php/Interop%C3%A9rabilit%C3%A9
 ---
 
--- 
-Functional error handling
-
-    < 200
-    < Content-Type: application/json
-    {
-      "header":
-      {
-        "timestamp" : 1310669017000,
-        "returnCode" : 1024,
-        "message" : "Validation Failed"
-      }
-      "logs" : 
-      [
-        {
-          "code" : 5432,
-          "message" : "First name cannot have fancy characters",
-          "severity": 0
-        },
-        {
-          "code" : 5622,
-          "message" : "Password cannot be blank",
-          "severity": 1
-        }
-      ]
-    }
-
---
 
 -- 
 Promotion
