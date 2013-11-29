@@ -610,65 +610,6 @@ POST /v1/prospects/isEligible
 < Content-Type: application/json
 { "isEligible" : true }
 
--- 
-Offer
-An offer is ...
-
-# Identifier
-TODO
---
-
-> # Description
->
-> * search an offer according to a query.
->
-> # Parameters
->
-> * query : a simple string which represent a clue
->
-> # Returns
->
-> * listOfOffers : a table of offers
->    * offerId : the offer identifier
-
-POST /v1/offers/search
-{ "query": "xxxx" }
-< 200
-< Content-Type: application/json
-{ "listOfOffers" : 
-    [{ "offerId": "95a314b0-390d-11e3-aa6e-0800210c9a68" },
-    { "offerId": "95a314b0-381d-11e3-aa6e-0800201c9a69" }]
-}
-
--- 
-Contract
-A contract is ...
-
-# Identifier
-TODO
---
-
-> # Description
->
-> * search a contract according to a query.
->
-> # Parameters
->
-> * query : a simple string which represent a clue
->
-> # Returns
->
-> * listOfContracts : a table of contracts
->    * contractId : the contract identifier
-
-POST /v1/contracts/search
-{ "query": "xxxx" }
-< 200
-< Content-Type: application/json
-{ "listOfContracts" : 
-    [{ "contractId": "25a314b0-390d-11e3-aa6e-0800210c9a68" },
-    { "contractId": "45a314b0-381d-11e3-aa6e-0800201c9a69" }]
-}
 
 -- 
 Advisor
@@ -1180,3 +1121,62 @@ POST /v1/calendars/{calendarId}
 < Content-Type: application/json
 { "calendarId": "?????" }
 
+-- 
+Offer (obsolete, will be remove the 13/12/2013)
+An offer is ...
+
+# Identifier
+TODO
+--
+
+> # Description
+>
+> * search an offer according to a query.
+>
+> # Parameters
+>
+> * query : a simple string which represent a clue
+>
+> # Returns
+>
+> * listOfOffers : a table of offers
+>    * offerId : the offer identifier
+
+POST /v1/offers/search
+{ "query": "xxxx" }
+< 200
+< Content-Type: application/json
+{ "listOfOffers" : 
+    [{ "offerId": "95a314b0-390d-11e3-aa6e-0800210c9a68" },
+    { "offerId": "95a314b0-381d-11e3-aa6e-0800201c9a69" }]
+}
+
+-- 
+Contract (obsolete, will be remove the 13/12/2013)
+A contract is ...
+
+# Identifier
+TODO
+--
+
+> # Description
+>
+> * search a contract according to a query.
+>
+> # Parameters
+>
+> * query : a simple string which represent a clue
+>
+> # Returns
+>
+> * listOfContracts : a table of contracts
+>    * contractId : the contract identifier
+
+POST /v1/contracts/search
+{ "query": "xxxx" }
+< 200
+< Content-Type: application/json
+{ "listOfContracts" : 
+    [{ "contractId": "25a314b0-390d-11e3-aa6e-0800210c9a68" },
+    { "contractId": "45a314b0-381d-11e3-aa6e-0800201c9a69" }]
+}
