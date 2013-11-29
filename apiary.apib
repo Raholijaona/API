@@ -590,32 +590,6 @@ POST /v1/subjects/authenticate
 { "token": "02HKiPoin4f49GRMsOdFmhTgi_0nR7BBAflopdnD3gtixujECWpxr9klAw" }
 
 
---
-Calendar
-A calendar is...
-
-# Identifier
-TODO
---
-
-> # Description
->
-> * read a calendar given its {calendarId} 
->
-> # Parameters
->
-> * calendarId : the calendar identification
->
-> # Returns
->
-> * calendarId : the calendar identification
-> * ...
-
-POST /v1/calendars/{calendarId}
-< 200
-< Content-Type: application/json
-{ "calendarId": "?????" }
-
 > # Description
 >
 > * verify whether the prospect can subscribe to an offer.
@@ -1179,3 +1153,30 @@ POST /v1/equipments/search
     [{ "equipmentId": "25a314b0-390d-13e3-aa6e-0800210c9a68" },
     { "equipmentId": "45a314b0-381f-11e3-aa6e-0800201c9a69" }]
 }
+
+--
+Calendar (obsolete, will be remove the 13/12/2013)
+A calendar is...
+
+# Identifier
+TODO
+--
+
+> # Description
+>
+> * read a calendar given its {calendarId} 
+>
+> # Parameters
+>
+> * calendarId : the calendar identification
+>
+> # Returns
+>
+> * calendarId : the calendar identification
+> * ...
+
+POST /v1/calendars/{calendarId}
+< 200
+< Content-Type: application/json
+{ "calendarId": "?????" }
+
