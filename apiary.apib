@@ -44,26 +44,17 @@ Promotion
  
 GET /v1/promotions/{promotionId}
 < 200
-< Content-Type: application/json
 {
-"promotion" :  {"promotionId" : "PAN1309" , 
-                "shortLabel" : "Promotion nationale Panorama 1309",
-                "description" : "description de la promotion nationale Panorama 1309",
-                "startdate" : "05/10/2013",
-                "endDate" : "31/12/2013"}
-}
-
-GET /v1/promotions/12A3
-< 200
-< Content-Type: application/json
-{
-  "success": false,
-  "error": {
-    "returnCode": 123,
-    "severity": 1,
-    "message": "Incorrect promotion id",
-    "data": "/v1/promotions/12A3"
-  }
+  "data": {
+    "shortLabel": "string",
+    "description": "string",
+    "startDate": "20120131",
+    "enddate": "string",
+    "promotionId": "string"
+  },
+  "severity": "SUCCESS",
+  "message": "process successfully completed",
+  "returnCode": "SUCCESS"
 }
 
 
