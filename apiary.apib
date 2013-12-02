@@ -44,6 +44,7 @@ Promotion
  
 GET /v1/promotions/{promotionId}
 < 200
+< Content-Type: application/json
 {
   "data": {
     "shortLabel": "string",
@@ -78,14 +79,19 @@ GET /v1/promotions/search?startDate=01102013&endDate=31122013
 < 200
 < Content-Type: application/json
 {
-"promotions" : [ {"promotionId" : "PAN1309" , "shortLabel" : "Promotion nationale Panorama 1309"} ,
-    {"promotionId" : "SER1309" ,  "shortLabel" : "Promotion nationale Series Cinema 1309"} 
-  ]
+  "data": [
+    {
+      "shortLabel": "string",
+      "description": "string",
+      "startDate": "20120131",
+      "enddate": "string",
+      "promotionId": "string"
+    }
+  ],
+  "severity": "SUCCESS",
+  "message": "process successfully completed",
+  "returnCode": "SUCCESS"
 }
-+++++
-< 400
-< Content-Type: application/json
-{"message":"The lower bound date must be lower than the upper bound date of the search."}
 
 -- 
 Customer
