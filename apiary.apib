@@ -437,38 +437,6 @@ POST /v1/activities/search
     { "activityId": "95a314b0-380d-11e3-aa6e-0800200c9a69","target": "Dupont" }]
 }
 
-
--- 
-Prospect
-A prospect is ...
-
-# Identifier
-TODO
---
-
-> # Description
->
-> * search a prospect according to a query.
->
-> # Parameters
->
-> * query : a simple string which represent a clue
->
-> # Returns
->
-> * listOfProspects : a table of prospects
->    * prospectId : the prospect identifier
-
-POST /v1/prospects/search
-{ "query": "Dupont" }
-< 200
-< Content-Type: application/json
-{ "listOfProspects" : 
-    [{ "prospectId": "96a314b0-380d-11e3-aa6e-0800210c9a68" },
-    { "prospectId": "95a316b0-380d-11e3-aa6e-0800201c9a69" }]
-}
-
-
 --
 Subject
 A subject can be a user or an informatic process which have an access to Canal+ Information System.
