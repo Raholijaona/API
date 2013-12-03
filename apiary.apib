@@ -921,3 +921,37 @@ GET /v1/persons/19376922/requests
         ]
     }
 }
+
+-- 
+Audit
+Resources Leader : Jérôme VINCENT
+
+> An audit support the object of a audit and trace record for the contact access
+>
+> * date (number) : the date of audit trace
+> * auditType (string) : the type of the audit trace _TODO mettre les vrais valeurs_ (for instance : Dossier, Activite, ContatSortant)
+> * operatorId (string) : the identifier of the operator responsible of the resolution of the request _TODO add the list of values_ (for instance : CANAL+)
+> * changes (array of change) : the array of modifications done
+> * change :
+> *     attrName (string) : the attribute name that has been changed
+> *     oldValue (string) : the old attribute value
+> *     newValue (string) : the new attribute value
+
+--
+
+> # Description
+>
+> * creates a audit trace.
+>
+> # Parameters
+>
+> * requestId : the request identifier
+> * requester : the requester identifier
+>
+> # Returns
+>
+> * none
+
+PUT /v1/requests/{requestId}
+{ "requestId": "95a314b0-380d-11e3-aa6e-0800200c9a66","requester": "Dupont" }
+< 200
