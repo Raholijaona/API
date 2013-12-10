@@ -955,3 +955,1000 @@ Resources Leader : Jérôme VINCENT
 POST /v1/audit/
 { "date" : 1310669017000, "auditType": "Activity" }
 < 200
+--
+accounting
+Resources Leader : Olivier REBOUL
+
+# Model
+ * Severity
+ * AccountingPiece
+  * crmLedgerId (string)
+  * accountingPieceLabel (string)
+  * sapOperatorId (string)
+  * crmOperatorLabel (string)
+  * crmOperatorId (string)
+  * transfertDate (string)
+  * entries (List)
+  * accountingDate (string)
+  * crmLedgerLabel (string)
+ * Entrie
+  * axe2Account (string)
+  * budgetingAccount (string)
+  * operationalNature (string)
+  * operationalAccount (string)
+  * budgetingNature (string)
+  * debit (float)
+  * credit (float)
+  * vatId (string)
+  * generalAccount (string)
+  * vatRate (float)
+ * ResponseWrapper«AccountingPiece»
+  * message (string)
+  * returnCode (string)
+  * data (AccountingPiece)
+  * severity (Severity)
+--
+
+description get Accounting Piece
+
+# Parameters
+
+ * accountingPieceId(Long), mandatory
+
+# Returns
+
+ * ResponseWrapper«AccountingPiece»
+
+GET /v1/accountingPiece/{accountingPieceId}
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+--
+act
+Resources Leader : Olivier REBOUL
+
+# Model
+ * ActOfManagementDetail
+  * actOfManagementId (long)
+  * listOfChanges (List)
+ * ActOfManagementDetailChange
+  * newValue (string)
+  * name (string)
+  * oldValue (string)
+ * ResponseWrapper«ActOfManagementDetail»
+  * message (string)
+  * returnCode (string)
+  * data (ActOfManagementDetail)
+  * severity (Severity)
+ * Severity
+ * ActOfManagement
+  * cancellationDate (string)
+  * renewalSequence (int)
+  * creationUser (string)
+  * creationDate (string)
+  * actOfManagementType (string)
+  * saleDevice (string)
+  * actOfManagementId (long)
+  * salesmanId (string)
+  * personId (long)
+  * contractId (int)
+  * distributorId (string)
+  * mediaType (string)
+  * cancellationUser (string)
+  * changes (ActOfManagementDetail)
+ * ResponseWrapper«List«ActOfManagement»»
+  * message (string)
+  * returnCode (string)
+  * data (List)
+  * severity (Severity)
+--
+
+description Renvoie la liste des mouvements du contrat passé en paramètre
+
+# Parameters
+
+ * personId(long), mandatory
+ * contractId(Integer), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«ActOfManagement»»
+
+GET /v1/persons/{personId}/contracts/{contractId}/actofmanagements
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description Renvoie le detail du mouvement dont l'id est passé en paramètre
+
+# Parameters
+
+ * id(long), mandatory
+
+# Returns
+
+ * ResponseWrapper«ActOfManagementDetail»
+
+GET /v1/actofmanagements/{id}
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+--
+address
+Resources Leader : Olivier REBOUL
+
+# Model
+ * ResponseWrapper«Address»
+  * message (string)
+  * returnCode (string)
+  * data (Address)
+  * severity (Severity)
+ * Severity
+ * ResponseWrapper«List«Address»»
+  * message (string)
+  * returnCode (string)
+  * data (List
+)
+  * severity (Severity)
+ * Address
+  * countryId (string)
+  * street2 (string)
+  * valid (boolean)
+  * street1 (string)
+  * startDate (long)
+  * endDate (long)
+  * addressType (string)
+  * addressId (long)
+  * undeliverabilityReason (string)
+  * city (string)
+  * postalCode (string)
+  * personId (int)
+  * contractId (int)
+  * street3 (string)
+--
+
+description update Address
+
+# Parameters
+
+ * address(Address), mandatory
+ * contactId(String), mandatory
+ * userMod(String), mandatory
+ * updateotherscontracts(boolean), mandatory
+
+# Returns
+
+ * ResponseWrapper«Address»
+
+PUT /v1/addresses
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description get Address By Id
+
+# Parameters
+
+ * addressId(Long), mandatory
+
+# Returns
+
+ * ResponseWrapper«Address»
+
+GET /v1/addresses/{addressId}
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description get Addresses By Contract Id
+
+# Parameters
+
+ * personId(Long), mandatory
+ * contractId(Integer), mandatory
+ * addressType(String), mandatory
+ * addressValidOnly(Boolean), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«Address»»
+
+GET /v1/persons/{personId}/contracts/{contractId}/addresses
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description get Addresses
+
+# Parameters
+
+ * personId(Long), mandatory
+ * addressType(String), mandatory
+ * addressValidOnly(Boolean), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«Address»»
+
+GET /v1/persons/{personId}/addresses
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+--
+code
+Resources Leader : Olivier REBOUL
+
+# Model
+ * ResponseWrapper«List«CodeTable»»
+  * message (string)
+  * returnCode (string)
+  * data (List)
+  * severity (Severity)
+ * CodeTable
+  * id (string)
+  * label (string)
+ * Severity
+--
+
+description Liste des valeurs possibles : civilities, supports, equipmenttypes, cancellations, paymenttypes, durations, formationdurations, operators, contractstatus, actofmanagements, vectors, origins
+
+# Parameters
+
+ * objectName(String), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«CodeTable»»
+
+GET /v1/codetables/{objectName}
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+--
+comment
+Resources Leader : Olivier REBOUL
+
+# Model
+ * ResponseWrapper«any»
+  * message (string)
+  * returnCode (string)
+  * data (undefined)
+  * severity (Severity)
+ * Severity
+ * ResponseWrapper«List«Comment»»
+  * message (string)
+  * returnCode (string)
+  * data (List)
+  * severity (Severity)
+ * ResponseWrapper«Comment»
+  * message (string)
+  * returnCode (string)
+  * data (Comment)
+  * severity (Severity)
+ * Comment
+  * commentText (string)
+  * createdBy (string)
+  * personId (long)
+  * contractId (int)
+  * createdDate (string)
+  * commentType (string)
+  * commentId (long)
+--
+
+description create Comment
+
+# Parameters
+
+ * comment(Comment), mandatory
+
+# Returns
+
+ * ResponseWrapper«Comment»
+
+POST /v1/comments
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description get Comments By Contract Id
+
+# Parameters
+
+ * personId(long), mandatory
+ * contractId(Integer), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«Comment»»
+
+GET /v1/persons/{personId}/contracts/{contractId}/comments
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description update Comment
+
+# Parameters
+
+ * comment(Comment), mandatory
+
+# Returns
+
+ * ResponseWrapper«any»
+
+PUT /v1/comments
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+--
+contract
+Resources Leader : Olivier REBOUL
+
+# Model
+ * ResponseWrapper«List«ContractSummary»»
+  * message (string)
+  * returnCode (string)
+  * data (List)
+  * severity (Severity)
+ * ResponseWrapper«List«Contract»»
+  * message (string)
+  * returnCode (string)
+  * data (List)
+  * severity (Severity)
+ * RefContract
+  * personId (long)
+  * contractId (int)
+ * Severity
+ * ResponseWrapper«String»
+  * message (string)
+  * returnCode (string)
+  * data (string)
+  * severity (Severity)
+ * ContractSummary
+  * startDate (string)
+  * suspensionDate (string)
+  * cancellationReason (string)
+  * endDate (string)
+  * financialIncidentInProgress (boolean)
+  * cancellationDate (string)
+  * balance (float)
+  * mainActOfManagementId (string)
+  * personId (long)
+  * contractId (int)
+  * fullValidationStatus (string)
+  * equipmentType (string)
+  * origin (string)
+  * mainActOfManagementDate (string)
+  * contractStatus (string)
+  * broadcastMediaType (string)
+  * ispId (string)
+  * lastAssetDate (string)
+  * majorProductId (string)
+  * broadcastVectorId (string)
+  * methodOfPaiement (string)
+  * mainCommentDate (string)
+  * mainCommentText (string)
+  * commercialOperator (string)
+  * lastAssetAmount (float)
+ * Contract
+  * startDate (string)
+  * creationUser (string)
+  * fullValidationStatus (string)
+  * suspensionDate (string)
+  * articles (List)
+  * cancellationReason (string)
+  * origin (string)
+  * endDate (string)
+  * distributorId (string)
+  * thirdPartyPayerId (long)
+  * contractStatus (string)
+  * cancellationUser (string)
+  * cancellationDate (string)
+  * linkedContracts (List)
+  * renewalSequence (int)
+  * creationDate (string)
+  * duration (int)
+  * broadcastMediaType (string)
+  * personId (long)
+  * methodOfPaiement (string)
+  * contractId (int)
+  * commercialOperator (string)
+  * nonRenewalReason (string)
+  * updateUser (string)
+ * ResponseWrapper«Contract»
+  * message (string)
+  * returnCode (string)
+  * data (Contract)
+  * severity (Severity)
+ * ProductOwned
+  * startDate (string)
+  * endDate (string)
+  * label (string)
+  * productType (string)
+  * productAmountId (string)
+  * productId (string)
+ * ContractLight
+  * cancellationDate (string)
+  * contactId (long)
+  * cancellationReason (string)
+  * personId (long)
+  * salesMan (string)
+  * contractId (int)
+  * distributorId (string)
+  * cancellationUser (string)
+  * salesDevice (string)
+--
+
+description Liste synthétique des contrats d'un abonné
+
+# Parameters
+
+ * personId(Long), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«ContractSummary»»
+
+GET /v1/persons/{personId}/contracts/summary
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description cancellation Date Computing
+
+# Parameters
+
+ * personId(Long), mandatory
+ * contractId(Integer), mandatory
+ * cancellationReason(String), required
+
+# Returns
+
+ * ResponseWrapper«String»
+
+GET /v1/persons/{personId}/contracts/{contractId}/cancel/date
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description detect Cancellation Request
+
+# Parameters
+
+ * personId(Long), mandatory
+ * contractId(Integer), mandatory
+
+# Returns
+
+ * ResponseWrapper«Contract»
+
+GET /v1/persons/{personId}/contracts/{contractId}/cancel/detected
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description record Cancellation
+
+# Parameters
+
+ * contractLight(ContractLight), mandatory
+
+# Returns
+
+ * ResponseWrapper«Contract»
+
+POST /v1/persons/{personId}/contracts/{contractId}/cancel
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description cancel Cancellation
+
+# Parameters
+
+ * contractLight(ContractLight), mandatory
+
+# Returns
+
+ * ResponseWrapper«Contract»
+
+POST /v1/persons/{personId}/contracts/{contractId}/cancelCancellation
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description Liste des contrats d'un abonné
+
+# Parameters
+
+ * personId(Long), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«Contract»»
+
+GET /v1/persons/{personId}/contracts
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description Détail d'un contrat
+
+# Parameters
+
+ * personId(Long), mandatory
+ * contractId(Integer), mandatory
+
+# Returns
+
+ * ResponseWrapper«Contract»
+
+GET /v1/persons/{personId}/contracts/{contractId}
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+--
+equipment
+Resources Leader : Olivier REBOUL
+
+# Model
+ * ResponseWrapper«List«Equipment»»
+  * message (string)
+  * returnCode (string)
+  * data (List)
+  * severity (Severity)
+ * Equipment
+  * creationUser (string)
+  * creationDate (string)
+  * equipmentType (string)
+  * equipmentId (string)
+  * personId (long)
+  * contractId (int)
+  * equipmentLabel (string)
+  * accessories (List)
+ * Severity
+ * Accessory
+  * equipmentType (string)
+  * equipmentLabel (string)
+--
+
+description get Equipments
+
+# Parameters
+
+ * personId(Long), mandatory
+ * contractId(Integer), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«Equipment»»
+
+GET /v1/persons/{personId}/equipments
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+--
+payment
+Resources Leader : Olivier REBOUL
+
+# Model
+ * Severity
+ * ResponseWrapper«List«PaymentMean»»
+  * message (string)
+  * returnCode (string)
+  * data (List)
+  * severity (Severity)
+ * ResponseWrapper
+  * message (string)
+  * returnCode (string)
+  * data (undefined)
+  * severity (Severity)
+ * PaymentMean
+  * creditCard (CreditCard)
+  * personId (long)
+  * contractId (int)
+  * createdDate (string)
+  * iban (string)
+ * CreditCard
+  * expirationDate (string)
+  * number (string)
+  * type (string)
+--
+
+description create Payment Mean
+
+# Parameters
+
+ * param(PaymentMean), mandatory
+
+# Returns
+
+ * ResponseWrapper
+
+POST /v1/paymentmeans
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description get Payment Mean By Person Id
+
+# Parameters
+
+ * personId(long), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«PaymentMean»»
+
+GET /v1/persons/{personId}/paymentmeans
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+--
+person
+Resources Leader : Olivier REBOUL
+
+# Model
+ * ResponseWrapper«any»
+  * message (string)
+  * returnCode (string)
+  * data (undefined)
+  * severity (Severity)
+ * Phone
+  * phoneNumber (string)
+  * phoneType (string)
+  * phoneId (long)
+ * Severity
+ * Email
+  * valid (boolean)
+  * emailId (long)
+  * emailType (string)
+  * email (string)
+ * Address
+  * countryId (string)
+  * street2 (string)
+  * valid (boolean)
+  * street1 (string)
+  * startDate (long)
+  * endDate (long)
+  * addressType (string)
+  * addressId (long)
+  * city (string)
+  * undeliverabilityReason (string)
+  * postalCode (string)
+  * personId (int)
+  * contractId (int)
+  * street3 (string)
+ * IdentityDocument
+  * validityDate (string)
+  * identityType (string)
+  * identityNumber (string)
+ * ResponseWrapper«Person»
+  * message (string)
+  * returnCode (string)
+  * data (Person)
+  * severity (Severity)
+ * Person
+  * lastName (string)
+  * creationUser (string)
+  * ridetNumber (string)
+  * civility (string)
+  * origin (string)
+  * emails (List)
+  * phoneNumbers (List)
+  * companyName (string)
+  * identityDocuments (IdentityDocument)
+  * homeId (string)
+  * creationDate (string)
+  * category (string)
+  * numberOfChildren (int)
+  * personId (long)
+  * birthDate (string)
+  * addresses (List
+)
+  * firstName (string)
+  * updateUser (string)
+--
+
+description Détail d'un abonné
+
+# Parameters
+
+ * personId(Long), mandatory
+
+# Returns
+
+ * ResponseWrapper«Person»
+
+GET /v1/persons/{personId}
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description create Person
+
+# Parameters
+
+ * person(Person), mandatory
+
+# Returns
+
+ * ResponseWrapper«Person»
+
+POST /v1/persons
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description update Person
+
+# Parameters
+
+ * personId(long), mandatory
+ * person(Person), mandatory
+
+# Returns
+
+ * ResponseWrapper«Person»
+
+PUT /v1/persons/{personId}
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description update Email
+
+# Parameters
+
+ * personId(long), mandatory
+ * email(Email), mandatory
+
+# Returns
+
+ * ResponseWrapper«any»
+
+PUT /v1/persons/{personId}/emails
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description create Email
+
+# Parameters
+
+ * personId(long), mandatory
+ * email(Email), mandatory
+
+# Returns
+
+ * ResponseWrapper«any»
+
+POST /v1/persons/{personId}/emails
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+--
+product
+Resources Leader : Olivier REBOUL
+
+# Model
+ * ForbiddenProducts
+  * forbiddenProductId (string)
+ * Severity
+ * Product
+  * amount (BigDecimal)
+  * forbiddenProducts (List)
+  * themeId (string)
+  * productCategory (string)
+  * commercialLabel (string)
+  * label (string)
+  * amountToBePaid (BigDecimal)
+  * productType (string)
+  * productId (string)
+ * ResponseWrapper«List«Product»»
+  * message (string)
+  * returnCode (string)
+  * data (List)
+  * severity (Severity)
+ * BigDecimal
+--
+
+description get Contract Products
+
+# Parameters
+
+ * distributorId(String), required
+ * subscriberId(Long), required
+ * contractId(Integer), required
+ * workingDate(String), mandatory
+ * broadcastMediaType(String), required
+ * commercialOperator(String), required
+ * saleDevice(String), required
+ * country(String), mandatory
+ * postalCode(String), mandatory
+ * duration(Integer), mandatory
+ * methodOfPaiement(String), mandatory
+ * origin(String), mandatory
+ * dateToDate(Boolean), mandatory
+ * action(String), required
+ * linkedContract(String), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«Product»»
+
+GET /v1/persons/{personId}/contracts/{contractId}/products
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description get Product
+
+# Parameters
+
+ * distributorId(String), required
+ * workingDate(String), mandatory
+ * broadcastMediaType(String), required
+ * commercialOperator(String), required
+ * saleDevice(String), required
+ * country(String), mandatory
+ * postalCode(String), mandatory
+ * duration(Integer), mandatory
+ * methodOfPaiement(String), mandatory
+ * origin(String), mandatory
+ * dateToDate(Boolean), mandatory
+ * action(String), required
+ * linkedContract(String), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«Product»»
+
+GET /v1/products
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+--
+promotion
+Resources Leader : Olivier REBOUL
+
+# Model
+ * Severity
+ * Promotion
+  * promotionId (string)
+  * startDate (string)
+  * shortLabel (string)
+  * description (string)
+  * enddate (string)
+ * ResponseWrapper«Promotion»
+  * message (string)
+  * returnCode (string)
+  * data (Promotion)
+  * severity (Severity)
+ * ResponseWrapper«List«Promotion»»
+  * message (string)
+  * returnCode (string)
+  * data (List)
+  * severity (Severity)
+--
+
+description get Promotion Detail
+
+# Parameters
+
+ * promotionId(String), mandatory
+
+# Returns
+
+ * ResponseWrapper«Promotion»
+
+GET /v1/promotions/{promotionId}
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
+
+
+description get Promotions List
+
+# Parameters
+
+ * startDate(String), required
+ * endDate(String), required
+ * saleDevice(String), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«Promotion»»
+
+GET /v1/promotions
+< 200
+< Content-Type: application/json
+{
+"severity": "SUCCESS"
+}
