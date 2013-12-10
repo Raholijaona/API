@@ -876,6 +876,7 @@ POST /v1/audit/
 { "date" : 1310669017000, "auditType": "Activity" }
 < 200
 --
+--
 accounting
 Resources Leader : Olivier REBOUL
 
@@ -888,7 +889,7 @@ Resources Leader : Olivier REBOUL
   * crmOperatorLabel (string)
   * crmOperatorId (string)
   * transfertDate (string)
-  * entries (List)
+  * entries (List<Entrie>)
   * accountingDate (string)
   * crmLedgerLabel (string)
  * Entrie
@@ -923,8 +924,22 @@ GET /v1/accountingPiece/{accountingPieceId}
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": {
+        "crmLedgerId": "string",
+        "crmLedgerLabel": "string",
+        "accountingDate": "20120131",
+        "crmOperatorId": "string",
+        "crmOperatorLabel": "string",
+        "sapOperatorId": "string",
+        "transfertDate": "20120131",
+        "accountingPieceLabel": "string",
+        "entries": []
+    }
 }
+
 
 --
 act
@@ -933,7 +948,7 @@ Resources Leader : Olivier REBOUL
 # Model
  * ActOfManagementDetail
   * actOfManagementId (long)
-  * listOfChanges (List)
+  * listOfChanges (List<ActOfManagementDetailChange>)
  * ActOfManagementDetailChange
   * newValue (string)
   * name (string)
@@ -962,7 +977,7 @@ Resources Leader : Olivier REBOUL
  * ResponseWrapper«List«ActOfManagement»»
   * message (string)
   * returnCode (string)
-  * data (List)
+  * data (List<ActOfManagement>)
   * severity (Severity)
 --
 
@@ -981,8 +996,70 @@ GET /v1/persons/{personId}/contracts/{contractId}/actofmanagements
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "personId": 1,
+            "contractId": 1,
+            "actOfManagementType": "Transformation d'offre",
+            "renewalSequence": 1,
+            "mediaType": "CAN",
+            "saleDevice": "SaleDevice",
+            "salesmanId": "SalesmanId",
+            "distributorId": "S12000",
+            "creationDate": "20130101",
+            "creationUser": "EDITTEX",
+            "cancellationDate": "20130102",
+            "cancellationUser": "EDITTEX",
+            "changes": {
+                "listOfChanges": [],
+                "actOfManagementId": null
+            },
+            "actOfManagementId": 0
+        },
+        {
+            "personId": 1,
+            "contractId": 1,
+            "actOfManagementType": "Ajout de promotion",
+            "renewalSequence": 2,
+            "mediaType": "CSA",
+            "saleDevice": "SaleDevice",
+            "salesmanId": "SalesmanId",
+            "distributorId": "D10000",
+            "creationDate": "20131111",
+            "creationUser": "EDITTEX",
+            "cancellationDate": "20131201",
+            "cancellationUser": "EDITTEX",
+            "changes": {
+                "listOfChanges": [],
+                "actOfManagementId": null
+            },
+            "actOfManagementId": 1
+        },
+        {
+            "personId": 1,
+            "contractId": 1,
+            "actOfManagementType": "Retrait d'option",
+            "renewalSequence": 3,
+            "mediaType": "CAN",
+            "saleDevice": "SaleDevice",
+            "salesmanId": "SalesmanId",
+            "distributorId": "S00006",
+            "creationDate": "20131201",
+            "creationUser": "EDITTEX",
+            "cancellationDate": "20131202",
+            "cancellationUser": "EDITTEX",
+            "changes": {
+                "listOfChanges": [],
+                "actOfManagementId": null
+            },
+            "actOfManagementId": 2
+        }
+    ]
 }
+
 
 
 description Renvoie le detail du mouvement dont l'id est passé en paramètre
@@ -999,8 +1076,12 @@ GET /v1/actofmanagements/{id}
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
 }
+
 
 --
 address
@@ -1016,8 +1097,7 @@ Resources Leader : Olivier REBOUL
  * ResponseWrapper«List«Address»»
   * message (string)
   * returnCode (string)
-  * data (List
-)
+  * data (List<Address>)
   * severity (Severity)
  * Address
   * countryId (string)
@@ -1053,8 +1133,12 @@ PUT /v1/addresses
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
 }
+
 
 
 description get Address By Id
@@ -1071,8 +1155,27 @@ GET /v1/addresses/{addressId}
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": {
+        "addressType": "string",
+        "countryId": "string",
+        "street1": "string",
+        "street2": "string",
+        "street3": "string",
+        "postalCode": "string",
+        "city": "string",
+        "startDate": 20120131,
+        "endDate": 20120131,
+        "valid": false,
+        "undeliverabilityReason": "string",
+        "personId": 0,
+        "contractId": 0,
+        "addressId": 0
+    }
 }
+
 
 
 description get Addresses By Contract Id
@@ -1092,8 +1195,29 @@ GET /v1/persons/{personId}/contracts/{contractId}/addresses
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "addressType": "string",
+            "countryId": "string",
+            "street1": "string",
+            "street2": "string",
+            "street3": "string",
+            "postalCode": "string",
+            "city": "string",
+            "startDate": 20120131,
+            "endDate": 20120131,
+            "valid": false,
+            "undeliverabilityReason": "string",
+            "personId": 0,
+            "contractId": 0,
+            "addressId": 0
+        }
+    ]
 }
+
 
 
 description get Addresses
@@ -1112,8 +1236,29 @@ GET /v1/persons/{personId}/addresses
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "addressType": "string",
+            "countryId": "string",
+            "street1": "string",
+            "street2": "string",
+            "street3": "string",
+            "postalCode": "string",
+            "city": "string",
+            "startDate": 20120131,
+            "endDate": 20120131,
+            "valid": false,
+            "undeliverabilityReason": "string",
+            "personId": 0,
+            "contractId": 0,
+            "addressId": 0
+        }
+    ]
 }
+
 
 --
 code
@@ -1123,7 +1268,7 @@ Resources Leader : Olivier REBOUL
  * ResponseWrapper«List«CodeTable»»
   * message (string)
   * returnCode (string)
-  * data (List)
+  * data (List<CodeTable>)
   * severity (Severity)
  * CodeTable
   * id (string)
@@ -1145,8 +1290,17 @@ GET /v1/codetables/{objectName}
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "label": "string",
+            "id": "string"
+        }
+    ]
 }
+
 
 --
 comment
@@ -1162,7 +1316,7 @@ Resources Leader : Olivier REBOUL
  * ResponseWrapper«List«Comment»»
   * message (string)
   * returnCode (string)
-  * data (List)
+  * data (List<Comment>)
   * severity (Severity)
  * ResponseWrapper«Comment»
   * message (string)
@@ -1193,8 +1347,20 @@ POST /v1/comments
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "ce service est un bouchon",
+    "severity": "WARN",
+    "data": {
+        "commentType": null,
+        "commentText": null,
+        "createdBy": null,
+        "createdDate": null,
+        "personId": 0,
+        "contractId": 0,
+        "commentId": 111
+    }
 }
+
 
 
 description get Comments By Contract Id
@@ -1212,8 +1378,94 @@ GET /v1/persons/{personId}/contracts/{contractId}/comments
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "ce service est un bouchon",
+    "severity": "WARN",
+    "data": [
+        {
+            "commentType": null,
+            "commentText": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo",
+            "createdBy": "REMY",
+            "createdDate": "20130323",
+            "personId": 1,
+            "contractId": 1,
+            "commentId": 111
+        },
+        {
+            "commentType": null,
+            "commentText": "Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit",
+            "createdBy": "ANNIE",
+            "createdDate": "20130323",
+            "personId": 1,
+            "contractId": 1,
+            "commentId": 112
+        },
+        {
+            "commentType": null,
+            "commentText": "Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet",
+            "createdBy": "CAROLE",
+            "createdDate": "20130323",
+            "personId": 1,
+            "contractId": 1,
+            "commentId": 113
+        },
+        {
+            "commentType": null,
+            "commentText": "Consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad",
+            "createdBy": "MARION",
+            "createdDate": "20130323",
+            "personId": 1,
+            "contractId": 1,
+            "commentId": 114
+        },
+        {
+            "commentType": null,
+            "commentText": "Minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?",
+            "createdBy": "TALIA",
+            "createdDate": "20130323",
+            "personId": 1,
+            "contractId": 1,
+            "commentId": 115
+        },
+        {
+            "commentType": null,
+            "commentText": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur",
+            "createdBy": "ORIANNE",
+            "createdDate": "20130323",
+            "personId": 1,
+            "contractId": 1,
+            "commentId": 116
+        },
+        {
+            "commentType": null,
+            "commentText": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system",
+            "createdBy": "ARNAUD",
+            "createdDate": "20130323",
+            "personId": 1,
+            "contractId": 1,
+            "commentId": 117
+        },
+        {
+            "commentType": null,
+            "commentText": "And expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure",
+            "createdBy": "JEROME",
+            "createdDate": "20130323",
+            "personId": 1,
+            "contractId": 1,
+            "commentId": 118
+        },
+        {
+            "commentType": null,
+            "commentText": "Cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio",
+            "createdBy": "OLIVIER",
+            "createdDate": "20130323",
+            "personId": 1,
+            "contractId": 1,
+            "commentId": 119
+        }
+    ]
 }
+
 
 
 description update Comment
@@ -1230,8 +1482,12 @@ PUT /v1/comments
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "ce service est un bouchon",
+    "severity": "WARN",
+    "data": null
 }
+
 
 --
 contract
@@ -1241,12 +1497,12 @@ Resources Leader : Olivier REBOUL
  * ResponseWrapper«List«ContractSummary»»
   * message (string)
   * returnCode (string)
-  * data (List)
+  * data (List<ContractSummary>)
   * severity (Severity)
  * ResponseWrapper«List«Contract»»
   * message (string)
   * returnCode (string)
-  * data (List)
+  * data (List<Contract>)
   * severity (Severity)
  * RefContract
   * personId (long)
@@ -1288,7 +1544,7 @@ Resources Leader : Olivier REBOUL
   * creationUser (string)
   * fullValidationStatus (string)
   * suspensionDate (string)
-  * articles (List)
+  * articles (List<ProductOwned>)
   * cancellationReason (string)
   * origin (string)
   * endDate (string)
@@ -1297,7 +1553,7 @@ Resources Leader : Olivier REBOUL
   * contractStatus (string)
   * cancellationUser (string)
   * cancellationDate (string)
-  * linkedContracts (List)
+  * linkedContracts (List<RefContract>)
   * renewalSequence (int)
   * creationDate (string)
   * duration (int)
@@ -1346,8 +1602,40 @@ GET /v1/persons/{personId}/contracts/summary
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "origin": "string",
+            "commercialOperator": "string",
+            "broadcastMediaType": "string",
+            "broadcastVectorId": "string",
+            "equipmentType": "string",
+            "methodOfPaiement": "string",
+            "mainActOfManagementId": "string",
+            "ispId": "string",
+            "mainActOfManagementDate": "20120131",
+            "contractStatus": "string",
+            "startDate": "20120131",
+            "endDate": "20120131",
+            "fullValidationStatus": "string",
+            "cancellationReason": "string",
+            "cancellationDate": "20120131",
+            "suspensionDate": "20120131",
+            "balance": 0,
+            "lastAssetAmount": 0,
+            "lastAssetDate": "20120131",
+            "financialIncidentInProgress": false,
+            "majorProductId": "string",
+            "mainCommentText": "string",
+            "mainCommentDate": "20120131",
+            "personId": 0,
+            "contractId": 0
+        }
+    ]
 }
+
 
 
 description cancellation Date Computing
@@ -1365,9 +1653,7 @@ description cancellation Date Computing
 GET /v1/persons/{personId}/contracts/{contractId}/cancel/date
 < 200
 < Content-Type: application/json
-{
-"severity": "SUCCESS"
-}
+
 
 
 description detect Cancellation Request
@@ -1385,8 +1671,12 @@ GET /v1/persons/{personId}/contracts/{contractId}/cancel/detected
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
 }
+
 
 
 description record Cancellation
@@ -1402,9 +1692,7 @@ description record Cancellation
 POST /v1/persons/{personId}/contracts/{contractId}/cancel
 < 200
 < Content-Type: application/json
-{
-"severity": "SUCCESS"
-}
+
 
 
 description cancel Cancellation
@@ -1421,8 +1709,12 @@ POST /v1/persons/{personId}/contracts/{contractId}/cancelCancellation
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
 }
+
 
 
 description Liste des contrats d'un abonné
@@ -1439,8 +1731,713 @@ GET /v1/persons/{personId}/contracts
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 1
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CSAT",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "20",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "FB",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "20131010",
+            "cancellationUser": "JACQUES",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "THEMAT",
+                    "label": "Les chaînes Thematiques",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 2
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 3
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 4
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 5
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 6
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 7
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 8
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 9
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 10
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 11
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 12
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 13
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 14
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 15
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 16
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 17
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 18
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 19
+        },
+        {
+            "renewalSequence": 12,
+            "origin": "IN",
+            "commercialOperator": "CANAL",
+            "broadcastMediaType": "SAT",
+            "methodOfPaiement": "01",
+            "duration": 12,
+            "contractStatus": "01",
+            "startDate": "20100505",
+            "endDate": "20140303",
+            "fullValidationStatus": "",
+            "cancellationReason": "",
+            "nonRenewalReason": "",
+            "creationDate": "20130101",
+            "creationUser": "REMY",
+            "cancellationDate": "",
+            "cancellationUser": "",
+            "suspensionDate": null,
+            "updateUser": "XAVIER",
+            "articles": [
+                {
+                    "productId": "CPLUS",
+                    "label": "Les chaînes Canal+ Multi-écran",
+                    "startDate": null,
+                    "endDate": null,
+                    "productType": "MAJEUR",
+                    "productAmountId": null
+                }
+            ],
+            "distributorId": null,
+            "thirdPartyPayerId": null,
+            "linkedContracts": [],
+            "personId": 1,
+            "contractId": 20
+        }
+    ]
 }
+
 
 
 description Détail d'un contrat
@@ -1458,8 +2455,46 @@ GET /v1/persons/{personId}/contracts/{contractId}
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": {
+        "renewalSequence": 12,
+        "origin": "IN",
+        "commercialOperator": "CANAL",
+        "broadcastMediaType": "SAT",
+        "methodOfPaiement": "01",
+        "duration": 12,
+        "contractStatus": "01",
+        "startDate": "20100505",
+        "endDate": "20140303",
+        "fullValidationStatus": "",
+        "cancellationReason": "",
+        "nonRenewalReason": "",
+        "creationDate": "20130101",
+        "creationUser": "REMY",
+        "cancellationDate": "",
+        "cancellationUser": "",
+        "suspensionDate": null,
+        "updateUser": "XAVIER",
+        "articles": [
+            {
+                "productId": "CPLUS",
+                "label": "Les chaînes Canal+ Multi-écran",
+                "startDate": null,
+                "endDate": null,
+                "productType": "MAJEUR",
+                "productAmountId": null
+            }
+        ],
+        "distributorId": null,
+        "thirdPartyPayerId": null,
+        "linkedContracts": [],
+        "personId": 1,
+        "contractId": 1
+    }
 }
+
 
 --
 equipment
@@ -1469,7 +2504,7 @@ Resources Leader : Olivier REBOUL
  * ResponseWrapper«List«Equipment»»
   * message (string)
   * returnCode (string)
-  * data (List)
+  * data (List<Equipment>)
   * severity (Severity)
  * Equipment
   * creationUser (string)
@@ -1479,7 +2514,7 @@ Resources Leader : Olivier REBOUL
   * personId (long)
   * contractId (int)
   * equipmentLabel (string)
-  * accessories (List)
+  * accessories (List<Accessory>)
  * Severity
  * Accessory
   * equipmentType (string)
@@ -1501,8 +2536,33 @@ GET /v1/persons/{personId}/equipments
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "ce service est un bouchon",
+    "severity": "WARN",
+    "data": [
+        {
+            "equipmentType": "string",
+            "equipmentLabel": "string",
+            "creationUser": "string",
+            "creationDate": "20120131",
+            "accessories": [],
+            "personId": 0,
+            "contractId": 0,
+            "equipmentId": "string"
+        },
+        {
+            "equipmentType": "string",
+            "equipmentLabel": "string",
+            "creationUser": "string",
+            "creationDate": "20120131",
+            "accessories": [],
+            "personId": 0,
+            "contractId": 0,
+            "equipmentId": "string"
+        }
+    ]
 }
+
 
 --
 payment
@@ -1513,7 +2573,7 @@ Resources Leader : Olivier REBOUL
  * ResponseWrapper«List«PaymentMean»»
   * message (string)
   * returnCode (string)
-  * data (List)
+  * data (List<PaymentMean>)
   * severity (Severity)
  * ResponseWrapper
   * message (string)
@@ -1546,8 +2606,12 @@ POST /v1/paymentmeans
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "ce service est un bouchon",
+    "severity": "WARN",
+    "data": null
 }
+
 
 
 description get Payment Mean By Person Id
@@ -1564,8 +2628,24 @@ GET /v1/persons/{personId}/paymentmeans
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "ce service est un bouchon",
+    "severity": "WARN",
+    "data": [
+        {
+            "iban": null,
+            "creditCard": {
+                "type": null,
+                "number": "1234567890123456",
+                "expirationDate": "12/13"
+            },
+            "createdDate": null,
+            "personId": 0,
+            "contractId": null
+        }
+    ]
 }
+
 
 --
 person
@@ -1617,8 +2697,8 @@ Resources Leader : Olivier REBOUL
   * ridetNumber (string)
   * civility (string)
   * origin (string)
-  * emails (List)
-  * phoneNumbers (List)
+  * emails (List<Email>)
+  * phoneNumbers (List<Phone>)
   * companyName (string)
   * identityDocuments (IdentityDocument)
   * homeId (string)
@@ -1627,8 +2707,7 @@ Resources Leader : Olivier REBOUL
   * numberOfChildren (int)
   * personId (long)
   * birthDate (string)
-  * addresses (List
-)
+  * addresses (List<Address>)
   * firstName (string)
   * updateUser (string)
 --
@@ -1647,8 +2726,122 @@ GET /v1/persons/{personId}
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": {
+        "category": null,
+        "origin": "IN",
+        "civility": "1",
+        "lastName": "DUPONT",
+        "firstName": "PIERRE",
+        "companyName": null,
+        "birthDate": "19700528",
+        "creationDate": "20091212",
+        "creationUser": "NDJOKOVIC",
+        "updateUser": "PBLANC",
+        "numberOfChildren": 7,
+        "homeId": null,
+        "personalInformationFlag": true,
+        "acceptEmailFromCanalPlus": false,
+        "acceptEmailFromPartners": true,
+        "acceptSMS": true,
+        "identityDocuments": null,
+        "ridetNumber": null,
+        "phoneNumbers": [
+            {
+                "phoneNumber": "061122334455",
+                "phoneType": "MOBILE1",
+                "valid": false,
+                "phoneId": null
+            },
+            {
+                "phoneNumber": "061122334455",
+                "phoneType": "MOBILE1",
+                "valid": false,
+                "phoneId": null
+            },
+            {
+                "phoneNumber": "061122334455",
+                "phoneType": "MOBILE1",
+                "valid": false,
+                "phoneId": null
+            }
+        ],
+        "emails": [
+            {
+                "email": "pierre.dupont@aol.com",
+                "valid": false,
+                "emailType": "MAIN",
+                "emailId": null
+            },
+            {
+                "email": "pierre.dupont@aol.com",
+                "valid": false,
+                "emailType": "MAIN",
+                "emailId": null
+            },
+            {
+                "email": "pierre.dupont@aol.com",
+                "valid": false,
+                "emailType": "MAIN",
+                "emailId": null
+            }
+        ],
+        "addresses": [
+            {
+                "addressType": "MAIN",
+                "countryId": "FRA",
+                "street1": "",
+                "street2": "130 RUE DE RIVOLI",
+                "street3": "",
+                "postalCode": "75003",
+                "city": "PARIS",
+                "startDate": 20100131,
+                "endDate": 20120131,
+                "valid": false,
+                "undeliverabilityReason": "",
+                "personId": 1121,
+                "contractId": null,
+                "addressId": 0
+            },
+            {
+                "addressType": "MAIN",
+                "countryId": "FRA",
+                "street1": "",
+                "street2": "130 RUE DE RIVOLI",
+                "street3": "",
+                "postalCode": "75003",
+                "city": "PARIS",
+                "startDate": 20100131,
+                "endDate": 20120131,
+                "valid": false,
+                "undeliverabilityReason": "",
+                "personId": 1121,
+                "contractId": null,
+                "addressId": 0
+            },
+            {
+                "addressType": "MAIN",
+                "countryId": "FRA",
+                "street1": "",
+                "street2": "130 RUE DE RIVOLI",
+                "street3": "",
+                "postalCode": "75003",
+                "city": "PARIS",
+                "startDate": 20100131,
+                "endDate": 20120131,
+                "valid": false,
+                "undeliverabilityReason": "",
+                "personId": 1121,
+                "contractId": null,
+                "addressId": 0
+            }
+        ],
+        "personId": 1
+    }
 }
+
 
 
 description create Person
@@ -1665,8 +2858,35 @@ POST /v1/persons
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "ce service est un bouchon",
+    "severity": "WARN",
+    "data": {
+        "category": null,
+        "origin": null,
+        "civility": null,
+        "lastName": null,
+        "firstName": null,
+        "companyName": null,
+        "birthDate": null,
+        "creationDate": null,
+        "creationUser": null,
+        "updateUser": null,
+        "numberOfChildren": null,
+        "homeId": null,
+        "personalInformationFlag": null,
+        "acceptEmailFromCanalPlus": null,
+        "acceptEmailFromPartners": null,
+        "acceptSMS": null,
+        "identityDocuments": null,
+        "ridetNumber": null,
+        "phoneNumbers": [],
+        "emails": [],
+        "addresses": [],
+        "personId": 111
+    }
 }
+
 
 
 description update Person
@@ -1684,8 +2904,35 @@ PUT /v1/persons/{personId}
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "ce service est un bouchon",
+    "severity": "WARN",
+    "data": {
+        "category": null,
+        "origin": null,
+        "civility": null,
+        "lastName": null,
+        "firstName": null,
+        "companyName": null,
+        "birthDate": null,
+        "creationDate": null,
+        "creationUser": null,
+        "updateUser": null,
+        "numberOfChildren": null,
+        "homeId": null,
+        "personalInformationFlag": null,
+        "acceptEmailFromCanalPlus": null,
+        "acceptEmailFromPartners": null,
+        "acceptSMS": null,
+        "identityDocuments": null,
+        "ridetNumber": null,
+        "phoneNumbers": [],
+        "emails": [],
+        "addresses": [],
+        "personId": null
+    }
 }
+
 
 
 description update Email
@@ -1703,8 +2950,12 @@ PUT /v1/persons/{personId}/emails
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "ce service est un bouchon",
+    "severity": "WARN",
+    "data": null
 }
+
 
 
 description create Email
@@ -1722,8 +2973,12 @@ POST /v1/persons/{personId}/emails
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "ce service est un bouchon",
+    "severity": "WARN",
+    "data": null
 }
+
 
 --
 product
@@ -1735,7 +2990,7 @@ Resources Leader : Olivier REBOUL
  * Severity
  * Product
   * amount (BigDecimal)
-  * forbiddenProducts (List)
+  * forbiddenProducts (List<ForbiddenProducts>)
   * themeId (string)
   * productCategory (string)
   * commercialLabel (string)
@@ -1746,7 +3001,7 @@ Resources Leader : Olivier REBOUL
  * ResponseWrapper«List«Product»»
   * message (string)
   * returnCode (string)
-  * data (List)
+  * data (List<Product>)
   * severity (Severity)
  * BigDecimal
 --
@@ -1778,9 +3033,7 @@ description get Contract Products
 GET /v1/persons/{personId}/contracts/{contractId}/products
 < 200
 < Content-Type: application/json
-{
-"severity": "SUCCESS"
-}
+
 
 
 description get Product
@@ -1808,9 +3061,7 @@ description get Product
 GET /v1/products
 < 200
 < Content-Type: application/json
-{
-"severity": "SUCCESS"
-}
+
 
 --
 promotion
@@ -1832,7 +3083,7 @@ Resources Leader : Olivier REBOUL
  * ResponseWrapper«List«Promotion»»
   * message (string)
   * returnCode (string)
-  * data (List)
+  * data (List<Promotion>)
   * severity (Severity)
 --
 
@@ -1850,8 +3101,18 @@ GET /v1/promotions/{promotionId}
 < 200
 < Content-Type: application/json
 {
-"severity": "SUCCESS"
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": {
+        "shortLabel": "string",
+        "description": "string",
+        "startDate": "20120131",
+        "enddate": "string",
+        "promotionId": "string"
+    }
 }
+
 
 
 description get Promotions List
@@ -1869,6 +3130,4 @@ description get Promotions List
 GET /v1/promotions
 < 200
 < Content-Type: application/json
-{
-"severity": "SUCCESS"
-}
+
