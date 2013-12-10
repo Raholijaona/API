@@ -880,9 +880,8 @@ accounting-piece
 Resources Leader : Olivier REBOUL
 
 # Model
- * `Severity`
- * `AccountingPiece`
-  * crmLedgerId (string)
+ * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `AccountingPiece`   * crmLedgerId (string)
   * accountingPieceLabel (string)
   * sapOperatorId (string)
   * crmOperatorLabel (string)
@@ -891,8 +890,7 @@ Resources Leader : Olivier REBOUL
   * entries (List of Entrie)
   * accountingDate (string)
   * crmLedgerLabel (string)
- * `Entrie`
-  * axe2Account (string)
+ * `Entrie`   * axe2Account (string)
   * budgetingAccount (string)
   * operationalNature (string)
   * operationalAccount (string)
@@ -902,8 +900,7 @@ Resources Leader : Olivier REBOUL
   * vatId (string)
   * vatRate (float)
   * generalAccount (string)
- * `ResponseWrapper«AccountingPiece»`
-  * message (string)
+ * `ResponseWrapper«AccountingPiece»`   * message (string)
   * returnCode (string)
   * data (AccountingPiece)
   * severity (Severity)
@@ -945,21 +942,17 @@ act-of-management
 Resources Leader : Olivier REBOUL
 
 # Model
- * `ActOfManagementDetail`
-  * actOfManagementId (long)
+ * `ActOfManagementDetail`   * actOfManagementId (long)
   * listOfChanges (List of ActOfManagementDetailChange)
- * `ActOfManagementDetailChange`
-  * newValue (string)
+ * `ActOfManagementDetailChange`   * newValue (string)
   * name (string)
   * oldValue (string)
- * `ResponseWrapper«ActOfManagementDetail»`
-  * message (string)
+ * `ResponseWrapper«ActOfManagementDetail»`   * message (string)
   * returnCode (string)
   * data (ActOfManagementDetail)
   * severity (Severity)
- * `Severity`
- * `ActOfManagement`
-  * creationUser (string)
+ * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `ActOfManagement`   * creationUser (string)
   * saleDevice (string)
   * distributorId (string)
   * mediaType (string)
@@ -973,8 +966,7 @@ Resources Leader : Olivier REBOUL
   * personId (long)
   * contractId (int)
   * changes (ActOfManagementDetail)
- * `ResponseWrapper«List«ActOfManagement»»`
-  * message (string)
+ * `ResponseWrapper«List«ActOfManagement»»`   * message (string)
   * returnCode (string)
   * data (List of ActOfManagement)
   * severity (Severity)
@@ -1087,19 +1079,16 @@ address
 Resources Leader : Olivier REBOUL
 
 # Model
- * `ResponseWrapper«Address»`
-  * message (string)
+ * `ResponseWrapper«Address»`   * message (string)
   * returnCode (string)
   * data (Address)
   * severity (Severity)
- * `Severity`
- * `ResponseWrapper«List«Address»»`
-  * message (string)
+ * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `ResponseWrapper«List«Address»»`   * message (string)
   * returnCode (string)
   * data (List of Address)
   * severity (Severity)
- * `Address`
-  * countryId (string)
+ * `Address`   * countryId (string)
   * street2 (string)
   * valid (boolean)
   * street1 (string)
@@ -1264,20 +1253,17 @@ code-table
 Resources Leader : Olivier REBOUL
 
 # Model
- * `ResponseWrapper«List«String»»`
-  * message (string)
+ * `ResponseWrapper«List«String»»`   * message (string)
   * returnCode (string)
   * data (List of string)
   * severity (Severity)
- * `ResponseWrapper«List«CodeTable»»`
-  * message (string)
+ * `ResponseWrapper«List«CodeTable»»`   * message (string)
   * returnCode (string)
   * data (List of CodeTable)
   * severity (Severity)
- * `CodeTable`
-  * id (string)
+ * `CodeTable`   * id (string)
   * label (string)
- * `Severity`
+ * `Severity` (WARN ERROR FATAL SUCCESS )
 --
 
 description Liste des valeurs possibles
@@ -1299,24 +1285,20 @@ comment
 Resources Leader : Olivier REBOUL
 
 # Model
- * `ResponseWrapper«any»`
-  * message (string)
+ * `ResponseWrapper«any»`   * message (string)
   * returnCode (string)
   * data (undefined)
   * severity (Severity)
- * `Severity`
- * `ResponseWrapper«List«Comment»»`
-  * message (string)
+ * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `ResponseWrapper«List«Comment»»`   * message (string)
   * returnCode (string)
   * data (List of Comment)
   * severity (Severity)
- * `ResponseWrapper«Comment»`
-  * message (string)
+ * `ResponseWrapper«Comment»`   * message (string)
   * returnCode (string)
   * data (Comment)
   * severity (Severity)
- * `Comment`
-  * commentText (string)
+ * `Comment`   * commentText (string)
   * createdBy (string)
   * personId (long)
   * contractId (int)
@@ -1486,27 +1468,22 @@ contract
 Resources Leader : Olivier REBOUL
 
 # Model
- * `ResponseWrapper«List«Contract»»`
-  * message (string)
+ * `ResponseWrapper«List«Contract»»`   * message (string)
   * returnCode (string)
   * data (List of Contract)
   * severity (Severity)
- * `ResponseWrapper«List«ContractSummary»»`
-  * message (string)
+ * `ResponseWrapper«List«ContractSummary»»`   * message (string)
   * returnCode (string)
   * data (List of ContractSummary)
   * severity (Severity)
- * `RefContract`
-  * personId (long)
+ * `RefContract`   * personId (long)
   * contractId (int)
- * `Severity`
- * `ResponseWrapper«String»`
-  * message (string)
+ * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `ResponseWrapper«String»`   * message (string)
   * returnCode (string)
   * data (string)
   * severity (Severity)
- * `ContractSummary`
-  * startDate (string)
+ * `ContractSummary`   * startDate (string)
   * fullValidationStatus (string)
   * suspensionDate (string)
   * equipmentType (string)
@@ -1531,8 +1508,7 @@ Resources Leader : Olivier REBOUL
   * mainCommentText (string)
   * commercialOperator (string)
   * lastAssetAmount (float)
- * `Contract`
-  * startDate (string)
+ * `Contract`   * startDate (string)
   * creationUser (string)
   * fullValidationStatus (string)
   * suspensionDate (string)
@@ -1556,18 +1532,15 @@ Resources Leader : Olivier REBOUL
   * nonRenewalReason (string)
   * products (List of ProductOwned)
   * updateUser (string)
- * `ResponseWrapper«Contract»`
-  * message (string)
+ * `ResponseWrapper«Contract»`   * message (string)
   * returnCode (string)
   * data (Contract)
   * severity (Severity)
- * `ProductOwned`
-  * label (string)
+ * `ProductOwned`   * label (string)
   * productId (string)
   * productType (string)
   * productAmountId (string)
- * `ContractLight`
-  * cancellationDate (string)
+ * `ContractLight`   * cancellationDate (string)
   * contactId (long)
   * cancellationReason (string)
   * salesMan (string)
@@ -1927,22 +1900,19 @@ equipment
 Resources Leader : Olivier REBOUL
 
 # Model
- * `ResponseWrapper«List«Equipment»»`
-  * message (string)
+ * `ResponseWrapper«List«Equipment»»`   * message (string)
   * returnCode (string)
   * data (List of Equipment)
   * severity (Severity)
- * `Equipment`
-  * creationUser (string)
+ * `Equipment`   * creationUser (string)
   * creationDate (string)
   * equipmentType (string)
   * equipmentId (string)
   * personId (long)
   * contractId (int)
   * accessories (List of Accessory)
- * `Severity`
- * `Accessory`
-  * equipmentType (string)
+ * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `Accessory`   * equipmentType (string)
 --
 
 description Liste des matériels d'un contrat
@@ -1991,25 +1961,21 @@ payment-mean
 Resources Leader : Olivier REBOUL
 
 # Model
- * `Severity`
- * `ResponseWrapper«List«PaymentMean»»`
-  * message (string)
+ * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `ResponseWrapper«List«PaymentMean»»`   * message (string)
   * returnCode (string)
   * data (List of PaymentMean)
   * severity (Severity)
- * `ResponseWrapper`
-  * message (string)
+ * `ResponseWrapper`   * message (string)
   * returnCode (string)
   * data (undefined)
   * severity (Severity)
- * `PaymentMean`
-  * creditCard (CreditCard)
+ * `PaymentMean`   * creditCard (CreditCard)
   * personId (long)
   * contractId (int)
   * createdDate (string)
   * iban (string)
- * `CreditCard`
-  * expirationDate (string)
+ * `CreditCard`   * expirationDate (string)
   * number (string)
   * type (string)
 --
@@ -2074,25 +2040,21 @@ person
 Resources Leader : Olivier REBOUL
 
 # Model
- * `ResponseWrapper«any»`
-  * message (string)
+ * `ResponseWrapper«any»`   * message (string)
   * returnCode (string)
   * data (undefined)
   * severity (Severity)
- * `Phone`
-  * phoneNumber (string)
+ * `Phone`   * phoneNumber (string)
   * phoneType (string)
   * phoneId (long)
- * `Severity`
- * `Email`
-  * invalidityReason (string)
+ * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `Email`   * invalidityReason (string)
   * startDate (string)
   * emailId (long)
   * emailType (string)
   * email (string)
   * endDate (string)
- * `Address`
-  * countryId (string)
+ * `Address`   * countryId (string)
   * street2 (string)
   * valid (boolean)
   * street1 (string)
@@ -2106,17 +2068,14 @@ Resources Leader : Olivier REBOUL
   * personId (int)
   * contractId (int)
   * street3 (string)
- * `IdentityDocument`
-  * validityDate (string)
+ * `IdentityDocument`   * validityDate (string)
   * identityType (string)
   * identityNumber (string)
- * `ResponseWrapper«Person»`
-  * message (string)
+ * `ResponseWrapper«Person»`   * message (string)
   * returnCode (string)
   * data (Person)
   * severity (Severity)
- * `Person`
-  * lastName (string)
+ * `Person`   * lastName (string)
   * creationUser (string)
   * ridetNumber (string)
   * civility (string)
@@ -2415,11 +2374,9 @@ product
 Resources Leader : Olivier REBOUL
 
 # Model
- * `ForbiddenProducts`
-  * forbiddenProductId (string)
- * `Severity`
- * `Product`
-  * amount (BigDecimal)
+ * `ForbiddenProducts`   * forbiddenProductId (string)
+ * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `Product`   * amount (BigDecimal)
   * themeId (string)
   * forbiddenProducts (List of ForbiddenProducts)
   * productCategory (string)
@@ -2428,13 +2385,11 @@ Resources Leader : Olivier REBOUL
   * amountToBePaid (BigDecimal)
   * productId (string)
   * productType (string)
- * `ResponseWrapper«List«Product»»`
-  * message (string)
+ * `ResponseWrapper«List«Product»»`   * message (string)
   * returnCode (string)
   * data (List of Product)
   * severity (Severity)
- * `BigDecimal`
---
+ * `BigDecimal` --
 
 description get Product
 
@@ -2542,20 +2497,17 @@ promotion
 Resources Leader : Olivier REBOUL
 
 # Model
- * `Severity`
- * `Promotion`
-  * promotionId (string)
+ * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `Promotion`   * promotionId (string)
   * startDate (string)
   * shortLabel (string)
   * description (string)
   * enddate (string)
- * `ResponseWrapper«Promotion»`
-  * message (string)
+ * `ResponseWrapper«Promotion»`   * message (string)
   * returnCode (string)
   * data (Promotion)
   * severity (Severity)
- * `ResponseWrapper«List«Promotion»»`
-  * message (string)
+ * `ResponseWrapper«List«Promotion»»`   * message (string)
   * returnCode (string)
   * data (List of Promotion)
   * severity (Severity)
