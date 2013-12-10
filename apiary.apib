@@ -876,7 +876,6 @@ POST /v1/audit/
 { "date" : 1310669017000, "auditType": "Activity" }
 < 200
 --
---
 accounting
 Resources Leader : Olivier REBOUL
 
@@ -3033,6 +3032,28 @@ description get Contract Products
 GET /v1/persons/{personId}/contracts/{contractId}/products
 < 200
 < Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "forbiddenProducts": [],
+            "productId": "string",
+            "label": "string",
+            "commercialLabel": "string",
+            "productType": "string",
+            "productCategory": "string",
+            "amountToBePaid": null,
+            "amount": null,
+            "themeId": "string",
+            "subscribed": null,
+            "locked": null,
+            "hidden": null,
+            "adultContent": null
+        }
+    ]
+}
 
 
 
@@ -3061,6 +3082,28 @@ description get Product
 GET /v1/products
 < 200
 < Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "forbiddenProducts": [],
+            "productId": "string",
+            "label": "string",
+            "commercialLabel": "string",
+            "productType": "string",
+            "productCategory": "string",
+            "amountToBePaid": null,
+            "amount": null,
+            "themeId": "string",
+            "subscribed": null,
+            "locked": null,
+            "hidden": null,
+            "adultContent": null
+        }
+    ]
+}
 
 
 --
@@ -3130,4 +3173,18 @@ description get Promotions List
 GET /v1/promotions
 < 200
 < Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "shortLabel": "string",
+            "description": "string",
+            "startDate": "20120131",
+            "enddate": "string",
+            "promotionId": "string"
+        }
+    ]
+}
 
