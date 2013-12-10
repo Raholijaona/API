@@ -876,24 +876,22 @@ POST /v1/audit/
 { "date" : 1310669017000, "auditType": "Activity" }
 < 200
 
-
-accounting
-
+accounting-piece
 Resources Leader : Olivier REBOUL
 
 # Model
- * Severity
- * AccountingPiece
+ * `Severity`
+ * `AccountingPiece`
   * crmLedgerId (string)
   * accountingPieceLabel (string)
   * sapOperatorId (string)
   * crmOperatorLabel (string)
   * crmOperatorId (string)
   * transfertDate (string)
-  * entries (List<Entrie>)
+  * entries (List of Entrie)
   * accountingDate (string)
   * crmLedgerLabel (string)
- * Entrie
+ * `Entrie`
   * axe2Account (string)
   * budgetingAccount (string)
   * operationalNature (string)
@@ -902,9 +900,9 @@ Resources Leader : Olivier REBOUL
   * debit (float)
   * credit (float)
   * vatId (string)
-  * generalAccount (string)
   * vatRate (float)
- * ResponseWrapper«AccountingPiece»
+  * generalAccount (string)
+ * `ResponseWrapper«AccountingPiece»`
   * message (string)
   * returnCode (string)
   * data (AccountingPiece)
@@ -929,58 +927,80 @@ GET /v1/accountingPiece/{accountingPieceId}
     "message": "Process successfully completed",
     "severity": "SUCCESS",
     "data": {
-        "crmLedgerId": "string",
-        "crmLedgerLabel": "string",
+        "crmLedgerId": "crmLedgerId",
+        "crmLedgerLabel": "crmLedgerLabel",
         "accountingDate": "20120131",
-        "crmOperatorId": "string",
-        "crmOperatorLabel": "string",
-        "sapOperatorId": "string",
+        "crmOperatorId": "crmOperatorId",
+        "crmOperatorLabel": "crmOperatorLabel",
+        "sapOperatorId": "sapOperatorId",
         "transfertDate": "20120131",
-        "accountingPieceLabel": "string",
+        "accountingPieceLabel": "accountingPieceLabel",
         "entries": []
     }
 }
 
 
 --
-act
+act-of-management
 Resources Leader : Olivier REBOUL
 
 # Model
- * ActOfManagementDetail
+ * `ActOfManagementDetail`
   * actOfManagementId (long)
-  * listOfChanges (List<ActOfManagementDetailChange>)
- * ActOfManagementDetailChange
+  * listOfChanges (List of ActOfManagementDetailChange)
+ * `ActOfManagementDetailChange`
   * newValue (string)
   * name (string)
   * oldValue (string)
- * ResponseWrapper«ActOfManagementDetail»
+ * `ResponseWrapper«ActOfManagementDetail»`
   * message (string)
   * returnCode (string)
   * data (ActOfManagementDetail)
   * severity (Severity)
- * Severity
- * ActOfManagement
-  * cancellationDate (string)
-  * renewalSequence (int)
+ * `Severity`
+ * `ActOfManagement`
   * creationUser (string)
+  * saleDevice (string)
+  * distributorId (string)
+  * mediaType (string)
+  * cancellationUser (string)
+  * renewalSequence (int)
+  * cancellationDate (string)
   * creationDate (string)
   * actOfManagementType (string)
-  * saleDevice (string)
   * actOfManagementId (long)
   * salesmanId (string)
   * personId (long)
   * contractId (int)
-  * distributorId (string)
-  * mediaType (string)
-  * cancellationUser (string)
   * changes (ActOfManagementDetail)
- * ResponseWrapper«List«ActOfManagement»»
+ * `ResponseWrapper«List«ActOfManagement»»`
   * message (string)
   * returnCode (string)
-  * data (List<ActOfManagement>)
+  * data (List of ActOfManagement)
   * severity (Severity)
 --
+
+description Renvoie le detail du mouvement dont l'id est passé en paramètre
+
+# Parameters
+
+ * id(long), mandatory
+
+# Returns
+
+ * ResponseWrapper«ActOfManagementDetail»
+
+GET /v1/actofmanagements/{id}
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
 
 description Renvoie la liste des mouvements du contrat passé en paramètre
 
@@ -1062,45 +1082,23 @@ GET /v1/persons/{personId}/contracts/{contractId}/actofmanagements
 }
 
 
-
-description Renvoie le detail du mouvement dont l'id est passé en paramètre
-
-# Parameters
-
- * id(long), mandatory
-
-# Returns
-
- * ResponseWrapper«ActOfManagementDetail»
-
-GET /v1/actofmanagements/{id}
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "Process successfully completed",
-    "severity": "SUCCESS",
-    "data": null
-}
-
-
 --
 address
 Resources Leader : Olivier REBOUL
 
 # Model
- * ResponseWrapper«Address»
+ * `ResponseWrapper«Address»`
   * message (string)
   * returnCode (string)
   * data (Address)
   * severity (Severity)
- * Severity
- * ResponseWrapper«List«Address»»
+ * `Severity`
+ * `ResponseWrapper«List«Address»»`
   * message (string)
   * returnCode (string)
-  * data (List<Address>)
+  * data (List of Address)
   * severity (Severity)
- * Address
+ * `Address`
   * countryId (string)
   * street2 (string)
   * valid (boolean)
@@ -1117,27 +1115,43 @@ Resources Leader : Olivier REBOUL
   * street3 (string)
 --
 
-description update Address
+description get Addresses
 
 # Parameters
 
- * address(Address), mandatory
- * contactId(String), mandatory
- * userMod(String), mandatory
- * updateotherscontracts(boolean), mandatory
+ * personId(Long), mandatory
+ * addressType(String), mandatory
+ * addressValidOnly(Boolean), mandatory
 
 # Returns
 
- * ResponseWrapper«Address»
+ * ResponseWrapper«List«Address»»
 
-PUT /v1/addresses
+GET /v1/persons/{personId}/addresses
 < 200
 < Content-Type: application/json
 {
     "returnCode": "SUCCESS",
     "message": "Process successfully completed",
     "severity": "SUCCESS",
-    "data": null
+    "data": [
+        {
+            "addressType": "addressType",
+            "countryId": "countryId",
+            "street1": "street1",
+            "street2": "street2",
+            "street3": "street3",
+            "postalCode": "postalCode",
+            "city": "city",
+            "startDate": 20120131,
+            "endDate": 20120131,
+            "valid": false,
+            "undeliverabilityReason": "undeliverabilityReason",
+            "personId": 0,
+            "contractId": 0,
+            "addressId": 0
+        }
+    ]
 }
 
 
@@ -1160,17 +1174,17 @@ GET /v1/addresses/{addressId}
     "message": "Process successfully completed",
     "severity": "SUCCESS",
     "data": {
-        "addressType": "string",
-        "countryId": "string",
-        "street1": "string",
-        "street2": "string",
-        "street3": "string",
-        "postalCode": "string",
-        "city": "string",
+        "addressType": "addressType",
+        "countryId": "countryId",
+        "street1": "street1",
+        "street2": "street2",
+        "street3": "street3",
+        "postalCode": "postalCode",
+        "city": "city",
         "startDate": 20120131,
         "endDate": 20120131,
         "valid": false,
-        "undeliverabilityReason": "string",
+        "undeliverabilityReason": "undeliverabilityReason",
         "personId": 0,
         "contractId": 0,
         "addressId": 0
@@ -1201,17 +1215,17 @@ GET /v1/persons/{personId}/contracts/{contractId}/addresses
     "severity": "SUCCESS",
     "data": [
         {
-            "addressType": "string",
-            "countryId": "string",
-            "street1": "string",
-            "street2": "string",
-            "street3": "string",
-            "postalCode": "string",
-            "city": "string",
+            "addressType": "addressType",
+            "countryId": "countryId",
+            "street1": "street1",
+            "street2": "street2",
+            "street3": "street3",
+            "postalCode": "postalCode",
+            "city": "city",
             "startDate": 20120131,
             "endDate": 20120131,
             "valid": false,
-            "undeliverabilityReason": "string",
+            "undeliverabilityReason": "undeliverabilityReason",
             "personId": 0,
             "contractId": 0,
             "addressId": 0
@@ -1221,86 +1235,63 @@ GET /v1/persons/{personId}/contracts/{contractId}/addresses
 
 
 
-description get Addresses
+description update Address
 
 # Parameters
 
- * personId(Long), mandatory
- * addressType(String), mandatory
- * addressValidOnly(Boolean), mandatory
+ * address(Address), mandatory
+ * contactId(String), mandatory
+ * userMod(String), mandatory
+ * updateotherscontracts(boolean), mandatory
 
 # Returns
 
- * ResponseWrapper«List«Address»»
+ * ResponseWrapper«Address»
 
-GET /v1/persons/{personId}/addresses
+PUT /v1/addresses
 < 200
 < Content-Type: application/json
 {
     "returnCode": "SUCCESS",
     "message": "Process successfully completed",
     "severity": "SUCCESS",
-    "data": [
-        {
-            "addressType": "string",
-            "countryId": "string",
-            "street1": "string",
-            "street2": "string",
-            "street3": "string",
-            "postalCode": "string",
-            "city": "string",
-            "startDate": 20120131,
-            "endDate": 20120131,
-            "valid": false,
-            "undeliverabilityReason": "string",
-            "personId": 0,
-            "contractId": 0,
-            "addressId": 0
-        }
-    ]
+    "data": null
 }
 
 
 --
-code
+code-table
 Resources Leader : Olivier REBOUL
 
 # Model
- * ResponseWrapper«List«CodeTable»»
+ * `ResponseWrapper«List«String»»`
   * message (string)
   * returnCode (string)
-  * data (List<CodeTable>)
+  * data (List of string)
   * severity (Severity)
- * CodeTable
+ * `ResponseWrapper«List«CodeTable»»`
+  * message (string)
+  * returnCode (string)
+  * data (List of CodeTable)
+  * severity (Severity)
+ * `CodeTable`
   * id (string)
   * label (string)
- * Severity
+ * `Severity`
 --
 
-description Liste des valeurs possibles : civilities, supports, equipmenttypes, cancellations, paymenttypes, durations, formationdurations, operators, contractstatus, actofmanagements, vectors, origins
+description Liste des valeurs possibles
 
 # Parameters
 
- * objectName(String), mandatory
 
 # Returns
 
- * ResponseWrapper«List«CodeTable»»
+ * ResponseWrapper«List«String»»
 
-GET /v1/codetables/{objectName}
+GET /v1/codetables/all
 < 200
 < Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "Process successfully completed",
-    "severity": "SUCCESS",
-    "data": [
-        {
-            "label": "string",
-            "id": "string"
-        }
-    ]
-}
 
 
 --
@@ -1308,23 +1299,23 @@ comment
 Resources Leader : Olivier REBOUL
 
 # Model
- * ResponseWrapper«any»
+ * `ResponseWrapper«any»`
   * message (string)
   * returnCode (string)
   * data (undefined)
   * severity (Severity)
- * Severity
- * ResponseWrapper«List«Comment»»
+ * `Severity`
+ * `ResponseWrapper«List«Comment»»`
   * message (string)
   * returnCode (string)
-  * data (List<Comment>)
+  * data (List of Comment)
   * severity (Severity)
- * ResponseWrapper«Comment»
+ * `ResponseWrapper«Comment»`
   * message (string)
   * returnCode (string)
   * data (Comment)
   * severity (Severity)
- * Comment
+ * `Comment`
   * commentText (string)
   * createdBy (string)
   * personId (long)
@@ -1388,8 +1379,8 @@ GET /v1/persons/{personId}/contracts/{contractId}/comments
             "commentText": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo",
             "createdBy": "REMY",
             "createdDate": "20130323",
-            "personId": 1,
-            "contractId": 1,
+            "personId": 19710101,
+            "contractId": 19710101,
             "commentId": 111
         },
         {
@@ -1397,8 +1388,8 @@ GET /v1/persons/{personId}/contracts/{contractId}/comments
             "commentText": "Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit",
             "createdBy": "ANNIE",
             "createdDate": "20130323",
-            "personId": 1,
-            "contractId": 1,
+            "personId": 19710101,
+            "contractId": 19710101,
             "commentId": 112
         },
         {
@@ -1406,8 +1397,8 @@ GET /v1/persons/{personId}/contracts/{contractId}/comments
             "commentText": "Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet",
             "createdBy": "CAROLE",
             "createdDate": "20130323",
-            "personId": 1,
-            "contractId": 1,
+            "personId": 19710101,
+            "contractId": 19710101,
             "commentId": 113
         },
         {
@@ -1415,8 +1406,8 @@ GET /v1/persons/{personId}/contracts/{contractId}/comments
             "commentText": "Consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad",
             "createdBy": "MARION",
             "createdDate": "20130323",
-            "personId": 1,
-            "contractId": 1,
+            "personId": 19710101,
+            "contractId": 19710101,
             "commentId": 114
         },
         {
@@ -1424,8 +1415,8 @@ GET /v1/persons/{personId}/contracts/{contractId}/comments
             "commentText": "Minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?",
             "createdBy": "TALIA",
             "createdDate": "20130323",
-            "personId": 1,
-            "contractId": 1,
+            "personId": 19710101,
+            "contractId": 19710101,
             "commentId": 115
         },
         {
@@ -1433,8 +1424,8 @@ GET /v1/persons/{personId}/contracts/{contractId}/comments
             "commentText": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur",
             "createdBy": "ORIANNE",
             "createdDate": "20130323",
-            "personId": 1,
-            "contractId": 1,
+            "personId": 19710101,
+            "contractId": 19710101,
             "commentId": 116
         },
         {
@@ -1442,8 +1433,8 @@ GET /v1/persons/{personId}/contracts/{contractId}/comments
             "commentText": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system",
             "createdBy": "ARNAUD",
             "createdDate": "20130323",
-            "personId": 1,
-            "contractId": 1,
+            "personId": 19710101,
+            "contractId": 19710101,
             "commentId": 117
         },
         {
@@ -1451,8 +1442,8 @@ GET /v1/persons/{personId}/contracts/{contractId}/comments
             "commentText": "And expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure",
             "createdBy": "JEROME",
             "createdDate": "20130323",
-            "personId": 1,
-            "contractId": 1,
+            "personId": 19710101,
+            "contractId": 19710101,
             "commentId": 118
         },
         {
@@ -1460,8 +1451,8 @@ GET /v1/persons/{personId}/contracts/{contractId}/comments
             "commentText": "Cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio",
             "createdBy": "OLIVIER",
             "createdDate": "20130323",
-            "personId": 1,
-            "contractId": 1,
+            "personId": 19710101,
+            "contractId": 19710101,
             "commentId": 119
         }
     ]
@@ -1495,57 +1486,56 @@ contract
 Resources Leader : Olivier REBOUL
 
 # Model
- * ResponseWrapper«List«ContractSummary»»
+ * `ResponseWrapper«List«Contract»»`
   * message (string)
   * returnCode (string)
-  * data (List<ContractSummary>)
+  * data (List of Contract)
   * severity (Severity)
- * ResponseWrapper«List«Contract»»
+ * `ResponseWrapper«List«ContractSummary»»`
   * message (string)
   * returnCode (string)
-  * data (List<Contract>)
+  * data (List of ContractSummary)
   * severity (Severity)
- * RefContract
+ * `RefContract`
   * personId (long)
   * contractId (int)
- * Severity
- * ResponseWrapper«String»
+ * `Severity`
+ * `ResponseWrapper«String»`
   * message (string)
   * returnCode (string)
   * data (string)
   * severity (Severity)
- * ContractSummary
+ * `ContractSummary`
   * startDate (string)
+  * fullValidationStatus (string)
   * suspensionDate (string)
+  * equipmentType (string)
   * cancellationReason (string)
+  * origin (string)
   * endDate (string)
+  * mainActOfManagementDate (string)
   * financialIncidentInProgress (boolean)
+  * contractStatus (string)
   * cancellationDate (string)
   * balance (float)
-  * mainActOfManagementId (string)
-  * personId (long)
-  * contractId (int)
-  * fullValidationStatus (string)
-  * equipmentType (string)
-  * origin (string)
-  * mainActOfManagementDate (string)
-  * contractStatus (string)
   * broadcastMediaType (string)
   * ispId (string)
   * lastAssetDate (string)
   * majorProductId (string)
   * broadcastVectorId (string)
-  * methodOfPaiement (string)
+  * mainActOfManagementId (string)
   * mainCommentDate (string)
+  * personId (long)
+  * methodOfPaiement (string)
+  * contractId (int)
   * mainCommentText (string)
   * commercialOperator (string)
   * lastAssetAmount (float)
- * Contract
+ * `Contract`
   * startDate (string)
   * creationUser (string)
   * fullValidationStatus (string)
   * suspensionDate (string)
-  * articles (List<ProductOwned>)
   * cancellationReason (string)
   * origin (string)
   * endDate (string)
@@ -1554,7 +1544,7 @@ Resources Leader : Olivier REBOUL
   * contractStatus (string)
   * cancellationUser (string)
   * cancellationDate (string)
-  * linkedContracts (List<RefContract>)
+  * linkedContracts (List of RefContract)
   * renewalSequence (int)
   * creationDate (string)
   * duration (int)
@@ -1564,159 +1554,29 @@ Resources Leader : Olivier REBOUL
   * contractId (int)
   * commercialOperator (string)
   * nonRenewalReason (string)
+  * products (List of ProductOwned)
   * updateUser (string)
- * ResponseWrapper«Contract»
+ * `ResponseWrapper«Contract»`
   * message (string)
   * returnCode (string)
   * data (Contract)
   * severity (Severity)
- * ProductOwned
-  * startDate (string)
-  * endDate (string)
+ * `ProductOwned`
   * label (string)
+  * productId (string)
   * productType (string)
   * productAmountId (string)
-  * productId (string)
- * ContractLight
+ * `ContractLight`
   * cancellationDate (string)
   * contactId (long)
   * cancellationReason (string)
-  * personId (long)
   * salesMan (string)
+  * personId (long)
   * contractId (int)
   * distributorId (string)
   * cancellationUser (string)
   * salesDevice (string)
 --
-
-description Liste synthétique des contrats d'un abonné
-
-# Parameters
-
- * personId(Long), mandatory
-
-# Returns
-
- * ResponseWrapper«List«ContractSummary»»
-
-GET /v1/persons/{personId}/contracts/summary
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "Process successfully completed",
-    "severity": "SUCCESS",
-    "data": [
-        {
-            "origin": "string",
-            "commercialOperator": "string",
-            "broadcastMediaType": "string",
-            "broadcastVectorId": "string",
-            "equipmentType": "string",
-            "methodOfPaiement": "string",
-            "mainActOfManagementId": "string",
-            "ispId": "string",
-            "mainActOfManagementDate": "20120131",
-            "contractStatus": "string",
-            "startDate": "20120131",
-            "endDate": "20120131",
-            "fullValidationStatus": "string",
-            "cancellationReason": "string",
-            "cancellationDate": "20120131",
-            "suspensionDate": "20120131",
-            "balance": 0,
-            "lastAssetAmount": 0,
-            "lastAssetDate": "20120131",
-            "financialIncidentInProgress": false,
-            "majorProductId": "string",
-            "mainCommentText": "string",
-            "mainCommentDate": "20120131",
-            "personId": 0,
-            "contractId": 0
-        }
-    ]
-}
-
-
-
-description cancellation Date Computing
-
-# Parameters
-
- * personId(Long), mandatory
- * contractId(Integer), mandatory
- * cancellationReason(String), required
-
-# Returns
-
- * ResponseWrapper«String»
-
-GET /v1/persons/{personId}/contracts/{contractId}/cancel/date
-< 200
-< Content-Type: application/json
-
-
-
-description detect Cancellation Request
-
-# Parameters
-
- * personId(Long), mandatory
- * contractId(Integer), mandatory
-
-# Returns
-
- * ResponseWrapper«Contract»
-
-GET /v1/persons/{personId}/contracts/{contractId}/cancel/detected
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "Process successfully completed",
-    "severity": "SUCCESS",
-    "data": null
-}
-
-
-
-description record Cancellation
-
-# Parameters
-
- * contractLight(ContractLight), mandatory
-
-# Returns
-
- * ResponseWrapper«Contract»
-
-POST /v1/persons/{personId}/contracts/{contractId}/cancel
-< 200
-< Content-Type: application/json
-
-
-
-description cancel Cancellation
-
-# Parameters
-
- * contractLight(ContractLight), mandatory
-
-# Returns
-
- * ResponseWrapper«Contract»
-
-POST /v1/persons/{personId}/contracts/{contractId}/cancelCancellation
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "Process successfully completed",
-    "severity": "SUCCESS",
-    "data": null
-}
-
-
 
 description Liste des contrats d'un abonné
 
@@ -1755,12 +1615,10 @@ GET /v1/persons/{personId}/contracts
             "cancellationUser": "",
             "suspensionDate": null,
             "updateUser": "XAVIER",
-            "articles": [
+            "products": [
                 {
                     "productId": "CPLUS",
                     "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
                     "productType": "MAJEUR",
                     "productAmountId": null
                 }
@@ -1768,7 +1626,7 @@ GET /v1/persons/{personId}/contracts
             "distributorId": null,
             "thirdPartyPayerId": null,
             "linkedContracts": [],
-            "personId": 1,
+            "personId": 19710101,
             "contractId": 1
         },
         {
@@ -1790,12 +1648,10 @@ GET /v1/persons/{personId}/contracts
             "cancellationUser": "JACQUES",
             "suspensionDate": null,
             "updateUser": "XAVIER",
-            "articles": [
+            "products": [
                 {
                     "productId": "THEMAT",
                     "label": "Les chaînes Thematiques",
-                    "startDate": null,
-                    "endDate": null,
                     "productType": "MAJEUR",
                     "productAmountId": null
                 }
@@ -1803,7 +1659,7 @@ GET /v1/persons/{personId}/contracts
             "distributorId": null,
             "thirdPartyPayerId": null,
             "linkedContracts": [],
-            "personId": 1,
+            "personId": 19710101,
             "contractId": 2
         },
         {
@@ -1825,12 +1681,10 @@ GET /v1/persons/{personId}/contracts
             "cancellationUser": "",
             "suspensionDate": null,
             "updateUser": "XAVIER",
-            "articles": [
+            "products": [
                 {
                     "productId": "CPLUS",
                     "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
                     "productType": "MAJEUR",
                     "productAmountId": null
                 }
@@ -1838,7 +1692,7 @@ GET /v1/persons/{personId}/contracts
             "distributorId": null,
             "thirdPartyPayerId": null,
             "linkedContracts": [],
-            "personId": 1,
+            "personId": 19710101,
             "contractId": 3
         },
         {
@@ -1860,12 +1714,10 @@ GET /v1/persons/{personId}/contracts
             "cancellationUser": "",
             "suspensionDate": null,
             "updateUser": "XAVIER",
-            "articles": [
+            "products": [
                 {
                     "productId": "CPLUS",
                     "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
                     "productType": "MAJEUR",
                     "productAmountId": null
                 }
@@ -1873,568 +1725,8 @@ GET /v1/persons/{personId}/contracts
             "distributorId": null,
             "thirdPartyPayerId": null,
             "linkedContracts": [],
-            "personId": 1,
+            "personId": 19710101,
             "contractId": 4
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 5
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 6
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 7
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 8
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 9
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 10
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 11
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 12
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 13
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 14
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 15
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 16
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 17
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 18
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 19
-        },
-        {
-            "renewalSequence": 12,
-            "origin": "IN",
-            "commercialOperator": "CANAL",
-            "broadcastMediaType": "SAT",
-            "methodOfPaiement": "01",
-            "duration": 12,
-            "contractStatus": "01",
-            "startDate": "20100505",
-            "endDate": "20140303",
-            "fullValidationStatus": "",
-            "cancellationReason": "",
-            "nonRenewalReason": "",
-            "creationDate": "20130101",
-            "creationUser": "REMY",
-            "cancellationDate": "",
-            "cancellationUser": "",
-            "suspensionDate": null,
-            "updateUser": "XAVIER",
-            "articles": [
-                {
-                    "productId": "CPLUS",
-                    "label": "Les chaînes Canal+ Multi-écran",
-                    "startDate": null,
-                    "endDate": null,
-                    "productType": "MAJEUR",
-                    "productAmountId": null
-                }
-            ],
-            "distributorId": null,
-            "thirdPartyPayerId": null,
-            "linkedContracts": [],
-            "personId": 1,
-            "contractId": 20
         }
     ]
 }
@@ -2478,12 +1770,10 @@ GET /v1/persons/{personId}/contracts/{contractId}
         "cancellationUser": "",
         "suspensionDate": null,
         "updateUser": "XAVIER",
-        "articles": [
+        "products": [
             {
                 "productId": "CPLUS",
                 "label": "Les chaînes Canal+ Multi-écran",
-                "startDate": null,
-                "endDate": null,
                 "productType": "MAJEUR",
                 "productAmountId": null
             }
@@ -2491,9 +1781,144 @@ GET /v1/persons/{personId}/contracts/{contractId}
         "distributorId": null,
         "thirdPartyPayerId": null,
         "linkedContracts": [],
-        "personId": 1,
-        "contractId": 1
+        "personId": 19710101,
+        "contractId": 19710101
     }
+}
+
+
+
+description Liste synthétique des contrats d'un abonné
+
+# Parameters
+
+ * personId(Long), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«ContractSummary»»
+
+GET /v1/persons/{personId}/contracts/summary
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "origin": "origin",
+            "commercialOperator": "commercialOperator",
+            "broadcastMediaType": "broadcastMediaType",
+            "broadcastVectorId": "broadcastVectorId",
+            "equipmentType": "equipmentType",
+            "methodOfPaiement": "methodOfPaiement",
+            "mainActOfManagementId": "mainActOfManagementId",
+            "ispId": "ispId",
+            "mainActOfManagementDate": "20120131",
+            "contractStatus": "contractStatus",
+            "startDate": "20120131",
+            "endDate": "20120131",
+            "fullValidationStatus": "fullValidationStatus",
+            "cancellationReason": "cancellationReason",
+            "cancellationDate": "20120131",
+            "suspensionDate": "20120131",
+            "balance": 0,
+            "lastAssetAmount": 0,
+            "lastAssetDate": "20120131",
+            "financialIncidentInProgress": false,
+            "majorProductId": "majorProductId",
+            "mainCommentText": "mainCommentText",
+            "mainCommentDate": "20120131",
+            "personId": 0,
+            "contractId": 0
+        }
+    ]
+}
+
+
+
+description cancellation Date Computing
+
+# Parameters
+
+ * personId(Long), mandatory
+ * contractId(Integer), mandatory
+ * cancellationReason(String), required
+
+# Returns
+
+ * ResponseWrapper«String»
+
+GET /v1/persons/{personId}/contracts/{contractId}/cancellation/date
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
+
+description detect Cancellation Request
+
+# Parameters
+
+ * personId(Long), mandatory
+ * contractId(Integer), mandatory
+
+# Returns
+
+ * ResponseWrapper«Contract»
+
+GET /v1/persons/{personId}/contracts/{contractId}/cancellation/detected
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
+
+description record Cancellation
+
+# Parameters
+
+ * contractLight(ContractLight), mandatory
+
+# Returns
+
+ * ResponseWrapper«Contract»
+
+POST /v1/persons/{personId}/contracts/{contractId}/cancellation
+< 200
+< Content-Type: application/json
+
+
+
+description cancel Cancellation
+
+# Parameters
+
+ * contractLight(ContractLight), mandatory
+
+# Returns
+
+ * ResponseWrapper«Contract»
+
+POST /v1/persons/{personId}/contracts/{contractId}/cancelCancellation
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
 }
 
 
@@ -2502,27 +1927,25 @@ equipment
 Resources Leader : Olivier REBOUL
 
 # Model
- * ResponseWrapper«List«Equipment»»
+ * `ResponseWrapper«List«Equipment»»`
   * message (string)
   * returnCode (string)
-  * data (List<Equipment>)
+  * data (List of Equipment)
   * severity (Severity)
- * Equipment
+ * `Equipment`
   * creationUser (string)
   * creationDate (string)
   * equipmentType (string)
   * equipmentId (string)
   * personId (long)
   * contractId (int)
-  * equipmentLabel (string)
-  * accessories (List<Accessory>)
- * Severity
- * Accessory
+  * accessories (List of Accessory)
+ * `Severity`
+ * `Accessory`
   * equipmentType (string)
-  * equipmentLabel (string)
 --
 
-description get Equipments
+description Liste des matériels d'un contrat
 
 # Parameters
 
@@ -2533,87 +1956,63 @@ description get Equipments
 
  * ResponseWrapper«List«Equipment»»
 
-GET /v1/persons/{personId}/equipments
+GET /v1/persons/{personId}/contracts/{contractId}/equipments
 < 200
 < Content-Type: application/json
 {
     "returnCode": "SUCCESS",
-    "message": "ce service est un bouchon",
-    "severity": "WARN",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
     "data": [
         {
-            "equipmentType": "string",
-            "equipmentLabel": "string",
-            "creationUser": "string",
+            "equipmentType": "equipmentType",
+            "creationUser": "creationUser",
             "creationDate": "20120131",
             "accessories": [],
             "personId": 0,
             "contractId": 0,
-            "equipmentId": "string"
+            "equipmentId": "equipmentId"
         },
         {
-            "equipmentType": "string",
-            "equipmentLabel": "string",
-            "creationUser": "string",
+            "equipmentType": "equipmentType",
+            "creationUser": "creationUser",
             "creationDate": "20120131",
             "accessories": [],
             "personId": 0,
             "contractId": 0,
-            "equipmentId": "string"
+            "equipmentId": "equipmentId"
         }
     ]
 }
 
 
 --
-payment
+payment-mean
 Resources Leader : Olivier REBOUL
 
 # Model
- * Severity
- * ResponseWrapper«List«PaymentMean»»
+ * `Severity`
+ * `ResponseWrapper«List«PaymentMean»»`
   * message (string)
   * returnCode (string)
-  * data (List<PaymentMean>)
+  * data (List of PaymentMean)
   * severity (Severity)
- * ResponseWrapper
+ * `ResponseWrapper`
   * message (string)
   * returnCode (string)
   * data (undefined)
   * severity (Severity)
- * PaymentMean
+ * `PaymentMean`
   * creditCard (CreditCard)
   * personId (long)
   * contractId (int)
   * createdDate (string)
   * iban (string)
- * CreditCard
+ * `CreditCard`
   * expirationDate (string)
   * number (string)
   * type (string)
 --
-
-description create Payment Mean
-
-# Parameters
-
- * param(PaymentMean), mandatory
-
-# Returns
-
- * ResponseWrapper
-
-POST /v1/paymentmeans
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "ce service est un bouchon",
-    "severity": "WARN",
-    "data": null
-}
-
-
 
 description get Payment Mean By Person Id
 
@@ -2648,27 +2047,51 @@ GET /v1/persons/{personId}/paymentmeans
 }
 
 
+
+description create Payment Mean
+
+# Parameters
+
+ * param(PaymentMean), mandatory
+
+# Returns
+
+ * ResponseWrapper
+
+POST /v1/paymentmeans
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "ce service est un bouchon",
+    "severity": "WARN",
+    "data": null
+}
+
+
 --
 person
 Resources Leader : Olivier REBOUL
 
 # Model
- * ResponseWrapper«any»
+ * `ResponseWrapper«any»`
   * message (string)
   * returnCode (string)
   * data (undefined)
   * severity (Severity)
- * Phone
+ * `Phone`
   * phoneNumber (string)
   * phoneType (string)
   * phoneId (long)
- * Severity
- * Email
-  * valid (boolean)
+ * `Severity`
+ * `Email`
+  * invalidityReason (string)
+  * startDate (string)
   * emailId (long)
   * emailType (string)
   * email (string)
- * Address
+  * endDate (string)
+ * `Address`
   * countryId (string)
   * street2 (string)
   * valid (boolean)
@@ -2677,29 +2100,29 @@ Resources Leader : Olivier REBOUL
   * endDate (long)
   * addressType (string)
   * addressId (long)
-  * city (string)
   * undeliverabilityReason (string)
+  * city (string)
   * postalCode (string)
   * personId (int)
   * contractId (int)
   * street3 (string)
- * IdentityDocument
+ * `IdentityDocument`
   * validityDate (string)
   * identityType (string)
   * identityNumber (string)
- * ResponseWrapper«Person»
+ * `ResponseWrapper«Person»`
   * message (string)
   * returnCode (string)
   * data (Person)
   * severity (Severity)
- * Person
+ * `Person`
   * lastName (string)
   * creationUser (string)
   * ridetNumber (string)
   * civility (string)
   * origin (string)
-  * emails (List<Email>)
-  * phoneNumbers (List<Phone>)
+  * phoneNumbers (List of Phone)
+  * emails (List of Email)
   * companyName (string)
   * identityDocuments (IdentityDocument)
   * homeId (string)
@@ -2708,8 +2131,8 @@ Resources Leader : Olivier REBOUL
   * numberOfChildren (int)
   * personId (long)
   * birthDate (string)
-  * addresses (List<Address>)
   * firstName (string)
+  * addresses (List of Address)
   * updateUser (string)
 --
 
@@ -2772,19 +2195,25 @@ GET /v1/persons/{personId}
         "emails": [
             {
                 "email": "pierre.dupont@aol.com",
-                "valid": false,
+                "startDate": "20100131",
+                "endDate": "20120131",
+                "invalidityReason": null,
                 "emailType": "MAIN",
                 "emailId": null
             },
             {
                 "email": "pierre.dupont@aol.com",
-                "valid": false,
+                "startDate": "20100131",
+                "endDate": "20120131",
+                "invalidityReason": null,
                 "emailType": "MAIN",
                 "emailId": null
             },
             {
                 "email": "pierre.dupont@aol.com",
-                "valid": false,
+                "startDate": "20100131",
+                "endDate": "20120131",
+                "invalidityReason": null,
                 "emailType": "MAIN",
                 "emailId": null
             }
@@ -2839,7 +2268,7 @@ GET /v1/persons/{personId}
                 "addressId": 0
             }
         ],
-        "personId": 1
+        "personId": 19710101
     }
 }
 
@@ -2936,29 +2365,6 @@ PUT /v1/persons/{personId}
 
 
 
-description update Email
-
-# Parameters
-
- * personId(long), mandatory
- * email(Email), mandatory
-
-# Returns
-
- * ResponseWrapper«any»
-
-PUT /v1/persons/{personId}/emails
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "ce service est un bouchon",
-    "severity": "WARN",
-    "data": null
-}
-
-
-
 description create Email
 
 # Parameters
@@ -2981,31 +2387,104 @@ POST /v1/persons/{personId}/emails
 }
 
 
+
+description update Email
+
+# Parameters
+
+ * personId(long), mandatory
+ * email(Email), mandatory
+
+# Returns
+
+ * ResponseWrapper«any»
+
+PUT /v1/persons/{personId}/emails
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "ce service est un bouchon",
+    "severity": "WARN",
+    "data": null
+}
+
+
 --
 product
 Resources Leader : Olivier REBOUL
 
 # Model
- * ForbiddenProducts
+ * `ForbiddenProducts`
   * forbiddenProductId (string)
- * Severity
- * Product
+ * `Severity`
+ * `Product`
   * amount (BigDecimal)
-  * forbiddenProducts (List<ForbiddenProducts>)
   * themeId (string)
+  * forbiddenProducts (List of ForbiddenProducts)
   * productCategory (string)
   * commercialLabel (string)
   * label (string)
   * amountToBePaid (BigDecimal)
-  * productType (string)
   * productId (string)
- * ResponseWrapper«List«Product»»
+  * productType (string)
+ * `ResponseWrapper«List«Product»»`
   * message (string)
   * returnCode (string)
-  * data (List<Product>)
+  * data (List of Product)
   * severity (Severity)
- * BigDecimal
+ * `BigDecimal`
 --
+
+description get Product
+
+# Parameters
+
+ * distributorId(String), required
+ * workingDate(String), mandatory
+ * broadcastMediaType(String), required
+ * commercialOperator(String), required
+ * saleDevice(String), required
+ * country(String), mandatory
+ * postalCode(String), mandatory
+ * duration(Integer), mandatory
+ * methodOfPaiement(String), mandatory
+ * origin(String), mandatory
+ * dateToDate(Boolean), mandatory
+ * action(String), required
+ * linkedContract(String), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«Product»»
+
+GET /v1/products
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "forbiddenProducts": [],
+            "productId": "productId",
+            "label": "label",
+            "commercialLabel": "commercialLabel",
+            "productType": "productType",
+            "productCategory": "productCategory",
+            "amountToBePaid": null,
+            "amount": null,
+            "themeId": "themeId",
+            "subscribed": null,
+            "locked": null,
+            "hidden": null,
+            "adultContent": null
+        }
+    ]
+}
+
+
 
 description get Contract Products
 
@@ -3041,64 +2520,14 @@ GET /v1/persons/{personId}/contracts/{contractId}/products
     "data": [
         {
             "forbiddenProducts": [],
-            "productId": "string",
-            "label": "string",
-            "commercialLabel": "string",
-            "productType": "string",
-            "productCategory": "string",
+            "productId": "productId",
+            "label": "label",
+            "commercialLabel": "commercialLabel",
+            "productType": "productType",
+            "productCategory": "productCategory",
             "amountToBePaid": null,
             "amount": null,
-            "themeId": "string",
-            "subscribed": null,
-            "locked": null,
-            "hidden": null,
-            "adultContent": null
-        }
-    ]
-}
-
-
-
-description get Product
-
-# Parameters
-
- * distributorId(String), required
- * workingDate(String), mandatory
- * broadcastMediaType(String), required
- * commercialOperator(String), required
- * saleDevice(String), required
- * country(String), mandatory
- * postalCode(String), mandatory
- * duration(Integer), mandatory
- * methodOfPaiement(String), mandatory
- * origin(String), mandatory
- * dateToDate(Boolean), mandatory
- * action(String), required
- * linkedContract(String), mandatory
-
-# Returns
-
- * ResponseWrapper«List«Product»»
-
-GET /v1/products
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "Process successfully completed",
-    "severity": "SUCCESS",
-    "data": [
-        {
-            "forbiddenProducts": [],
-            "productId": "string",
-            "label": "string",
-            "commercialLabel": "string",
-            "productType": "string",
-            "productCategory": "string",
-            "amountToBePaid": null,
-            "amount": null,
-            "themeId": "string",
+            "themeId": "themeId",
             "subscribed": null,
             "locked": null,
             "hidden": null,
@@ -3113,22 +2542,22 @@ promotion
 Resources Leader : Olivier REBOUL
 
 # Model
- * Severity
- * Promotion
+ * `Severity`
+ * `Promotion`
   * promotionId (string)
   * startDate (string)
   * shortLabel (string)
   * description (string)
   * enddate (string)
- * ResponseWrapper«Promotion»
+ * `ResponseWrapper«Promotion»`
   * message (string)
   * returnCode (string)
   * data (Promotion)
   * severity (Severity)
- * ResponseWrapper«List«Promotion»»
+ * `ResponseWrapper«List«Promotion»»`
   * message (string)
   * returnCode (string)
-  * data (List<Promotion>)
+  * data (List of Promotion)
   * severity (Severity)
 --
 
@@ -3150,11 +2579,11 @@ GET /v1/promotions/{promotionId}
     "message": "Process successfully completed",
     "severity": "SUCCESS",
     "data": {
-        "shortLabel": "string",
-        "description": "string",
+        "shortLabel": "shortLabel",
+        "description": "description",
         "startDate": "20120131",
-        "enddate": "string",
-        "promotionId": "string"
+        "enddate": "enddate",
+        "promotionId": "promotionId"
     }
 }
 
@@ -3181,11 +2610,11 @@ GET /v1/promotions
     "severity": "SUCCESS",
     "data": [
         {
-            "shortLabel": "string",
-            "description": "string",
+            "shortLabel": "shortLabel",
+            "description": "description",
             "startDate": "20120131",
-            "enddate": "string",
-            "promotionId": "string"
+            "enddate": "enddate",
+            "promotionId": "promotionId"
         }
     ]
 }
