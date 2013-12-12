@@ -440,7 +440,7 @@ Resources Leader : Jérôme VINCENT
 >         * listOfRequests : a table of requests
 >             * requestId : the request identifier
 >             * requester : the requester identifier
- 
+
 GET /v1/advisors/{advisorId}/requests?status="EN COURS"
 < 200
 < Content-Type: application/json
@@ -630,6 +630,7 @@ GET /v1/advisors/khounnou/requests?status="EN COURS"
 }
 
 
+
 > # Description
 >
 > * MOCKUP for advisor phoules - read all requests belonging to an advisor given its {advisorId}.
@@ -706,6 +707,37 @@ GET /v1/advisors/rbelmer/requests?status="EN COURS"
         [   {"comment":"Lorem ipsum dolor sit amet consectetuer", "attachment":"false", "requestId":"001_CONTRAT_001", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"RBELMER","channelId":"TVI","themeId":"GESTION ABONNEMENT","topicId":"SOUSCRIPTION CONTRAT","subTopicId":"PRISE ABO CONTRAT MD","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null},
             {"comment":"Semper", "attachment":"true", "requestId":"006b0215e1c5665a", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"RBELMER","channelId":"EC","themeId":"FINANCES","topicId":"","subTopicId":"","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null}
         ]
+    }
+}
+
+> # Description
+>
+> * MOCKUP for advisor phoules - read all requests belonging to an advisor given its {advisorId}.
+>
+> # Parameters
+>
+> * personId (string) : id of the advisor (for instance : phoules)
+>
+> # Returns
+>
+> * responseWrapper : standard response for KISS REST Services
+>     * returnCode : return code given by the service
+>     * severity : severity of the error (NORMAL, WARNING, ERROR)
+>     * message : return message given by the service 
+>     * data : a table of data representing the response 
+>         * listOfRequests : a table of requests
+>             * requestId : the request identifier
+>             * requester : the requester identifier
+ 
+GET /v1/advisors/dhautot/requests?status="EN COURS"
+< 200
+< Content-Type: application/json
+{   "returnCode":"0",
+    "severity":"NORMAL",
+    "message":"OK - pas d'erreur",
+    "data":
+    {"listOfRequests" : 
+        [   {"comment":"Commentaire Dimitri", "attachment":"false", "requestId":"001_CONTRAT_001", "type":"Entrant", "requesterType":"CLIENT","customerId":1515726,"operatorId":"RBELMER","channelId":"TVI","themeId":"GESTION ABONNEMENT","topicId":"SOUSCRIPTION CONTRAT","subTopicId":"PRISE ABO CONTRAT MD","climateId":"SATISFAIT","holderId":"ALEDILHUIT","creationDate":1310669017000,"creatorId":"ISIS2WS","lastChangeDate":1310669017000,"lastChangeOperatorId":null,"status":"EN COURS","result":null}]
     }
 }
 
