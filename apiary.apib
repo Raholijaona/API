@@ -878,6 +878,41 @@ GET /v1/persons/19376922/requests
     }
 }
 
+> # Description
+>
+> * Gets the commercial eligibility of a person given its personId.
+>
+> # Parameters
+>
+> * personId (string) : id of the person (for instance : 19376854)
+>
+> # Returns
+>
+> * responseWrapper : standard response for KISS REST Services
+>     * returnCode : return code given by the service
+>     * severity : severity of the error (NORMAL, WARNING, ERROR)
+>     * message : return message given by the service 
+>     * data : a table of data representing the response
+>         * result : "OK" / "KO"
+>         * list
+>             * koReason : the reason of the KO (if KO)
+
+GET /v1/persons/{personId}/eligibility
+< 200
+< Content-Type: application/json
+{   "returnCode":"0",
+    "severity":"NORMAL",
+    "message":"OK - pas d'erreur",
+    "data":
+    {
+        result : "OK"
+        "listOfReasons" : 
+        [   {"koReason":"Lorem ipsum dolor sit amet consectetuer"},
+            {"koReason":"Dictumst urna"},
+        ]
+    }
+}
+
 -- 
 Audit
 Resources Leader : Jérôme VINCENT
