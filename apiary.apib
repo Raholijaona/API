@@ -2818,12 +2818,23 @@ POST /v1/address/search
     "returnCode": "SUCCESS",
     "message": "Process successfully completed",
     "severity": "SUCCESS",
-    "data": {
-        "shortLabel": "shortLabel",
-        "description": "description",
-        "startDate": "20120131",
-        "enddate": "enddate",
-        "promotionId": "promotionId"
-    }
+    "data": [
+        {
+            "addressType": "addressType",
+            "countryId": "countryId",
+            "street1": "street1",
+            "street2": "street2",
+            "street3": "street3",
+            "postalCode": "postalCode",
+            "city": "city",
+            "startDate": 20120131,
+            "endDate": 20120131,
+            "valid": false,
+            "undeliverabilityReason": "undeliverabilityReason",
+            "personId": 0,
+            "contractId": 0,
+            "addressId": 0
+        }
+    ]
 }
 
