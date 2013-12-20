@@ -2826,32 +2826,3 @@ GET /v1/address
     }
 }
 
-description get Promotions List
-
-# Parameters
-
- * startDate(String), required
- * endDate(String), required
- * saleDevice(String), mandatory
-
-# Returns
-
- * ResponseWrapper«List«Promotion»»
-
-GET /v1/promotions
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "Process successfully completed",
-    "severity": "SUCCESS",
-    "data": [
-        {
-            "shortLabel": "shortLabel",
-            "description": "description",
-            "startDate": "20120131",
-            "enddate": "enddate",
-            "promotionId": "promotionId"
-        }
-    ]
-}
