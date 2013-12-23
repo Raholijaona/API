@@ -2803,15 +2803,16 @@ A service used to auto-complete an address when a user is typing
 
 # Parameters
 
- * ZipCode : a valid zipcode
- * query : at least the first 15 caracters of an address
+ * countryCode : a valid country code
+ * zipCode : a valid zipcode
+ * query : at least the first 3 caracters of an address
 
 # Returns
 
  * a list of addresses
 
 POST /v1/address/search
-{ "zipcode": "75001","query": "10, avenue du Gén" }
+{ "countryCode": "FR", "zipCode": "75001","query": "avenue du Gén" }
 < 200
 < Content-Type: application/json
 {
@@ -2820,21 +2821,7 @@ POST /v1/address/search
     "severity": "SUCCESS",
     "data": 
     [
-        {
-            "countryId": "FR",
-            "line3": "street1",
-            "street2": "street2",
-            "street3": "street3",
-            "postalCode": "75001",
-            "city": "PARIS",
-            "startDate": 20120131,
-            "endDate": 20120131,
-            "valid": false,
-            "undeliverabilityReason": "undeliverabilityReason",
-            "personId": 0,
-            "contractId": 0,
-            "addressId": 0
-        }
+        { "countryId": "FR", "street1": "street1", "street2": "street2", "street3": "street3", "postalCode": "75001", "city": "PARIS", "addressId": 0 }
     ]
 }
 
