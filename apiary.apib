@@ -2811,7 +2811,7 @@ A service used to auto-complete an address when a user is typing
 
  * a list of postal addresses (corresponding to the lines 4, 5, 6 and 7) 
 
-POST /v1/address/search
+POST /v1/address/street
 { "countryId": "FR", "postalCode": "75001","query": "avenue du Gén" }
 < 200
 < Content-Type: application/json
@@ -2821,7 +2821,7 @@ POST /v1/address/search
     "severity": "SUCCESS",
     "data": 
     [
-        { "countryId": "FR", "street1": "street1", "street2": "street2", "street3": "street3", "postalCode": "75001", "city": "PARIS", "addressId": 0100100000001 }
+        { "countryId": "FR", "streetLabel": "AVENUE DU GENERAL DE GAULLE", "postalCode": "75001", "sixthLineLabel": "PARIS", "streetId": 0100100000001 }
     ]
 }
 
