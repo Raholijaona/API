@@ -2836,25 +2836,15 @@ A ressource used to record a subscription
 
 # Parameters
 
- * countryCode : a valid country code
- * postalCode : a valid postal code
- * query : at least the first 3 caracters of an address
+ * TODO
 
 # Returns
 
- * a list of postal addresses (corresponding to the lines 4, 5, 6 and 7) 
+ * TODO
 
 POST /v1/subscription
-{ "query": { 
-           }
-}
-< 200
-< Content-Type: application/json
 { 
-    "returnCode": 0,
-    "message": "Process successfully completed",
-    "severity": "SUCCESS",
-    "data": 
+    "subscription": 
     {
         "personId" : "",
         "creationUser" : "",
@@ -2936,6 +2926,20 @@ POST /v1/subscription
                 "products" : [{"product":"","fifthCategory":""},{"product":"","fifthCategory":""}]
             }
         ]
+    }
+}
+< 200
+< Content-Type: application/json
+{ 
+    "returnCode": 0,
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": 
+    {           
+        "personId" : "" ,
+        "contracts" : [{"contractId":""}, {"contractId":""}] ,
+        "amount" : "",
+        "transactionId" : ""
     }
 }
 
