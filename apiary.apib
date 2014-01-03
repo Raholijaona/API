@@ -2824,3 +2824,118 @@ GET /v1/address/street?countryId="FR"&postalCode="75001"&query="avenue du Gen"
     ]
 }
 
+
+
+--
+Subscription
+Resources Leader : O. Reboul
+
+--
+
+A ressource used to record a subscription
+
+# Parameters
+
+ * countryCode : a valid country code
+ * postalCode : a valid postal code
+ * query : at least the first 3 caracters of an address
+
+# Returns
+
+ * a list of postal addresses (corresponding to the lines 4, 5, 6 and 7) 
+
+POST /v1/subscription
+{ "query": { 
+           }
+}
+< 200
+< Content-Type: application/json
+{ 
+    "returnCode": 0,
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": 
+    {
+        "personId" : "",
+        "creationUser" : "",
+        "contactId" : "",
+        "saleDevice" : "",
+        "distributorId" : "",
+        "salesman" : "",
+        "sponsorId" : "",
+        "person" : 
+        { 
+            "civility" : "",
+            "lastName" : "",
+            "fisrtName" : "",
+            "birthDate" : "",
+            "segmentation" : ""
+        },
+        "address" : 
+        {            
+            "countryId" : "",
+            "street1" : "",
+            "street2" : "",
+            "street3" : "",
+            "postalCode" : "",
+            "city" : "",
+            "forcingIndicator" : ""
+        },
+        "phones" : 
+        [
+            {"phonetype" : "","phonenumber" : ""},
+            {"phonetype" : "","phonenumber" : ""},
+            {"phonetype" : "","phonenumber" : ""}
+        ],
+        "email" : "",
+        "payment" : 
+        {
+            "iban" : "",
+            "bic" : "",
+            "creditCardNumber" : "",
+            "creditCardType" : "",
+            "expiracyDate" : "",
+            "cryptogram" : "",
+            "thirdPayorId" : "",
+            "amount" : "",
+        },
+        "equipments" : 
+        [
+            {"equipmentType" : "","equipmentId" : ""},
+            {"equipmentType" : "","equipmentId" : ""},
+            {"equipmentType" : "","equipmentId" : ""}
+        ],
+        "vouchers" : 
+        [
+            {"voucherId" : ""},
+            {"voucherId" : ""},
+            {"voucherId" : ""}
+        ],
+        "contracts": 
+        [
+            {
+                "commercialOperator" : "",
+                "broadcastVectorId" : "",
+                "ispId" : "",
+                "duration" : "",
+                "methodOfPayment" : "",
+                "origin" : "",
+                "startDate" : "",
+                "subscriptionDate" : "",
+                "products" : [{"product":"","fifthCategory":""},{"product":"","fifthCategory":""}]
+            },
+            {
+                "commercialOperator" : "",
+                "broadcastVectorId" : "",
+                "ispId" : "",
+                "duration" : "",
+                "methodOfPayment" : "",
+                "origin" : "",
+                "startDate" : "",
+                "subscriptionDate" : "",
+                "products" : [{"product":"","fifthCategory":""},{"product":"","fifthCategory":""}]
+            }
+        ]
+    }
+}
+
