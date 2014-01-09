@@ -2825,6 +2825,31 @@ GET /v1/address/street?countryId="FR"&postalCode="75001"&query="avenue du Gen"
     ]
 }
 
+A service used to TODO reco
+
+# Parameters
+
+ * 
+ 
+
+# Returns
+
+ * 
+ 
+
+GET /v1/recommandation
+< 200
+< Content-Type: application/json
+< X-timestamp: 1310669017000
+{
+    "returnCode": 0,
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": 
+    [
+        { "streetId": "0100100000001", "streetLabel": "AVENUE DU GENERAL DE GAULLE", "postalCode": "75001", "sixthLineLabel": "PARIS", "countryId": "FR" }
+    ]
+}
 
 
 --
