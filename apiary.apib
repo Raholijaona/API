@@ -3642,7 +3642,24 @@ A resource used to update a client order (subscription)
 
 # Parameters
 
- * TODO
+ * orderId : (string)
+ * prospectId : (string)
+ * canal : (string) , possible values 3910/VDD/TVI/LOC/FAI
+ * result : (string) , possible values OK/KO retraitable/KO definitif
+ * creationUser (string)
+ * contactId (Integer)
+ * saleDevice (string)
+ * distributorId (string)
+ * salesMan (string)
+ * sponsorId (string)
+ * person (PersonToSubscribe)
+ * address (AddressToSubscribe)
+ * phones (List of PhoneCommon)
+ * emails (List of EmailToSubscribe)
+ * payment (PaymentToSubscribe)
+ * equipments (List of EquipmentCommon)
+ * contract (ContractToSubscribe)
+ * "voucher" : voucherId ?
 
 # Returns
 
