@@ -2988,19 +2988,18 @@ A ressource used to manage a client order (subscription)
  * ResponseWrapper«any»
  
 POST /v1/order
-{
-    "orderId" : "408de586-17b9-4279-b736-d0c7624cecb9"
-    "order":
-    {
-        "personId" : "",
+{ 
+	orderId : "408de586-17b9-4279-b736-d0c7624cecb9"
+    {        
         "creationUser" : "",
         "contactId" : "",
         "saleDevice" : "",
         "distributorId" : "",
         "salesman" : "",
         "sponsorId" : "",
-        "person" : 
+        "person" : 		
         { 
+			"personId" : 19710101,
             "civility" : "",
             "lastName" : "",
             "fisrtName" : "",
@@ -3008,22 +3007,67 @@ POST /v1/order
             "segmentation" : ""
         },
         "address" : 
-        {            
-            "countryId" : "",
-            "street1" : "",
-            "street2" : "",
-            "street3" : "",
-            "postalCode" : "",
-            "city" : "",
-            "forcingIndicator" : ""
+        {   
+			"addressType": "MAIN",
+			"countryId": "FRA",
+			"street1": "",
+			"street2": "130 RUE DE RIVOLI",
+			"street3": "",
+			"postalCode": "75003",
+			"city": "PARIS",
+			"startDate": ,
+			"endDate": ,
+			"valid": ,
+			"undeliverabilityReason": "",
+			"addressId": ,
+			"forcingIndicator" : ""
         },
-        "phones" : 
-        [
-            {"phonetype" : "","phonenumber" : ""},
-            {"phonetype" : "","phonenumber" : ""},
-            {"phonetype" : "","phonenumber" : ""}
+        "phoneNumbers": [
+            {
+                "phoneNumber": "061122334455",
+                "phoneType": "MOBILE1",
+                "valid": false,
+                "phoneId": null
+            },
+            {
+                "phoneNumber": "061122334455",
+                "phoneType": "MOBILE1",
+                "valid": false,
+                "phoneId": null
+            },
+            {
+                "phoneNumber": "061122334455",
+                "phoneType": "MOBILE1",
+                "valid": false,
+                "phoneId": null
+            }
         ],
-        "email" : "",
+        "emails": [
+            {
+                "email": "pierre.dupont@aol.com",
+                "startDate": "20100131",
+                "endDate": "20120131",
+                "invalidityReason": null,
+                "emailType": "MAIN",
+                "emailId": null
+            },
+            {
+                "email": "pierre.dupont@aol.com",
+                "startDate": "20100131",
+                "endDate": "20120131",
+                "invalidityReason": null,
+                "emailType": "MAIN",
+                "emailId": null
+            },
+            {
+                "email": "pierre.dupont@aol.com",
+                "startDate": "20100131",
+                "endDate": "20120131",
+                "invalidityReason": null,
+                "emailType": "MAIN",
+                "emailId": null
+            }
+        ],
         "payment" : 
         {
             "iban" : "",
@@ -3081,5 +3125,5 @@ POST /v1/order
     "returnCode": 0,
     "message": "Process successfully completed",
     "severity": "SUCCESS",
-    "data": null
+    "data": any
 }
