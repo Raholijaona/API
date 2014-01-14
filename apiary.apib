@@ -3267,3 +3267,147 @@ PUT /v1/order
     "severity": "SUCCESS",
     "data": null
 }
+
+A resource used to get a client order details
+
+# Parameters
+
+ * orderId(String), mandatory
+
+# Returns
+
+ * ResponseWrapper«Order»
+
+GET /v1/order/{orderId}
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": { 
+		"orderId" : "408de586-17b9-4279-b736-d0c7624cecb9",
+		"prospectId": "45635447",
+		"creationUser" : "",
+		"contactId" : "",
+		"saleDevice" : "",
+		"distributorId" : "",
+		"salesman" : "",
+		"sponsorId" : "",
+		"person" : 		
+		{ 
+			"personId" : 19710101,
+			"civility" : "",
+			"lastName" : "",
+			"fisrtName" : "",
+			"birthDate" : "",
+			"segmentation" : ""
+		},
+		"address" : 
+		{   
+			"addressId": "",
+			"addressType": "MAIN",
+			"countryId": "FRA",
+			"street1": "",
+			"street2": "130 RUE DE RIVOLI",
+			"street3": "",
+			"postalCode": "75003",
+			"city": "PARIS",
+			"forcingIndicator" : ""
+		},
+		"phoneNumbers": [
+			{
+				"phoneNumber": "0611223344",
+				"phoneType": "MOBILE",
+				"valid": false,
+				"phoneId": null
+			},
+			{
+				"phoneNumber": "0111223344",
+				"phoneType": "DOMICILE",
+				"valid": false,
+				"phoneId": null
+			},
+			{
+				"phoneNumber": "0111223344",
+				"phoneType": "BUREAU",
+				"valid": false,
+				"phoneId": null
+			}
+		],
+		"emails": [
+			{
+				"email": "pierre.dupont@aol.com",
+				"startDate": "20100131",
+				"endDate": "20120131",
+				"invalidityReason": null,
+				"emailType": "MAIN",
+				"emailId": null
+			},
+			{
+				"email": "pierre.dupont@aol.com",
+				"startDate": "20100131",
+				"endDate": "20120131",
+				"invalidityReason": null,
+				"emailType": "MAIN",
+				"emailId": null
+			},
+			{
+				"email": "pierre.dupont@aol.com",
+				"startDate": "20100131",
+				"endDate": "20120131",
+				"invalidityReason": null,
+				"emailType": "MAIN",
+				"emailId": null
+			}
+		],
+		"payment" : 
+		{
+			"iban" : "",
+			"bic" : "",
+			"creditCardNumber" : "",
+			"creditCardType" : "",
+			"expiracyDate" : "",
+			"cryptogram" : "",
+			"thirdPayorId" : "",
+			"amount" : ""
+		},
+		"equipments" : 
+		[
+			{"equipmentType" : "","equipmentId" : ""},
+			{"equipmentType" : "","equipmentId" : ""},
+			{"equipmentType" : "","equipmentId" : ""}
+		],
+		"vouchers" : 
+		[
+			{"voucherId" : ""},
+			{"voucherId" : ""},
+			{"voucherId" : ""}
+		],
+		"contracts": 
+		[
+			{
+				"commercialOperator" : "",
+				"broadcastVectorId" : "",
+				"ispId" : "",
+				"duration" : "",
+				"methodOfPayment" : "",
+				"origin" : "",
+				"startDate" : "",
+				"subscriptionDate" : "",
+				"products" : [{"product":"","fifthCategory":""},{"product":"","fifthCategory":""}]
+			},
+			{
+				"commercialOperator" : "",
+				"broadcastVectorId" : "",
+				"ispId" : "",
+				"duration" : "",
+				"methodOfPayment" : "",
+				"origin" : "",
+				"startDate" : "",
+				"subscriptionDate" : "",
+				"products" : [{"product":"","fifthCategory":""},{"product":"","fifthCategory":""}]
+			}
+		]
+	}
+}
