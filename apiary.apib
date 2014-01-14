@@ -953,17 +953,7 @@ Resources Leader : Olivier REBOUL
 
 # Model
  * `Severity` (WARN ERROR FATAL SUCCESS )
- * `AccountingPiece` 
-  * crmLedgerId (string)
-  * accountingPieceLabel (string)
-  * sapOperatorId (string)
-  * crmOperatorLabel (string)
-  * crmOperatorId (string)
-  * transfertDate (string)
-  * entries (List of Entrie)
-  * accountingDate (string)
-  * crmLedgerLabel (string)
- * `Entrie` 
+ * `AccountingEntry` 
   * axe2Account (string)
   * budgetingAccount (string)
   * operationalNature (string)
@@ -974,6 +964,16 @@ Resources Leader : Olivier REBOUL
   * vatId (string)
   * vatRate (float)
   * generalAccount (string)
+ * `AccountingPiece` 
+  * crmLedgerId (string)
+  * accountingPieceLabel (string)
+  * sapOperatorId (string)
+  * crmOperatorLabel (string)
+  * crmOperatorId (string)
+  * accountingEntries (List of AccountingEntry)
+  * transfertDate (string)
+  * accountingDate (string)
+  * crmLedgerLabel (string)
  * `ResponseWrapper«AccountingPiece»` 
   * message (string)
   * returnCode (string)
@@ -981,7 +981,7 @@ Resources Leader : Olivier REBOUL
   * severity (Severity)
 --
 
-description get Accounting Piece
+description Récupère les écritures comptables à partir d'un numéro d'une pièce comptable 
 
 # Parameters
 
@@ -1007,7 +1007,7 @@ GET /v1/accountingPiece/{accountingPieceId}
         "sapOperatorId": "sapOperatorId",
         "transfertDate": "20120131",
         "accountingPieceLabel": "accountingPieceLabel",
-        "entries": []
+        "accountingEntries": []
     }
 }
 
@@ -1019,11 +1019,7 @@ Resources Leader : Olivier REBOUL
 # Model
  * `ActOfManagementDetail` 
   * actOfManagementId (long)
-  * listOfChanges (List of ActOfManagementDetailChange)
- * `ActOfManagementDetailChange` 
-  * newValue (string)
-  * name (string)
-  * oldValue (string)
+  * listOfChanges (List of MovementChange)
  * `ResponseWrapper«ActOfManagementDetail»` 
   * message (string)
   * returnCode (string)
@@ -1031,48 +1027,30 @@ Resources Leader : Olivier REBOUL
   * severity (Severity)
  * `Severity` (WARN ERROR FATAL SUCCESS )
  * `ActOfManagement` 
-  * creationUser (string)
-  * saleDevice (string)
-  * distributorId (string)
-  * mediaType (string)
-  * cancellationUser (string)
-  * renewalSequence (int)
   * cancellationDate (string)
+  * renewalSequence (int)
+  * creationUser (string)
   * creationDate (string)
   * actOfManagementType (string)
+  * saleDevice (string)
   * actOfManagementId (long)
   * salesmanId (string)
   * personId (long)
   * contractId (int)
+  * distributorId (string)
+  * mediaType (string)
+  * cancellationUser (string)
   * changes (ActOfManagementDetail)
  * `ResponseWrapper«List«ActOfManagement»»` 
   * message (string)
   * returnCode (string)
   * data (List of ActOfManagement)
   * severity (Severity)
+ * `MovementChange` 
+  * newValue (string)
+  * name (string)
+  * oldValue (string)
 --
-
-description Renvoie le detail du mouvement dont l'id est passé en paramètre
-
-# Parameters
-
- * id(long), mandatory
-
-# Returns
-
- * ResponseWrapper«ActOfManagementDetail»
-
-GET /v1/actofmanagements/{id}
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "Process successfully completed",
-    "severity": "SUCCESS",
-    "data": null
-}
-
-
 
 description Renvoie la liste des mouvements du contrat passé en paramètre
 
@@ -1154,6 +1132,28 @@ GET /v1/persons/{personId}/contracts/{contractId}/actofmanagements
 }
 
 
+
+description Renvoie le detail du mouvement dont l'id est passé en paramètre
+
+# Parameters
+
+ * id(long), mandatory
+
+# Returns
+
+ * ResponseWrapper«ActOfManagementDetail»
+
+GET /v1/actofmanagements/{id}
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
 --
 address
 Resources Leader : Olivier REBOUL
@@ -1187,43 +1187,27 @@ Resources Leader : Olivier REBOUL
   * street3 (string)
 --
 
-description get Addresses
+description update Address
 
 # Parameters
 
- * personId(Long), mandatory
- * addressType(String), mandatory
- * addressValidOnly(Boolean), mandatory
+ * address(Address), mandatory
+ * contactId(String), mandatory
+ * userMod(String), mandatory
+ * updateOtherContracts(boolean), mandatory
 
 # Returns
 
- * ResponseWrapper«List«Address»»
+ * ResponseWrapper«Address»
 
-GET /v1/persons/{personId}/addresses
+PUT /v1/addresses
 < 200
 < Content-Type: application/json
 {
     "returnCode": "SUCCESS",
     "message": "Process successfully completed",
     "severity": "SUCCESS",
-    "data": [
-        {
-            "addressType": "addressType",
-            "countryId": "countryId",
-            "street1": "street1",
-            "street2": "street2",
-            "street3": "street3",
-            "postalCode": "postalCode",
-            "city": "city",
-            "startDate": 20120131,
-            "endDate": 20120131,
-            "valid": false,
-            "undeliverabilityReason": "undeliverabilityReason",
-            "personId": 0,
-            "contractId": 0,
-            "addressId": 0
-        }
-    ]
+    "data": null
 }
 
 
@@ -1307,27 +1291,43 @@ GET /v1/persons/{personId}/contracts/{contractId}/addresses
 
 
 
-description update Address
+description get Addresses
 
 # Parameters
 
- * address(Address), mandatory
- * contactId(String), mandatory
- * userMod(String), mandatory
- * updateotherscontracts(boolean), mandatory
+ * personId(Long), mandatory
+ * addressType(String), mandatory
+ * addressValidOnly(Boolean), mandatory
 
 # Returns
 
- * ResponseWrapper«Address»
+ * ResponseWrapper«List«Address»»
 
-PUT /v1/addresses
+GET /v1/persons/{personId}/addresses
 < 200
 < Content-Type: application/json
 {
     "returnCode": "SUCCESS",
     "message": "Process successfully completed",
     "severity": "SUCCESS",
-    "data": null
+    "data": [
+        {
+            "addressType": "addressType",
+            "countryId": "countryId",
+            "street1": "street1",
+            "street2": "street2",
+            "street3": "street3",
+            "postalCode": "postalCode",
+            "city": "city",
+            "startDate": 20120131,
+            "endDate": 20120131,
+            "valid": false,
+            "undeliverabilityReason": "undeliverabilityReason",
+            "personId": 0,
+            "contractId": 0,
+            "addressId": 0
+        }
+    ]
 }
 
 
@@ -1336,6 +1336,11 @@ code-table
 Resources Leader : Olivier REBOUL
 
 # Model
+ * `ResponseWrapper«List«SupportCodeTable»»` 
+  * message (string)
+  * returnCode (string)
+  * data (List of SupportCodeTable)
+  * severity (Severity)
  * `ResponseWrapper«List«String»»` 
   * message (string)
   * returnCode (string)
@@ -1350,6 +1355,11 @@ Resources Leader : Olivier REBOUL
   * id (string)
   * label (string)
  * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `SupportCodeTable` 
+  * id (string)
+  * ispId (string)
+  * broadcastVectorId (string)
+  * label (string)
 --
 
 description Liste des valeurs possibles
@@ -1392,40 +1402,10 @@ Resources Leader : Olivier REBOUL
   * createdBy (string)
   * personId (long)
   * contractId (int)
-  * createdDate (string)
   * commentType (string)
+  * createdDate (string)
   * commentId (long)
 --
-
-description create Comment
-
-# Parameters
-
- * comment(Comment), mandatory
-
-# Returns
-
- * ResponseWrapper«Comment»
-
-POST /v1/comments
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "ce service est un bouchon",
-    "severity": "WARN",
-    "data": {
-        "commentType": null,
-        "commentText": null,
-        "createdBy": null,
-        "createdDate": null,
-        "personId": 0,
-        "contractId": 0,
-        "commentId": 111
-    }
-}
-
-
 
 description get Comments By Contract Id
 
@@ -1553,20 +1533,50 @@ PUT /v1/comments
 }
 
 
+
+description create Comment
+
+# Parameters
+
+ * comment(Comment), mandatory
+
+# Returns
+
+ * ResponseWrapper«Comment»
+
+POST /v1/comments
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "ce service est un bouchon",
+    "severity": "WARN",
+    "data": {
+        "commentType": null,
+        "commentText": null,
+        "createdBy": null,
+        "createdDate": null,
+        "personId": 0,
+        "contractId": 0,
+        "commentId": 111
+    }
+}
+
+
 --
 contract
 Resources Leader : Olivier REBOUL
 
 # Model
- * `ResponseWrapper«List«Contract»»` 
-  * message (string)
-  * returnCode (string)
-  * data (List of Contract)
-  * severity (Severity)
  * `ResponseWrapper«List«ContractSummary»»` 
   * message (string)
   * returnCode (string)
   * data (List of ContractSummary)
+  * severity (Severity)
+ * `ResponseWrapper«List«Contract»»` 
+  * message (string)
+  * returnCode (string)
+  * data (List of Contract)
   * severity (Severity)
  * `RefContract` 
   * personId (long)
@@ -1579,50 +1589,50 @@ Resources Leader : Olivier REBOUL
   * severity (Severity)
  * `ContractSummary` 
   * startDate (string)
-  * fullValidationStatus (string)
   * suspensionDate (string)
-  * equipmentType (string)
   * cancellationReason (string)
-  * origin (string)
   * endDate (string)
-  * mainActOfManagementDate (string)
   * financialIncidentInProgress (boolean)
-  * contractStatus (string)
   * cancellationDate (string)
   * balance (float)
+  * mainActOfManagementId (string)
+  * personId (long)
+  * contractId (int)
+  * fullValidationStatus (string)
+  * equipmentType (string)
+  * origin (string)
+  * mainActOfManagementDate (string)
+  * contractStatus (string)
   * broadcastMediaType (string)
   * ispId (string)
   * lastAssetDate (string)
   * majorProductId (string)
   * broadcastVectorId (string)
-  * mainActOfManagementId (string)
   * mainCommentDate (string)
-  * personId (long)
   * methodOfPaiement (string)
-  * contractId (int)
   * mainCommentText (string)
   * commercialOperator (string)
   * lastAssetAmount (float)
  * `Contract` 
+  * fullValidationStatus (string)
   * startDate (string)
   * creationUser (string)
-  * fullValidationStatus (string)
   * suspensionDate (string)
   * cancellationReason (string)
   * origin (string)
   * endDate (string)
-  * distributorId (string)
   * thirdPartyPayerId (long)
+  * distributorId (string)
   * contractStatus (string)
   * cancellationUser (string)
-  * cancellationDate (string)
   * linkedContracts (List of RefContract)
   * renewalSequence (int)
+  * cancellationDate (string)
   * creationDate (string)
   * duration (int)
   * broadcastMediaType (string)
-  * personId (long)
   * methodOfPaiement (string)
+  * personId (long)
   * contractId (int)
   * commercialOperator (string)
   * nonRenewalReason (string)
@@ -1635,8 +1645,8 @@ Resources Leader : Olivier REBOUL
   * severity (Severity)
  * `ProductOwned` 
   * label (string)
-  * productId (string)
   * productType (string)
+  * productId (string)
   * productAmountId (string)
  * `ContractLight` 
   * cancellationDate (string)
@@ -1646,9 +1656,182 @@ Resources Leader : Olivier REBOUL
   * personId (long)
   * contractId (int)
   * distributorId (string)
-  * cancellationUser (string)
   * salesDevice (string)
+  * cancellationUser (string)
 --
+
+description Liste synthétique des contrats d'un abonné
+
+# Parameters
+
+ * personId(Long), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«ContractSummary»»
+
+GET /v1/persons/{personId}/contracts/summary
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "origin": "origin",
+            "commercialOperator": "commercialOperator",
+            "broadcastMediaType": "broadcastMediaType",
+            "broadcastVectorId": "broadcastVectorId",
+            "equipmentType": "equipmentType",
+            "methodOfPaiement": "methodOfPaiement",
+            "mainActOfManagementId": "mainActOfManagementId",
+            "ispId": "ispId",
+            "mainActOfManagementDate": "20120131",
+            "contractStatus": "contractStatus",
+            "startDate": "20120131",
+            "endDate": "20120131",
+            "fullValidationStatus": "fullValidationStatus",
+            "cancellationReason": "cancellationReason",
+            "cancellationDate": "20120131",
+            "suspensionDate": "20120131",
+            "balance": 0,
+            "lastAssetAmount": 0,
+            "lastAssetDate": "20120131",
+            "financialIncidentInProgress": false,
+            "majorProductId": "majorProductId",
+            "mainCommentText": "mainCommentText",
+            "mainCommentDate": "20120131",
+            "personId": 0,
+            "contractId": 0
+        }
+    ]
+}
+
+
+
+description Détection de la résiliation de contrat d'un abonné
+
+# Parameters
+
+ * personId(Long), mandatory
+ * contractId(Integer), mandatory
+
+# Returns
+
+ * ResponseWrapper«Contract»
+
+GET /v1/persons/{personId}/contracts/{contractId}/cancellation/detected
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
+
+description Résiliation de contrat d'un abonné
+
+# Parameters
+
+ * contractLight(ContractLight), mandatory
+
+# Returns
+
+ * ResponseWrapper«Contract»
+
+POST /v1/contracts/cancel/
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": {
+        "renewalSequence": 12,
+        "origin": "IN",
+        "commercialOperator": "CANAL",
+        "broadcastMediaType": "SAT",
+        "methodOfPaiement": "01",
+        "duration": 12,
+        "contractStatus": "01",
+        "startDate": "20100505",
+        "endDate": "20140303",
+        "fullValidationStatus": "",
+        "cancellationReason": "",
+        "nonRenewalReason": "",
+        "creationDate": "20130101",
+        "creationUser": "REMY",
+        "cancellationDate": "",
+        "cancellationUser": "",
+        "suspensionDate": null,
+        "updateUser": "XAVIER",
+        "products": [
+            {
+                "productId": "CPLUS",
+                "label": "Les chaînes Canal+ Multi-écran",
+                "productType": "MAJEUR",
+                "productAmountId": null
+            }
+        ],
+        "distributorId": null,
+        "thirdPartyPayerId": null,
+        "linkedContracts": [],
+        "personId": 0,
+        "contractId": 0
+    }
+}
+
+
+
+description Annule la résiliation d'un contrat
+
+# Parameters
+
+ * contractLight(ContractLight), mandatory
+
+# Returns
+
+ * ResponseWrapper«Contract»
+
+POST /v1/contracts/cancelCancellation
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
+
+description Calcul de la date de résiliation de contrat d'un abonné
+
+# Parameters
+
+ * personId(Long), mandatory
+ * contractId(Integer), mandatory
+ * cancellationReason(String), required
+
+# Returns
+
+ * ResponseWrapper«String»
+
+GET /v1/persons/{personId}/contracts/{contractId}/cancellation/date
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
 
 description Liste des contrats d'un abonné
 
@@ -1859,243 +2042,6 @@ GET /v1/persons/{personId}/contracts/{contractId}
 }
 
 
-
-description Liste synthétique des contrats d'un abonné
-
-# Parameters
-
- * personId(Long), mandatory
-
-# Returns
-
- * ResponseWrapper«List«ContractSummary»»
-
-GET /v1/persons/{personId}/contracts/summary
-< 200
-< Content-Type: application/json
-{ "data" : [ { "balance" : 0.0,
-        "broadcastMediaType" : "ADAL",
-        "broadcastVectorId" : "ADSL",
-        "cancellationDate" : "20140122",
-        "cancellationReason" : null,
-        "commercialOperator" : "CANAL",
-        "contractId" : 4,
-        "contractStatus" : "01",
-        "endDate" : "20141231",
-        "equipmentType" : null,
-        "financialIncidentInProgress" : false,
-        "fullValidationStatus" : "00",
-        "ispId" : "ALICE",
-        "lastAssetAmount" : 0.0,
-        "lastAssetDate" : null,
-        "mainActOfManagementDate" : "20131210",
-        "mainActOfManagementId" : "PROMO",
-        "mainCommentDate" : "20131210",
-        "mainCommentText" : "At vero eos et accusamus et iusto odio dignissimos ducimus qui",
-        "majorProductId" : "CPLUSMIN",
-        "methodOfPaiement" : "09",
-        "origin" : "IN",
-        "personId" : 1515756,
-        "startDate" : "20131210",
-        "suspensionDate" : null
-      },
-      { "balance" : -313.69999999999999,
-        "broadcastMediaType" : "TNT",
-        "broadcastVectorId" : "TNT",
-        "cancellationDate" : null,
-        "cancellationReason" : null,
-        "commercialOperator" : "CANAL",
-        "contractId" : 5,
-        "contractStatus" : "01",
-        "endDate" : "20141231",
-        "equipmentType" : null,
-        "financialIncidentInProgress" : true,
-        "fullValidationStatus" : "VF",
-        "ispId" : "CANAL",
-        "lastAssetAmount" : 0.0,
-        "lastAssetDate" : null,
-        "mainActOfManagementDate" : "20131211",
-        "mainActOfManagementId" : "FULL",
-        "mainCommentDate" : "20131210",
-        "mainCommentText" : "blanditiis praesentium voluptatum deleniti atque corrupti quos dolores",
-        "majorProductId" : "CPLUSMIN",
-        "methodOfPaiement" : "09",
-        "origin" : "IN",
-        "personId" : 1515756,
-        "startDate" : "20131211",
-        "suspensionDate" : null
-      },
-      { "balance" : 0.0,
-        "broadcastMediaType" : "SAT",
-        "broadcastVectorId" : "SAT",
-        "cancellationDate" : null,
-        "cancellationReason" : null,
-        "commercialOperator" : "CSAT",
-        "contractId" : 1,
-        "contractStatus" : "01",
-        "endDate" : "20141231",
-        "equipmentType" : null,
-        "financialIncidentInProgress" : false,
-        "fullValidationStatus" : "00",
-        "ispId" : "CANAL",
-        "lastAssetAmount" : 0.0,
-        "lastAssetDate" : null,
-        "mainActOfManagementDate" : "20131205",
-        "mainActOfManagementId" : "MODADR",
-        "mainCommentDate" : "20131209",
-        "mainCommentText" : "quas molestias excepturi sint occaecati cupiditate",
-        "majorProductId" : "PANORAMA",
-        "methodOfPaiement" : "09",
-        "origin" : "IN",
-        "personId" : 1515756,
-        "startDate" : "20131205",
-        "suspensionDate" : null
-     },
-      { "balance" : 0.0,
-        "broadcastMediaType" : "SAT",
-        "broadcastVectorId" : "SAT",
-        "cancellationDate" : null,
-        "cancellationReason" : null,
-        "commercialOperator" : "CSAT",
-        "contractId" : 2,
-        "contractStatus" : "01",
-        "endDate" : "20141231",
-        "equipmentType" : null,
-        "financialIncidentInProgress" : false,
-        "fullValidationStatus" : "00",
-        "ispId" : "CANAL",
-        "lastAssetAmount" : 0.0,
-        "lastAssetDate" : null,
-        "mainActOfManagementDate" : "20131206",
-        "mainActOfManagementId" : "PROMO",
-        "mainCommentDate" : "20131208",
-        "mainCommentText" : "provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum",
-        "majorProductId" : "GRANCSAT",
-        "methodOfPaiement" : "09",
-        "origin" : "IN",
-        "personId" : 1515756,
-        "startDate" : "20131206",
-        "suspensionDate" : null
-      },
-      { "balance" : 0.0,
-        "broadcastMediaType" : "ADAL",
-        "broadcastVectorId" : "ADSL",
-        "cancellationDate" : "20131211",
-        "cancellationReason" : "00",
-        "commercialOperator" : "CANAL",
-        "contractId" : 3,
-        "contractStatus" : "20",
-        "endDate" : "20141231",
-        "equipmentType" : null,
-        "financialIncidentInProgress" : false,
-        "fullValidationStatus" : "00",
-        "ispId" : "ALICE",
-        "lastAssetAmount" : 0.0,
-        "lastAssetDate" : null,
-        "mainActOfManagementDate" : "20131211",
-        "mainActOfManagementId" : "SPROMO",
-        "mainCommentDate" : "20131207",
-        "mainCommentText" : "dolorum fuga. Et harum quidem rerum facilis est et expedita",
-        "majorProductId" : "CPLUS",
-        "methodOfPaiement" : "09",
-        "origin" : "IN",
-        "personId" : 1515756,
-        "startDate" : "20131206",
-        "suspensionDate" : null
-      }
-    ],
-  "message" : "Process successfully completed",
-  "returnCode" : "SUCCESS",
-  "severity" : "SUCCESS"
-}
-
-
-
-
-description cancellation Date Computing
-
-# Parameters
-
- * personId(Long), mandatory
- * contractId(Integer), mandatory
- * cancellationReason(String), required
-
-# Returns
-
- * ResponseWrapper«String»
-
-GET /v1/persons/{personId}/contracts/{contractId}/cancellation/date
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "Process successfully completed",
-    "severity": "SUCCESS",
-    "data": null
-}
-
-
-
-description detect Cancellation Request
-
-# Parameters
-
- * personId(Long), mandatory
- * contractId(Integer), mandatory
-
-# Returns
-
- * ResponseWrapper«Contract»
-
-GET /v1/persons/{personId}/contracts/{contractId}/cancellation/detected
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "Process successfully completed",
-    "severity": "SUCCESS",
-    "data": null
-}
-
-
-
-description record Cancellation
-
-# Parameters
-
- * contractLight(ContractLight), mandatory
-
-# Returns
-
- * ResponseWrapper«Contract»
-
-POST /v1/persons/{personId}/contracts/{contractId}/cancellation
-< 200
-< Content-Type: application/json
-
-
-
-description cancel Cancellation
-
-# Parameters
-
- * contractLight(ContractLight), mandatory
-
-# Returns
-
- * ResponseWrapper«Contract»
-
-POST /v1/persons/{personId}/contracts/{contractId}/cancelCancellation
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "Process successfully completed",
-    "severity": "SUCCESS",
-    "data": null
-}
-
-
 --
 equipment
 Resources Leader : Olivier REBOUL
@@ -2165,59 +2111,113 @@ payment-mean
 Resources Leader : Olivier REBOUL
 
 # Model
- * `Severity` (WARN ERROR FATAL SUCCESS )
- * `ResponseWrapper«List«PaymentMean»»` 
+ * `RefundTransactionResult` 
+  * amountRefunded (long)
+  * movementId (long)
+  * refundTransactionId (long)
+ * `ResponseWrapper«PaymentResult»` 
   * message (string)
   * returnCode (string)
-  * data (List of PaymentMean)
+  * data (PaymentResult)
   * severity (Severity)
- * `ResponseWrapper` 
+ * `ResponseWrapper«List«PaymentMeanLight»»` 
   * message (string)
   * returnCode (string)
-  * data (undefined)
+  * data (List of PaymentMeanLight)
   * severity (Severity)
- * `PaymentMean` 
-  * creditCard (CreditCard)
-  * personId (long)
-  * contractId (int)
+ * `PaymentMeanLight` 
+  * creditCard (CreditCardLight)
   * createdDate (string)
   * iban (string)
- * `CreditCard` 
+ * `PaymentResult` 
+  * amount (long)
+  * authNumber (long)
+  * authorizationDate (string)
+  * movementId (long)
+ * `CreditCardLight` 
   * expirationDate (string)
+  * owner (string)
   * number (string)
   * type (string)
+ * `ResponseWrapper«BankCustomer»` 
+  * message (string)
+  * returnCode (string)
+  * data (BankCustomer)
+  * severity (Severity)
+ * `CreditCard` 
+  * expirationDate (string)
+  * cryptogram (string)
+  * owner (string)
+  * number (string)
+  * type (string)
+ * `RefundTransactionIntputData` 
+  * amount (long)
+  * numdc (string)
+  * creationUser (string)
+  * transmissionDate (string)
+  * shopId (string)
+ * `ResponseWrapper«RemoveCreditCardResult»` 
+  * message (string)
+  * returnCode (string)
+  * data (RemoveCreditCardResult)
+  * severity (Severity)
+ * `RemoveCreditCardResult` 
+  * status (string)
+  * movementId (long)
+ * `RemoveCreditCardInputData` 
+  * numdc (string)
+  * transmissionDate (string)
+  * shopId (string)
+  * deleteUser (string)
+ * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `OneShotPayment` 
+  * creditCard (CreditCard)
+  * amount (long)
+  * numdc (string)
+  * creationUser (string)
+  * shopId (string)
+ * `ResponseWrapper«RefundTransactionResult»` 
+  * message (string)
+  * returnCode (string)
+  * data (RefundTransactionResult)
+  * severity (Severity)
+ * `BankCustomer` 
+  * bankCustomerId (long)
+  * movementId (long)
+ * `PaymentMean` 
+  * creditCard (CreditCard)
+  * numdc (string)
+  * creationUser (string)
+  * transmissionDate (string)
+  * email (string)
+  * shopId (string)
+ * `RecurrentPayment` 
+  * amount (long)
+  * numdc (string)
+  * creationUser (string)
+  * bankCustomerId (string)
+  * shopId (string)
 --
 
-description get Payment Mean By Person Id
+description get Payment Means
 
 # Parameters
 
- * personId(long), mandatory
+ * personId(Long), mandatory
+ * contractId(Integer), mandatory
 
 # Returns
 
- * ResponseWrapper«List«PaymentMean»»
+ * ResponseWrapper«List«PaymentMeanLight»»
 
-GET /v1/persons/{personId}/paymentmeans
+GET /v1/persons/{personId}/contracts/{contractId}/paymentmeans
 < 200
 < Content-Type: application/json
 {
     "returnCode": "SUCCESS",
-    "message": "ce service est un bouchon",
-    "severity": "WARN",
-    "data": [
-        {
-            "iban": null,
-            "creditCard": {
-                "type": null,
-                "number": "1234567890123456",
-                "expirationDate": "12/13"
-            },
-            "createdDate": null,
-            "personId": 0,
-            "contractId": null
-        }
-    ]
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
 }
 
 
@@ -2226,20 +2226,222 @@ description create Payment Mean
 
 # Parameters
 
- * param(PaymentMean), mandatory
+ * paymentMean(PaymentMean), mandatory
+ * personId(Long), mandatory
+ * contractId(Integer), mandatory
 
 # Returns
 
- * ResponseWrapper
+ * ResponseWrapper«BankCustomer»
 
-POST /v1/paymentmeans
+POST /v1/persons/{personId}/contract/{contractId}/paymentmeans/registercb
 < 200
 < Content-Type: application/json
 {
     "returnCode": "SUCCESS",
-    "message": "ce service est un bouchon",
-    "severity": "WARN",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
     "data": null
+}
+
+
+
+description update Payment Mean
+
+# Parameters
+
+ * paymentMean(PaymentMean), mandatory
+ * personId(Long), mandatory
+ * contractId(Integer), mandatory
+ * bankcustomerId(Long), mandatory
+
+# Returns
+
+ * ResponseWrapper«BankCustomer»
+
+POST /v1/persons/{personId}/contract/{contractId}/paymentmeans/creditcard/{bankcustomerId}
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
+
+description create One Shot Payment
+
+# Parameters
+
+ * oneShotPayment(OneShotPayment), mandatory
+ * personId(long), mandatory
+ * contractId(Integer), mandatory
+
+# Returns
+
+ * ResponseWrapper«PaymentResult»
+
+POST /v1/persons/{personId}/contract/{contractId}/paymentmeans/validatepayment
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
+
+description create Recurrent Payment
+
+# Parameters
+
+ * recurrentPayment(RecurrentPayment), mandatory
+ * personId(long), mandatory
+ * contractId(Integer), mandatory
+
+# Returns
+
+ * ResponseWrapper«PaymentResult»
+
+POST /v1/persons/{personId}/contract/{contractId}/paymentmeans/registeredcb/paymentcb
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
+
+description create Refund Transaction
+
+# Parameters
+
+ * refundTransactionIntputData(RefundTransactionIntputData), mandatory
+ * personId(long), mandatory
+ * contractId(Integer), mandatory
+ * transactionId(long), mandatory
+
+# Returns
+
+ * ResponseWrapper«RefundTransactionResult»
+
+POST /v1/persons/{personId}/contract/{contractId}paymentmeans/refundtransaction/{transactionId}
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
+
+description remove Credit Card
+
+# Parameters
+
+ * removeCreditCardInputData(RemoveCreditCardInputData), mandatory
+ * personId(long), mandatory
+ * contractId(Integer), mandatory
+ * bankcustomerId(long), mandatory
+
+# Returns
+
+ * ResponseWrapper«RemoveCreditCardResult»
+
+POST /v1/persons/{personId}/contract/{contractId}paymentmeans/creditcard/{bankcustomerId}
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
+--
+payment-plan
+Resources Leader : Olivier REBOUL
+
+# Model
+ * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `PromotionPayment` 
+  * promotionId (string)
+ * `ProductWithFifthCategory` 
+  * fifthCategory (boolean)
+  * productId (string)
+ * `PaymentPlanResult` 
+  * detail (List of PaymentPlanResultDetail)
+  * debitpayment (string)
+  * month (string)
+  * commercialOperator (string)
+ * `PaymentPlanResultDetail` 
+  * product (string)
+  * rawprice (string)
+  * debitpayment (string)
+ * `PaymentPlan` 
+  * firstMonth (string)
+  * contracts (List of ContractPayment)
+  * lastMonth (string)
+ * `ResponseWrapper«List«PaymentPlanResult»»` 
+  * message (string)
+  * returnCode (string)
+  * data (List of PaymentPlanResult)
+  * severity (Severity)
+ * `ContractPayment` 
+  * countryId (string)
+  * startDate (string)
+  * origin (string)
+  * dateToDate (boolean)
+  * promotions (List of PromotionPayment)
+  * endDate (string)
+  * distributorId (string)
+  * renewalSequence (int)
+  * duration (int)
+  * broadcastMediaType (string)
+  * postalCode (string)
+  * methodOfPaiement (string)
+  * personId (long)
+  * contractId (int)
+  * commercialOperator (string)
+  * subscriptionDate (string)
+  * products (List of ProductWithFifthCategory)
+--
+
+description calcul de l'échéancier théorique lors de la souscription d'un nouvel abonné & contrat
+
+# Parameters
+
+ * paymentPlan(PaymentPlan), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«PaymentPlanResult»»
+
+POST /v1/paymentplan
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "month": "month",
+            "commercialOperator": "commercialOperator",
+            "debitpayment": "debitpayment",
+            "detail": []
+        }
+    ]
 }
 
 
@@ -2254,12 +2456,15 @@ Resources Leader : Olivier REBOUL
   * data (undefined)
   * severity (Severity)
  * `Phone` 
+  * creationUser (string)
   * phoneNumber (string)
   * phoneType (string)
   * phoneId (long)
+  * updateUser (string)
  * `Severity` (WARN ERROR FATAL SUCCESS )
  * `Email` 
   * invalidityReason (string)
+  * creationUser (string)
   * startDate (string)
   * emailId (long)
   * emailType (string)
@@ -2295,26 +2500,49 @@ Resources Leader : Olivier REBOUL
   * ridetNumber (string)
   * civility (string)
   * origin (string)
-  * phoneNumbers (List of Phone)
   * emails (List of Email)
-  * companyName (string)
+  * phoneNumbers (List of Phone)
   * identityDocuments (IdentityDocument)
+  * companyName (string)
   * homeId (string)
   * creationDate (string)
   * category (string)
   * numberOfChildren (int)
   * personId (long)
   * birthDate (string)
-  * firstName (string)
   * addresses (List of Address)
+  * firstName (string)
   * updateUser (string)
 --
+
+description Invalidation d'une adresse électronique d'un abonné
+
+# Parameters
+
+ * personId(long), mandatory
+ * email(Email), mandatory
+
+# Returns
+
+ * ResponseWrapper«any»
+
+DELETE /v1/persons/{personId}/emails
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
 
 description Détail d'un abonné
 
 # Parameters
 
- * personId(Long), mandatory
+ * personId(long), mandatory
 
 # Returns
 
@@ -2351,18 +2579,24 @@ GET /v1/persons/{personId}
                 "phoneNumber": "061122334455",
                 "phoneType": "MOBILE1",
                 "valid": false,
+                "creationUser": "NDJOKOVIC",
+                "updateUser": "PBLANC",
                 "phoneId": null
             },
             {
                 "phoneNumber": "061122334455",
                 "phoneType": "MOBILE1",
                 "valid": false,
+                "creationUser": "NDJOKOVIC",
+                "updateUser": "PBLANC",
                 "phoneId": null
             },
             {
                 "phoneNumber": "061122334455",
                 "phoneType": "MOBILE1",
                 "valid": false,
+                "creationUser": "NDJOKOVIC",
+                "updateUser": "PBLANC",
                 "phoneId": null
             }
         ],
@@ -2373,6 +2607,7 @@ GET /v1/persons/{personId}
                 "endDate": "20120131",
                 "invalidityReason": null,
                 "emailType": "MAIN",
+                "creationUser": "NDJOKOVIC",
                 "emailId": null
             },
             {
@@ -2381,6 +2616,7 @@ GET /v1/persons/{personId}
                 "endDate": "20120131",
                 "invalidityReason": null,
                 "emailType": "MAIN",
+                "creationUser": "NDJOKOVIC",
                 "emailId": null
             },
             {
@@ -2389,6 +2625,7 @@ GET /v1/persons/{personId}
                 "endDate": "20120131",
                 "invalidityReason": null,
                 "emailType": "MAIN",
+                "creationUser": "NDJOKOVIC",
                 "emailId": null
             }
         ],
@@ -2448,7 +2685,7 @@ GET /v1/persons/{personId}
 
 
 
-description create Person
+description Création d'un abonné
 
 # Parameters
 
@@ -2463,8 +2700,8 @@ POST /v1/persons
 < Content-Type: application/json
 {
     "returnCode": "SUCCESS",
-    "message": "ce service est un bouchon",
-    "severity": "WARN",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
     "data": {
         "category": null,
         "origin": null,
@@ -2493,12 +2730,105 @@ POST /v1/persons
 
 
 
-description update Person
+description Création d'une adresse électronique d'un abonné
+
+# Parameters
+
+ * personId(long), mandatory
+ * email(Email), mandatory
+
+# Returns
+
+ * ResponseWrapper«any»
+
+POST /v1/persons/{personId}/emails
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
+
+description Mise à jour d'une adresse électronique d'un abonné
+
+# Parameters
+
+ * personId(long), mandatory
+ * email(Email), mandatory
+
+# Returns
+
+ * ResponseWrapper«any»
+
+PUT /v1/persons/{personId}/emails
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
+
+description Création d'un numéro de téléphone d'un abonné
+
+# Parameters
+
+ * personId(long), mandatory
+ * phone(Phone), mandatory
+
+# Returns
+
+ * ResponseWrapper«any»
+
+POST /v1/persons/{personId}/phones
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
+
+description Mise à jour d'un numéro de téléphone d'un abonné
+
+# Parameters
+
+ * personId(long), mandatory
+ * phone(Phone), mandatory
+
+# Returns
+
+ * ResponseWrapper«any»
+
+PUT /v1/persons/{personId}/phones
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+
+
+description Mise à jour des informations personnelles d'un abonné
 
 # Parameters
 
  * personId(long), mandatory
  * person(Person), mandatory
+ * contactId(String), mandatory
 
 # Returns
 
@@ -2509,8 +2839,8 @@ PUT /v1/persons/{personId}
 < Content-Type: application/json
 {
     "returnCode": "SUCCESS",
-    "message": "ce service est un bouchon",
-    "severity": "WARN",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
     "data": {
         "category": null,
         "origin": null,
@@ -2538,95 +2868,394 @@ PUT /v1/persons/{personId}
 }
 
 
-
-description create Email
-
-# Parameters
-
- * personId(long), mandatory
- * email(Email), mandatory
-
-# Returns
-
- * ResponseWrapper«any»
-
-POST /v1/persons/{personId}/emails
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "ce service est un bouchon",
-    "severity": "WARN",
-    "data": null
-}
-
-
-
-description update Email
-
-# Parameters
-
- * personId(long), mandatory
- * email(Email), mandatory
-
-# Returns
-
- * ResponseWrapper«any»
-
-PUT /v1/persons/{personId}/emails
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "ce service est un bouchon",
-    "severity": "WARN",
-    "data": null
-}
-
-
 --
 product
 Resources Leader : Olivier REBOUL
 
 # Model
- * `ForbiddenProducts` 
-  * forbiddenProductId (string)
- * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `PromotionLight` 
+  * promotionId (string)
+  * promotionLabel (string)
+ * `ResponseWrapper«List«ValidatedProducts»»` 
+  * message (string)
+  * returnCode (string)
+  * data (List of ValidatedProducts)
+  * severity (Severity)
+ * `ValidatedProducts` 
+  * vouchers (List of VoucherLight)
+  * promotions (List of PromotionLight)
+  * commercialOperator (string)
+  * validated (boolean)
+  * products (List of ProductWithPrice)
  * `Product` 
   * amount (BigDecimal)
-  * themeId (string)
+  * startDate (string)
   * forbiddenProducts (List of ForbiddenProducts)
+  * themeId (string)
   * productCategory (string)
   * commercialLabel (string)
   * label (string)
+  * endDate (string)
+  * commercialOperator (string)
   * amountToBePaid (BigDecimal)
   * productId (string)
   * productType (string)
+ * `BaseProduct` 
+  * commercialLabel (string)
+  * label (string)
+  * productId (string)
+ * `ContractToValidate` 
+  * renewalSequence (int)
+  * duration (int)
+  * broadcastMediaType (string)
+  * debabo (string)
+  * origin (string)
+  * dateToDate (boolean)
+  * action (string)
+  * methodOfPaiement (string)
+  * contractId (int)
+  * commercialOperator (string)
+  * products (List of ProductToValidate)
+ * `ProductToValidate` 
+  * fifthCategory (boolean)
+  * productId (string)
+ * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `ResponseWrapper«List«BaseProduct»»` 
+  * message (string)
+  * returnCode (string)
+  * data (List of BaseProduct)
+  * severity (Severity)
+ * `ForbiddenProducts` 
+  * forbiddenProductId (string)
+ * `VoucherLight` 
+  * voucherId (string)
  * `ResponseWrapper«List«Product»»` 
   * message (string)
   * returnCode (string)
   * data (List of Product)
   * severity (Severity)
+ * `ProductsToValidate` 
+  * linkedCotracts (boolean)
+  * creationUser (string)
+  * vouchers (List of VoucherLight)
+  * postalCode (string)
+  * saleDevice (string)
+  * workingDate (string)
+  * contracts (List of ContractToValidate)
+  * distributorId (string)
+  * country (string)
+ * `ResponseWrapper«List«DetailedProduct»»` 
+  * message (string)
+  * returnCode (string)
+  * data (List of DetailedProduct)
+  * severity (Severity)
+ * `ProductWithPrice` 
+  * amountToBePaid (long)
+  * productId (string)
  * `BigDecimal` 
+ * `DetailedProduct` 
+  * linkedProducts (List of string)
+  * commercialLabel (string)
+  * label (string)
+  * productId (string)
 --
 
-description get Product
+description Returns all the products
+
+# Parameters
+
+ * workingDate(String), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«BaseProduct»»
+
+GET /v1/products/editorial
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "productId": "productId",
+            "label": "label",
+            "commercialLabel": "commercialLabel"
+        }
+    ]
+}
+
+
+
+description Validation de catalogue pour prospect
+
+# Parameters
+
+ * productsToValidate(ProductsToValidate), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«ValidatedProducts»»
+
+POST /v1/products/validat
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "commercialOperator": "commercialOperator",
+            "validated": false,
+            "vouchers": [],
+            "products": [],
+            "promotions": []
+        }
+    ]
+}
+
+
+
+description Validation de catalogue pour un client existant
+
+# Parameters
+
+ * productsToValidate(ProductsToValidate), mandatory
+ * personId(Long), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«ValidatedProducts»»
+
+POST /v1/persons/{personId}/products/validat
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "commercialOperator": "commercialOperator",
+            "validated": false,
+            "vouchers": [],
+            "products": [],
+            "promotions": []
+        }
+    ]
+}
+
+
+
+description Returns the products for a contract (subscribed + available)
+
+# Parameters
+
+ * distributorId(String), required
+ * personId(Long), required
+ * contractId(Integer), required
+ * workingDate(String), mandatory
+ * broadcastMediaType(String), required
+ * commercialOperator(List[String]), required
+ * saleDevice(String), required
+ * country(String), mandatory
+ * postalCode(String), mandatory
+ * duration(Integer), mandatory
+ * methodOfPayment(String), mandatory
+ * origin(String), mandatory
+ * dateToDate(Boolean), mandatory
+ * action(String), required
+ * linkedContract(Boolean), mandatory
+ * ccatalogues(List[String]), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«Product»»
+
+GET /v1/persons/contracts/products
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "productId": "productId",
+            "label": "label",
+            "commercialLabel": "commercialLabel",
+            "forbiddenProducts": [],
+            "productType": "productType",
+            "productCategory": "productCategory",
+            "amountToBePaid": null,
+            "amount": null,
+            "themeId": "themeId",
+            "subscribed": null,
+            "locked": null,
+            "hidden": null,
+            "adultContent": null,
+            "commercialOperator": "commercialOperator",
+            "startDate": "20120131",
+            "endDate": "20120131"
+        }
+    ]
+}
+
+
+
+description Return a special offers list for a prospect
 
 # Parameters
 
  * distributorId(String), required
  * workingDate(String), mandatory
  * broadcastMediaType(String), required
- * commercialOperator(String), required
+ * commercialOperator(List[String]), required
  * saleDevice(String), required
  * country(String), mandatory
  * postalCode(String), mandatory
  * duration(Integer), mandatory
- * methodOfPaiement(String), mandatory
+ * methodOfPayment(String), mandatory
  * origin(String), mandatory
  * dateToDate(Boolean), mandatory
  * action(String), required
- * linkedContract(String), mandatory
+ * linkedContract(Boolean), mandatory
+ * ccatalogues(List[String]), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«DetailedProduct»»
+
+GET /v1/products/specialoffers
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        null
+    ]
+}
+
+
+
+description Return a special offers list for a subscriber
+
+# Parameters
+
+ * distributorId(String), required
+ * personId(Long), required
+ * contractId(Integer), required
+ * workingDate(String), mandatory
+ * broadcastMediaType(String), required
+ * commercialOperator(List[String]), required
+ * saleDevice(String), required
+ * country(String), mandatory
+ * postalCode(String), mandatory
+ * duration(Integer), mandatory
+ * methodOfPayment(String), mandatory
+ * origin(String), mandatory
+ * dateToDate(Boolean), mandatory
+ * action(String), required
+ * linkedContract(Boolean), mandatory
+ * ccatalogues(List[String]), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«DetailedProduct»»
+
+GET /v1/persons/{personId}/contracts/{contractId}/products/specialoffers
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        null
+    ]
+}
+
+
+
+description Return the best special offers for a subscriber
+
+# Parameters
+
+ * distributorId(String), required
+ * personId(Long), required
+ * contractId(Integer), required
+ * workingDate(String), mandatory
+ * broadcastMediaType(String), required
+ * commercialOperator(List[String]), required
+ * saleDevice(String), required
+ * country(String), mandatory
+ * postalCode(String), mandatory
+ * duration(Integer), mandatory
+ * methodOfPayment(String), mandatory
+ * origin(String), mandatory
+ * dateToDate(Boolean), mandatory
+ * action(String), required
+ * linkedContract(Boolean), mandatory
+ * productsToPush(List[String]), required
+ * ccatalogues(List[String]), mandatory
+
+# Returns
+
+ * ResponseWrapper«List«Product»»
+
+GET /v1/persons/{personId}/contracts/{contractId}/products/bestspecialoffers
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": [
+        {
+            "productId": "productId",
+            "label": "label",
+            "commercialLabel": "commercialLabel",
+            "forbiddenProducts": [],
+            "productType": "productType",
+            "productCategory": "productCategory",
+            "amountToBePaid": null,
+            "amount": null,
+            "themeId": "themeId",
+            "subscribed": null,
+            "locked": null,
+            "hidden": null,
+            "adultContent": null,
+            "commercialOperator": "commercialOperator",
+            "startDate": "20120131",
+            "endDate": "20120131"
+        }
+    ]
+}
+
+
+
+description Returns the products for a prospect
+
+# Parameters
+
+ * distributorId(String), required
+ * workingDate(String), mandatory
+ * broadcastMediaType(String), required
+ * commercialOperator(List[String]), required
+ * saleDevice(String), required
+ * country(String), mandatory
+ * postalCode(String), mandatory
+ * duration(Integer), mandatory
+ * methodOfPayment(String), mandatory
+ * origin(String), mandatory
+ * dateToDate(Boolean), mandatory
+ * action(String), required
+ * linkedContract(Boolean), mandatory
+ * ccatalogues(List[String]), mandatory
 
 # Returns
 
@@ -2641,10 +3270,10 @@ GET /v1/products
     "severity": "SUCCESS",
     "data": [
         {
-            "forbiddenProducts": [],
             "productId": "productId",
             "label": "label",
             "commercialLabel": "commercialLabel",
+            "forbiddenProducts": [],
             "productType": "productType",
             "productCategory": "productCategory",
             "amountToBePaid": null,
@@ -2653,59 +3282,10 @@ GET /v1/products
             "subscribed": null,
             "locked": null,
             "hidden": null,
-            "adultContent": null
-        }
-    ]
-}
-
-
-
-description get Contract Products
-
-# Parameters
-
- * distributorId(String), required
- * subscriberId(Long), required
- * contractId(Integer), required
- * workingDate(String), mandatory
- * broadcastMediaType(String), required
- * commercialOperator(String), required
- * saleDevice(String), required
- * country(String), mandatory
- * postalCode(String), mandatory
- * duration(Integer), mandatory
- * methodOfPaiement(String), mandatory
- * origin(String), mandatory
- * dateToDate(Boolean), mandatory
- * action(String), required
- * linkedContract(String), mandatory
-
-# Returns
-
- * ResponseWrapper«List«Product»»
-
-GET /v1/persons/{personId}/contracts/{contractId}/products
-< 200
-< Content-Type: application/json
-{
-    "returnCode": "SUCCESS",
-    "message": "Process successfully completed",
-    "severity": "SUCCESS",
-    "data": [
-        {
-            "forbiddenProducts": [],
-            "productId": "productId",
-            "label": "label",
-            "commercialLabel": "commercialLabel",
-            "productType": "productType",
-            "productCategory": "productCategory",
-            "amountToBePaid": null,
-            "amount": null,
-            "themeId": "themeId",
-            "subscribed": null,
-            "locked": null,
-            "hidden": null,
-            "adultContent": null
+            "adultContent": null,
+            "commercialOperator": "commercialOperator",
+            "startDate": "20120131",
+            "endDate": "20120131"
         }
     ]
 }
@@ -2793,182 +3373,111 @@ GET /v1/promotions
     ]
 }
 
---
-Utility
-Resources Leader : TODO
 
 --
+subscription
+Resources Leader : Olivier REBOUL
 
-A service used to auto-complete an address when a user is typing
+# Model
+ * `PaymentToSubscribe` 
+  * amount (string)
+  * expiracyDate (string)
+  * cryptogram (string)
+  * thirdPayorId (string)
+  * creditCardNumber (string)
+  * bic (string)
+  * creditCardType (string)
+  * iban (string)
+ * `Severity` (WARN ERROR FATAL SUCCESS )
+ * `VoucherLight` 
+  * voucherId (string)
+ * `ResponseWrapper«SubscriptionOut»` 
+  * message (string)
+  * returnCode (string)
+  * data (SubscriptionOut)
+  * severity (Severity)
+ * `PhoneCommon` 
+  * phoneNumber (string)
+  * phoneType (string)
+ * `SubscriptionOut` 
+  * amount (string)
+  * transactionId (string)
+  * personId (long)
+  * contracts (List of int)
+ * `EquipmentCommon` 
+  * equipmentType (string)
+  * equipmentId (string)
+ * `ContractToSubscribe` 
+  * startDate (string)
+  * duration (string)
+  * ispId (string)
+  * broadcastVectorId (string)
+  * origin (string)
+  * methodOfPayment (string)
+  * commercialOperator (string)
+  * subscriptionDate (string)
+  * products (List of ProductWithFifthCategory)
+ * `ProductWithFifthCategory` 
+  * fifthCategory (boolean)
+  * productId (string)
+ * `AddressToSubscribe` 
+  * street2 (string)
+  * countryId (string)
+  * street1 (string)
+  * postalCode (string)
+  * forcingIndicator (string)
+  * street3 (string)
+  * city (string)
+ * `SubscriptionIn` 
+  * person (PersonToSubscribe)
+  * payment (PaymentToSubscribe)
+  * saleDevice (string)
+  * equipments (List of EquipmentCommon)
+  * distributorId (string)
+  * phones (List of PhoneCommon)
+  * vouchers (List of VoucherLight)
+  * contactId (string)
+  * address (AddressToSubscribe)
+  * email (string)
+  * salesMan (string)
+  * sponsorId (string)
+  * contracts (List of ContractToSubscribe)
+ * `PersonToSubscribe` 
+  * lastName (string)
+  * creationUser (string)
+  * civility (string)
+  * personId (long)
+  * birthDate (string)
+  * segmentation (string)
+  * firstName (string)
+--
+
+description réalise une nouvelle souscription: abonné & abonnement
 
 # Parameters
 
- * countryCode : a valid country code
- * postalCode : a valid postal code
- * query : at least the first 3 caracters of an address
+ * subscriptionIn(SubscriptionIn), mandatory
 
 # Returns
 
- * a list of postal addresses (corresponding to the lines 4, 5, 6 and 7) 
+ * ResponseWrapper«SubscriptionOut»
 
-GET /v1/address/street?countryId="FR"&postalCode="75001"&query="avenue du Gen"
+POST /v1/subscription/newSubscription
 < 200
 < Content-Type: application/json
-< X-timestamp: 1310669017000
 {
-    "returnCode": 0,
+    "returnCode": "SUCCESS",
     "message": "Process successfully completed",
     "severity": "SUCCESS",
-    "data": 
-    [
-        { "streetId": "0100100000001", "streetLabel": "AVENUE DU GENERAL DE GAULLE", "postalCode": "75001", "sixthLineLabel": "PARIS", "countryId": "FR" }
-    ]
-}
-
-A service used to TODO reco
-
-# Parameters
-
- * 
- 
-
-# Returns
-
- * 
- 
-
-GET /v1/recommandation
-< 200
-< Content-Type: application/json
-< X-timestamp: 1310669017000
-{
-    "returnCode": 0,
-    "message": "Process successfully completed",
-    "severity": "SUCCESS",
-    "data": 
-    [
-        { "streetId": "0100100000001", "streetLabel": "AVENUE DU GENERAL DE GAULLE", "postalCode": "75001", "sixthLineLabel": "PARIS", "countryId": "FR" }
-    ]
-}
-
-
---
-Subscription
-Resources Leader : O. Reboul
-
---
-
-A ressource used to record a subscription
-
-# Parameters
-
- * TODO
-
-# Returns
-
- * TODO
-
-POST /v1/subscription
-{ 
-    "subscription": 
-    {
-        "personId" : "",
-        "creationUser" : "",
-        "contactId" : "",
-        "saleDevice" : "",
-        "distributorId" : "",
-        "salesman" : "",
-        "sponsorId" : "",
-        "person" : 
-        { 
-            "civility" : "",
-            "lastName" : "",
-            "fisrtName" : "",
-            "birthDate" : "",
-            "segmentation" : ""
-        },
-        "address" : 
-        {            
-            "countryId" : "",
-            "street1" : "",
-            "street2" : "",
-            "street3" : "",
-            "postalCode" : "",
-            "city" : "",
-            "forcingIndicator" : ""
-        },
-        "phones" : 
-        [
-            {"phonetype" : "","phonenumber" : ""},
-            {"phonetype" : "","phonenumber" : ""},
-            {"phonetype" : "","phonenumber" : ""}
-        ],
-        "email" : "",
-        "payment" : 
-        {
-            "iban" : "",
-            "bic" : "",
-            "creditCardNumber" : "",
-            "creditCardType" : "",
-            "expiracyDate" : "",
-            "cryptogram" : "",
-            "thirdPayorId" : "",
-            "amount" : "",
-        },
-        "equipments" : 
-        [
-            {"equipmentType" : "","equipmentId" : ""},
-            {"equipmentType" : "","equipmentId" : ""},
-            {"equipmentType" : "","equipmentId" : ""}
-        ],
-        "vouchers" : 
-        [
-            {"voucherId" : ""},
-            {"voucherId" : ""},
-            {"voucherId" : ""}
-        ],
-        "contracts": 
-        [
-            {
-                "commercialOperator" : "",
-                "broadcastVectorId" : "",
-                "ispId" : "",
-                "duration" : "",
-                "methodOfPayment" : "",
-                "origin" : "",
-                "startDate" : "",
-                "subscriptionDate" : "",
-                "products" : [{"product":"","fifthCategory":""},{"product":"","fifthCategory":""}]
-            },
-            {
-                "commercialOperator" : "",
-                "broadcastVectorId" : "",
-                "ispId" : "",
-                "duration" : "",
-                "methodOfPayment" : "",
-                "origin" : "",
-                "startDate" : "",
-                "subscriptionDate" : "",
-                "products" : [{"product":"","fifthCategory":""},{"product":"","fifthCategory":""}]
-            }
-        ]
+    "data": {
+        "personId": 0,
+        "contracts": [],
+        "amount": "amount",
+        "transactionId": "transactionId"
     }
 }
-< 200
-< X-timestamp: 1310669017000
-< Content-Type: application/json
-{ 
-    "returnCode": 0,
-    "message": "Process successfully completed",
-    "severity": "SUCCESS",
-    "data": 
-    {           
-        "personId" : "" ,
-        "contracts" : [{"contractId":""}, {"contractId":""}] ,
-        "amount" : "",
-        "transactionId" : ""
-    }
-}
+
+
 
 --
 Order
