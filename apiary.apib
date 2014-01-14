@@ -2970,3 +2970,114 @@ POST /v1/subscription
     }
 }
 
+--
+Order : A ressource used to manage a client order (subscription)
+
+Resources Leader : H. DAKHLI
+
+--
+
+# Parameters
+
+ * TODO
+
+# Returns
+
+ * ResponseWrapper«any»
+ 
+POST /v1/order
+{
+    "orderId" : "408de586-17b9-4279-b736-d0c7624cecb9"
+    "order":
+    {
+        "personId" : "",
+        "creationUser" : "",
+        "contactId" : "",
+        "saleDevice" : "",
+        "distributorId" : "",
+        "salesman" : "",
+        "sponsorId" : "",
+        "person" : 
+        { 
+            "civility" : "",
+            "lastName" : "",
+            "fisrtName" : "",
+            "birthDate" : "",
+            "segmentation" : ""
+        },
+        "address" : 
+        {            
+            "countryId" : "",
+            "street1" : "",
+            "street2" : "",
+            "street3" : "",
+            "postalCode" : "",
+            "city" : "",
+            "forcingIndicator" : ""
+        },
+        "phones" : 
+        [
+            {"phonetype" : "","phonenumber" : ""},
+            {"phonetype" : "","phonenumber" : ""},
+            {"phonetype" : "","phonenumber" : ""}
+        ],
+        "email" : "",
+        "payment" : 
+        {
+            "iban" : "",
+            "bic" : "",
+            "creditCardNumber" : "",
+            "creditCardType" : "",
+            "expiracyDate" : "",
+            "cryptogram" : "",
+            "thirdPayorId" : "",
+            "amount" : "",
+        },
+        "equipments" : 
+        [
+            {"equipmentType" : "","equipmentId" : ""},
+            {"equipmentType" : "","equipmentId" : ""},
+            {"equipmentType" : "","equipmentId" : ""}
+        ],
+        "vouchers" : 
+        [
+            {"voucherId" : ""},
+            {"voucherId" : ""},
+            {"voucherId" : ""}
+        ],
+        "contracts": 
+        [
+            {
+                "commercialOperator" : "",
+                "broadcastVectorId" : "",
+                "ispId" : "",
+                "duration" : "",
+                "methodOfPayment" : "",
+                "origin" : "",
+                "startDate" : "",
+                "subscriptionDate" : "",
+                "products" : [{"product":"","fifthCategory":""},{"product":"","fifthCategory":""}]
+            },
+            {
+                "commercialOperator" : "",
+                "broadcastVectorId" : "",
+                "ispId" : "",
+                "duration" : "",
+                "methodOfPayment" : "",
+                "origin" : "",
+                "startDate" : "",
+                "subscriptionDate" : "",
+                "products" : [{"product":"","fifthCategory":""},{"product":"","fifthCategory":""}]
+            }
+        ]
+    }
+}
+< 200
+< X-timestamp: 1310669017000
+< Content-Type: application/json
+{ 
+    "returnCode": 0,
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
