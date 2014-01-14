@@ -2989,7 +2989,6 @@ A resource used to manage a client order (subscription)
  
 POST /v1/order
 { 
-	"orderId" : "408de586-17b9-4279-b736-d0c7624cecb9",     
 	"creationUser" : "",
 	"contactId" : "",
 	"saleDevice" : "",
@@ -3119,5 +3118,7 @@ POST /v1/order
     "returnCode": 0,
     "message": "Process successfully completed",
     "severity": "SUCCESS",
-    "data": any
+    "data": {
+        "orderId" : "408de586-17b9-4279-b736-d0c7624cecb9", 
+    }
 }
