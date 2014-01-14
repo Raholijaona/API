@@ -2989,134 +2989,128 @@ A resource used to manage a client order (subscription)
  
 POST /v1/order
 { 
-	orderId : "408de586-17b9-4279-b736-d0c7624cecb9"
-    {        
-        "creationUser" : "",
-        "contactId" : "",
-        "saleDevice" : "",
-        "distributorId" : "",
-        "salesman" : "",
-        "sponsorId" : "",
-        "person" : 		
-        { 
-			"personId" : 19710101,
-            "civility" : "",
-            "lastName" : "",
-            "fisrtName" : "",
-            "birthDate" : "",
-            "segmentation" : ""
-        },
-        "address" : 
-        {   
-			"addressType": "MAIN",
-			"countryId": "FRA",
-			"street1": "",
-			"street2": "130 RUE DE RIVOLI",
-			"street3": "",
-			"postalCode": "75003",
-			"city": "PARIS",
-			"startDate": ,
-			"endDate": ,
-			"valid": ,
-			"undeliverabilityReason": "",
-			"addressId": ,
-			"forcingIndicator" : ""
-        },
-        "phoneNumbers": [
-            {
-                "phoneNumber": "061122334455",
-                "phoneType": "MOBILE1",
-                "valid": false,
-                "phoneId": null
-            },
-            {
-                "phoneNumber": "061122334455",
-                "phoneType": "MOBILE1",
-                "valid": false,
-                "phoneId": null
-            },
-            {
-                "phoneNumber": "061122334455",
-                "phoneType": "MOBILE1",
-                "valid": false,
-                "phoneId": null
-            }
-        ],
-        "emails": [
-            {
-                "email": "pierre.dupont@aol.com",
-                "startDate": "20100131",
-                "endDate": "20120131",
-                "invalidityReason": null,
-                "emailType": "MAIN",
-                "emailId": null
-            },
-            {
-                "email": "pierre.dupont@aol.com",
-                "startDate": "20100131",
-                "endDate": "20120131",
-                "invalidityReason": null,
-                "emailType": "MAIN",
-                "emailId": null
-            },
-            {
-                "email": "pierre.dupont@aol.com",
-                "startDate": "20100131",
-                "endDate": "20120131",
-                "invalidityReason": null,
-                "emailType": "MAIN",
-                "emailId": null
-            }
-        ],
-        "payment" : 
-        {
-            "iban" : "",
-            "bic" : "",
-            "creditCardNumber" : "",
-            "creditCardType" : "",
-            "expiracyDate" : "",
-            "cryptogram" : "",
-            "thirdPayorId" : "",
-            "amount" : "",
-        },
-        "equipments" : 
-        [
-            {"equipmentType" : "","equipmentId" : ""},
-            {"equipmentType" : "","equipmentId" : ""},
-            {"equipmentType" : "","equipmentId" : ""}
-        ],
-        "vouchers" : 
-        [
-            {"voucherId" : ""},
-            {"voucherId" : ""},
-            {"voucherId" : ""}
-        ],
-        "contracts": 
-        [
-            {
-                "commercialOperator" : "",
-                "broadcastVectorId" : "",
-                "ispId" : "",
-                "duration" : "",
-                "methodOfPayment" : "",
-                "origin" : "",
-                "startDate" : "",
-                "subscriptionDate" : "",
-                "products" : [{"product":"","fifthCategory":""},{"product":"","fifthCategory":""}]
-            },
-            {
-                "commercialOperator" : "",
-                "broadcastVectorId" : "",
-                "ispId" : "",
-                "duration" : "",
-                "methodOfPayment" : "",
-                "origin" : "",
-                "startDate" : "",
-                "subscriptionDate" : "",
-                "products" : [{"product":"","fifthCategory":""},{"product":"","fifthCategory":""}]
-            }
-        ]
-    }
+	"orderId" : "408de586-17b9-4279-b736-d0c7624cecb9",     
+	"creationUser" : "",
+	"contactId" : "",
+	"saleDevice" : "",
+	"distributorId" : "",
+	"salesman" : "",
+	"sponsorId" : "",
+	"person" : 		
+	{ 
+		"personId" : 19710101,
+		"civility" : "",
+		"lastName" : "",
+		"fisrtName" : "",
+		"birthDate" : "",
+		"segmentation" : ""
+	},
+	"address" : 
+	{   
+		"addressId": "",
+		"addressType": "MAIN",
+		"countryId": "FRA",
+		"street1": "",
+		"street2": "130 RUE DE RIVOLI",
+		"street3": "",
+		"postalCode": "75003",
+		"city": "PARIS",
+		"forcingIndicator" : ""
+	},
+	"phoneNumbers": [
+		{
+			"phoneNumber": "061122334455",
+			"phoneType": "MOBILE1",
+			"valid": false,
+			"phoneId": null
+		},
+		{
+			"phoneNumber": "061122334455",
+			"phoneType": "MOBILE1",
+			"valid": false,
+			"phoneId": null
+		},
+		{
+			"phoneNumber": "061122334455",
+			"phoneType": "MOBILE1",
+			"valid": false,
+			"phoneId": null
+		}
+	],
+	"emails": [
+		{
+			"email": "pierre.dupont@aol.com",
+			"startDate": "20100131",
+			"endDate": "20120131",
+			"invalidityReason": null,
+			"emailType": "MAIN",
+			"emailId": null
+		},
+		{
+			"email": "pierre.dupont@aol.com",
+			"startDate": "20100131",
+			"endDate": "20120131",
+			"invalidityReason": null,
+			"emailType": "MAIN",
+			"emailId": null
+		},
+		{
+			"email": "pierre.dupont@aol.com",
+			"startDate": "20100131",
+			"endDate": "20120131",
+			"invalidityReason": null,
+			"emailType": "MAIN",
+			"emailId": null
+		}
+	],
+	"payment" : 
+	{
+		"iban" : "",
+		"bic" : "",
+		"creditCardNumber" : "",
+		"creditCardType" : "",
+		"expiracyDate" : "",
+		"cryptogram" : "",
+		"thirdPayorId" : "",
+		"amount" : ""
+	},
+	"equipments" : 
+	[
+		{"equipmentType" : "","equipmentId" : ""},
+		{"equipmentType" : "","equipmentId" : ""},
+		{"equipmentType" : "","equipmentId" : ""}
+	],
+	"vouchers" : 
+	[
+		{"voucherId" : ""},
+		{"voucherId" : ""},
+		{"voucherId" : ""}
+	],
+	"contracts": 
+	[
+		{
+			"commercialOperator" : "",
+			"broadcastVectorId" : "",
+			"ispId" : "",
+			"duration" : "",
+			"methodOfPayment" : "",
+			"origin" : "",
+			"startDate" : "",
+			"subscriptionDate" : "",
+			"products" : [{"product":"","fifthCategory":""},{"product":"","fifthCategory":""}]
+		},
+		{
+			"commercialOperator" : "",
+			"broadcastVectorId" : "",
+			"ispId" : "",
+			"duration" : "",
+			"methodOfPayment" : "",
+			"origin" : "",
+			"startDate" : "",
+			"subscriptionDate" : "",
+			"products" : [{"product":"","fifthCategory":""},{"product":"","fifthCategory":""}]
+		}
+	]
 }
 < 200
 < X-timestamp: 1310669017000
