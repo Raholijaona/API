@@ -3024,63 +3024,6 @@ POST /v1/products/validat
     ]
 }
 
-description TODO
-
-# Parameters
-
- * TODO
-
-# Returns
-
- * TODO
-
-GET /v1/products/specialoffers?distributorId=1&broadcastMediaType=SAT&commercialOperator=CANAL%2CCSAT&saleDevice=CRC&action=RECRUIT
-< 200
-< Content-Type: application/json
-{
-  "returnCode": "SUCCESS",
-  "message": "Process successfully completed",
-  "severity": "SUCCESS",
-  "data": [
-    {
-      "productId": "CPNATSA2",
-      "label": "Recrutement CANAL+ et 2nd déco",
-      "commercialLabel": "Recrutement CANAL+ et 2nd déco",
-      "linkedProducts": [
-        "CPLUS",
-        "DEPGAR",
-        "DEPGAR2",
-        "FACCES",
-        "FOOT",
-        "LOCDEC1",
-        "LOCDEC2"
-      ]
-    },
-    {
-      "productId": "CPNATSAT",
-      "label": "Recrutement CANAL+ Multi-écran",
-      "commercialLabel": "Recrutement CANAL+",
-      "linkedProducts": [
-        "CPLUS",
-        "DEPGAR",
-        "FACCES",
-        "FOOT",
-        "LOCDEC1"
-      ]
-    },
-    {
-      "productId": "CPNATSCS",
-      "label": "Recrutement CANAL+ Carte seule",
-      "commercialLabel": "Recrutement CANAL+ Carte seule",
-      "linkedProducts": [
-        "CPLUS",
-        "DEPGAR3",
-        "FACCES",
-        "FOOT"
-      ]
-    }
-  ]
-}
 
 
 description Validation de catalogue pour un client existant
@@ -3710,10 +3653,13 @@ A resource used to update a client order (subscription)
 # Returns
 
  * ResponseWrapper «any»
+ 
 PUT /v1/order
 { 
     "orderId" : "408de586-17b9-4279-b736-d0c7624cecb9",
-	"prospectId": "45635447",
+	"prospectId" : "45635447",
+	"canal" : "",
+	"result" : "",
 	"creationUser" : "",
 	"contactId" : "",
 	"saleDevice" : "",
@@ -3989,18 +3935,3 @@ GET /v1/order/{orderId}
 		]
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
