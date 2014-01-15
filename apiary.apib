@@ -116,6 +116,47 @@ GET /v1/requests/{requestId}
 
 > # Description
 >
+> * Add a new request
+>
+> # Parameters
+>
+> * TODO
+>
+> # Returns
+>
+> * TODO
+>
+
+POST /v1/requests/
+{	"comment":"Lorem ipsum dolor sit amet consectetuer", 
+	"attachment":"false", 
+	"type":"Entrant", 
+	"requesterType":"CLIENT",
+	"customerId":1515726,
+	"operatorId":"KHOUNNOU",
+	"channelId":"TVI",
+	"themeId":"GESTION ABONNEMENT",
+	"topicId":"SOUSCRIPTION CONTRAT",
+	"subTopicId":"PRISE ABO CONTRAT MD",
+	"climateId":"SATISFAIT",
+	"holderId":"ALEDILHUIT",
+	"creationDate":1310669017000,
+	"creatorId":"ISIS2WS",
+	"lastChangeDate":1310669017000,
+	"lastChangeOperatorId":null,
+	"status":"EN COURS" }
+< 200
+< Content-Type: application/json
+{   "returnCode":"0",
+    "severity":"NORMAL",
+    "message":"OK - pas d'erreur",
+    "data":
+	{ "requestId":"001_CONTRAT_001" }	
+}
+
+
+> # Description
+>
 > * update a request.
 >
 > # Parameters
