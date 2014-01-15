@@ -3504,7 +3504,7 @@ A resource used to create a client order (subscription)
 
  * creationUser (string)
  * contactId (Integer)
- * saleDevice (string)
+ * canal : (int) , possible values : (0:"3910")/(1:"VDD")/(2:"TVI")/(3:"LOC")/(4:"FAI")/(5:"other")
  * distributorId (string)
  * salesMan (string)
  * sponsorId (string)
@@ -3515,7 +3515,8 @@ A resource used to create a client order (subscription)
  * payment (PaymentToSubscribe)
  * equipments (List of EquipmentCommon)
  * contract (ContractToSubscribe)
- * "voucher" : voucherId ?
+ * voucher (voucherId) ?
+ * saleDevice (string) ?
 
 # Returns
 
@@ -3525,7 +3526,7 @@ POST /v1/order
 { 
 	"creationUser" : "",
 	"contactId" : 32124135,
-	"saleDevice" : "",
+	"canal": 0,
 	"distributorId" : "",
 	"salesman" : "",
 	"sponsorId" : "",
@@ -3648,7 +3649,6 @@ A resource used to update a client order (subscription)
  * result : (int) , possible values : (0:"OK")/(1:"KO processable")/(2:"KO unprocessable")/(3:"other")
  * creationUser (string)
  * contactId (Integer)
- * saleDevice (string)
  * distributorId (string)
  * salesMan (string)
  * sponsorId (string)
@@ -3659,7 +3659,8 @@ A resource used to update a client order (subscription)
  * payment (PaymentToSubscribe)
  * equipments (List of EquipmentCommon)
  * contract (ContractToSubscribe)
- * "voucher" : voucherId ?
+ * voucher (voucherId) ?
+ * saleDevice (string) ?
 
 # Returns
 
@@ -3673,7 +3674,6 @@ PUT /v1/order
 	"result" : 0,
 	"creationUser" : "",
 	"contactId" : 32124135,
-	"saleDevice" : "",
 	"distributorId" : "",
 	"salesman" : "",
 	"sponsorId" : "",
@@ -3809,7 +3809,6 @@ GET /v1/order/{orderId}
     	"result" : 0,
     	"creationUser" : "",
     	"contactId" : 32124135,
-    	"saleDevice" : "",
     	"distributorId" : "",
     	"salesman" : "",
     	"sponsorId" : "",
