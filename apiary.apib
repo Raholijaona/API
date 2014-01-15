@@ -3813,8 +3813,16 @@ GET /v1/order/{orderId}
     { 
         "orderId" : "408de586-17b9-427736-d0c7624cecb9",
     	"prospectId" : "45635447",
-    	"canal" : "3910",
-    	"result" : "OK",
+    	"canal" :
+    	{
+    	    "key" : 0,
+    	    "value" : "3910"
+    	},
+    	"result" : 
+    	{
+    	    "key" : 0,
+    	    "value" : "OK"
+    	},
     	"creationUser" : "",
     	"contactId" : 32124135,
     	"saleDevice" : "",
@@ -3826,7 +3834,7 @@ GET /v1/order/{orderId}
     		"personId" : 19710101,
     		"civility" : "Monsieur",
     		"lastName": "DUPONT",
-            "firstName": "PIERRE",
+    		"firstName": "PIERRE",
     		"birthDate" : "1970052",
     		"segmentation" : ""
     	},
