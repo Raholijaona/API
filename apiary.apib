@@ -3684,7 +3684,6 @@ A resource used to update a client order (subscription)
 
 # Parameters
 
- * orderId : (string)
  * prospectId : (string)
  * canal : (int) , possible values : (0:"3910")/(1:"VDD")/(2:"TVI")/(3:"LOC")/(4:"FAI")/(5:"other")
  * result : (int) , possible values : (0:"OK")/(1:"KO processable")/(2:"KO unprocessable")/(3:"other")
@@ -3709,7 +3708,6 @@ A resource used to update a client order (subscription)
  
 PUT /v1/order/{orderId}
 { 
-    "orderId" : "408de586-17b9-427736-d0c7624cecb9",
 	"prospectId" : "45635447",
 	"canal" : 0,
 	"result" : 0,
@@ -3829,7 +3827,7 @@ A resource used to get a client order details
 
 # Parameters
 
- * orderId(String), mandatory
+ * 
 
 # Returns
 
@@ -3844,7 +3842,6 @@ GET /v1/order/{orderId}
     "severity": "SUCCESS",
     "data": 
     { 
-        "orderId" : "408de586-17b9-427736-d0c7624cecb9",
     	"prospectId" : "45635447",
     	"canal" : 0,
     	"result" : 0,
