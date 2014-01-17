@@ -3563,7 +3563,7 @@ A resource used to create a client order (subscription)
 
  * ResponseWrapper «orderId(String)»
  
-POST /v1/order
+POST /v1/orders
 { 
 	"creationUser" : "",
 	"contactId" : 32124135,
@@ -3706,7 +3706,7 @@ A resource used to update a client order (subscription)
 
  * ResponseWrapper «any»
  
-PUT /v1/order/{orderId}
+PUT /v1/orders/{orderId}
 { 
 	"prospectId" : "45635447",
 	"canal" : 0,
@@ -3833,7 +3833,7 @@ A resource used to get a client order details
 
  * ResponseWrapper«Order»
 
-GET /v1/order/{orderId}
+GET /v1/orders/{orderId}
 < 200
 < Content-Type: application/json
 {
