@@ -3556,8 +3556,8 @@ A resource used to create a client order (subscription)
  * payment (PaymentToSubscribe)
  * equipments (List of EquipmentCommon)
  * contract (ContractToSubscribe)
- * voucher (voucherId) ?
- * saleDevice (string) ?
+ * vouchers (List of voucherId)
+ * saleDevice (string)
 
 # Returns
 
@@ -3571,6 +3571,11 @@ POST /v1/orders
 	"distributorId" : "",
 	"salesman" : "",
 	"sponsorId" : "",
+	"saleDevice" : "CRC",
+	"vouchers" : {
+	    "voucherId" : "HHFZ68746345UIGB",
+	    "voucherId" : "KZ55663456546AJH"
+	},
 	"person" : 		
 	{ 
 		"personId" : 19710101,
@@ -3699,8 +3704,8 @@ A resource used to update a client order (subscription)
  * payment (PaymentToSubscribe)
  * equipments (List of EquipmentCommon)
  * contract (ContractToSubscribe)
- * voucher (voucherId) ?
- * saleDevice (string) ?
+ * vouchers (List of voucherId)
+ * saleDevice (string)
 
 # Returns
 
@@ -3716,6 +3721,11 @@ PUT /v1/orders/{orderId}
 	"distributorId" : "",
 	"salesman" : "",
 	"sponsorId" : "",
+	"saleDevice" : "CRC",
+	"vouchers" : {
+	    "voucherId" : "HHFZ68746345UIGB",
+	    "voucherId" : "KZ55663456546AJH"
+	},
 	"person" : 		
 	{ 
 		"personId" : 19710101,
@@ -3850,6 +3860,11 @@ GET /v1/orders/{orderId}
     	"distributorId" : "",
     	"salesman" : "",
     	"sponsorId" : "",
+    	"saleDevice" : "CRC",
+    	"vouchers" : {
+	        "voucherId" : "HHFZ68746345UIGB",
+	        "voucherId" : "KZ55663456546AJH"
+	    },
     	"person" : 		
     	{ 
     		"personId" : 1515705,
