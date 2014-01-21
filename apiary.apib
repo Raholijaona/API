@@ -4157,6 +4157,56 @@ GET /v1/orders/{orderId}
 *** SGE+ ***
 --
 
+--
+equipments 
+Resources Leader : José SERRA
+
+A equipment is ...
+
+# Identifier
+TODO
+--
+
+> # Description
+>
+> * read a equipment's requests given its {personId}.
+>
+> # Parameters
+>
+> * equipmentId (string) : id of the equipment
+>
+> # Returns
+>
+> * responseWrapper : standard response for KISS REST Services
+>     * returnCode : return code given by the service
+>     * severity : severity of the error (NORMAL, WARNING, ERROR)
+>     * message : return message given by the service 
+>     * data : a table of data representing the response 
+>         * listOfRequests : a table of requests
+>             * requestId : the request identifier
+>             * requester : the requester identifier
+ 
+GET /v1/equipments/{equipmentId}
+< 200
+< Content-Type: application/json
+{
+    "returnCode":"0",
+    "severity":"NORMAL",
+    "message":"OK - pas d'erreur",
+    "data":
+        {
+            "equipmentType": "T",
+            "creationDate": "20140110",
+            "accessories": [],
+            "personId": 0,
+            "contractId": 0,
+            "equipmentId": "01812345678912",
+            "positionID" : "DIS/ENT",
+            "TiersId": "R12345",
+            "isAffectable": "YES"
+        }
+}
+
 
 --
 *** MOTEUR DE RECHERCHE ***
