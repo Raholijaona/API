@@ -3545,7 +3545,6 @@ A resource used to create a client order (subscription)
 
  * creationUser (string)
  * contactId (Integer)
- * canal : (int) , possible values : (0:"3910")/(1:"VDD")/(2:"TVI")/(3:"LOC")/(4:"FAI")/(5:"other")
  * distributorId (string)
  * salesMan (string)
  * sponsorId (string)
@@ -3564,19 +3563,20 @@ A resource used to create a client order (subscription)
  * ResponseWrapper «orderId(String)»
  
 POST /v1/orders
-{ 
-	"creationUser" : "",
-	"contactId" : 32124135,
-	"canal": 0,
-	"distributorId" : "",
-	"salesman" : "",
-	"sponsorId" : "",
-	"saleDevice" : "CRC",
+{
+   "creationUser":"string",
+   "saleDevice":"string",
+   "email":"string",
+   "contactId":"32124135",
+   "sponsorId":"string",
+   "salesMan":"string",
+   "distributorId":"string",
+   "orderId":"string",
 	"vouchers" : [{
 	    "voucherId" : "HHFZ68746345UIGB",
 	    "voucherId" : "KZ55663456546AJH"
 	}],
-	"person" : 		
+    "person" : 		
 	{ 
 		"personId" : 19710101,
 		"civility" : "Monsieur",
@@ -3585,156 +3585,55 @@ POST /v1/orders
 		"birthDate" : "1970052",
 		"segmentation" : ""
 	},
-	"address" : 
-	{   
-		"addressId": 312341,
-		"addressType": "MAIN",
-		"countryId": "FRA",
-		"street1": "130 RUE DE RIVOLI",
-		"street2": "",
-		"street3": "",
-		"postalCode": "75003",
-		"city": "PARIS",
-		"forcingIndicator" : ""
-	},
-	"phoneNumbers": [
-		{
-			"phoneNumber": "0611223344",
-			"phoneType": "MOBILE",
-			"valid": true,
-			"phoneId": null
-		},
-		{
-			"phoneNumber": "0111223344",
-			"phoneType": "DOMICILE",
-			"valid": true,
-			"phoneId": null
-		},
-		{
-			"phoneNumber": "0111223344",
-			"phoneType": "BUREAU",
-			"valid": true,
-			"phoneId": null
-		}
-	],
-	"emails": [
-		{
-			"email": "pierre.dupont@aol.com",
-			"startDate": "20100131",
-			"endDate": "20120131",
-			"invalidityReason": null,
-			"emailType": "MAIN",
-			"emailId": null
-		},
-		{
-			"email": "pierre.dupont@aol.com",
-			"startDate": "20100131",
-			"endDate": "20120131",
-			"invalidityReason": null,
-			"emailType": "MAIN",
-			"emailId": null
-		},
-		{
-			"email": "pierre.dupont@aol.com",
-			"startDate": "20100131",
-			"endDate": "20120131",
-			"invalidityReason": null,
-			"emailType": "MAIN",
-			"emailId": null
-		}
-	],
-	"payment" : 
-	{
-		"iban" : "FR76300460012900297215195464",
-		"bic" : "CEPAFRPP118",
-		"creditCardNumber" : "514124142146731",
-		"creditCardType" : "VISA",
-		"expiracyDate" : "20140115",
-		"cryptogram" : "632",
-		"thirdPayorId" : "6546",
-		"amount" : 21234.34
-	},
-	"equipments" : 
-	[
-		{
-		    "equipmentType" : "",
-		    "equipmentId" : ""
-	    },
-		{
-		    "equipmentType" : "",
-		    "equipmentId" : ""
-	    },
-		{
-		    "equipmentType" : "",
-		    "equipmentId" : ""
-	    }
-	],
-	"contracts": 
-	[
-	    {
-    		"commercialOperator" : ["CANAL", "CSAT"],
-    		"broadcastVectorId" : "broadcastVectorId",
-    		"ispId" : "ispId",
-    		"duration" : "",
-    		"methodOfPayment" : "methodOfPaiement",
-    		"origin" : "origin",
-    		"startDate" : "20120131",
-    		"subscriptionDate" : "20140115",
-    		"products" : 
-    		[
-    		    {
-    		        "product":"",
-    		        "fifthCategory":""
-    		    },
-    		    {
-    		        "product":"",
-    		        "fifthCategory":""
-    		    }
-    		]
-    	},
-	    {
-    		"commercialOperator" : ["CANAL"],
-    		"broadcastVectorId" : "broadcastVectorId",
-    		"ispId" : "ispId",
-    		"duration" : "",
-    		"methodOfPayment" : "methodOfPaiement",
-    		"origin" : "origin",
-    		"startDate" : "20120131",
-    		"subscriptionDate" : "20140115",
-    		"products" : 
-    		[
-    		    {
-    		        "product":"",
-    		        "fifthCategory":""
-    		    },
-    		    {
-    		        "product":"",
-    		        "fifthCategory":""
-    		    }
-    		]
-    	},
-	    {
-    		"commercialOperator" : ["CANAL"],
-    		"broadcastVectorId" : "broadcastVectorId",
-    		"ispId" : "ispId",
-    		"duration" : "",
-    		"methodOfPayment" : "methodOfPaiement",
-    		"origin" : "origin",
-    		"startDate" : "20120131",
-    		"subscriptionDate" : "20140115",
-    		"products" : 
-    		[
-    		    {
-    		        "product":"",
-    		        "fifthCategory":""
-    		    },
-    		    {
-    		        "product":"",
-    		        "fifthCategory":""
-    		    }
-    		]
-    	}
-	]
+   "payment":{
+      "amount":"21234.34",
+      "expiracyDate":"20140115",
+      "cryptogram":"632",
+      "thirdPayorId":"6546",
+      "creditCardNumber":"514124142146731",
+      "bic":"CEPAFRPP118",
+      "creditCardType":"VISA",
+      "iban":"FR76300460012900297215195464"
+   },
+   "address":{
+      "street2":"string",
+      "countryId":"string",
+      "street1":"string",
+      "postalCode":"string",
+      "forcingIndicator":"string",
+      "street3":"string",
+      "city":"string"
+   },
+   "equipments":[
+      {
+         "equipmentType":"string",
+         "equipmentId":"string"
+      }
+   ],
+   "contracts":[
+      {
+         "startDate":"string",
+         "duration":"string",
+         "ispId":"string",
+         "broadcastVectorId":"string",
+         "origin":"string",
+         "methodOfPayment":"string",
+         "commercialOperator":"string",
+         "subscriptionDate":"string",
+         "products":[
+            {
+               "fifthCategory":"boolean",
+               "productId":"string"
+            }
+         ]
+      }
+   ],
+   "phones":[
+      {
+         "phoneNumber":"string",
+         "phoneType":"string"
+      }
+   ]
 }
 < 200
 < X-timestamp: 1310669017000
@@ -3775,21 +3674,21 @@ A resource used to update a client order (subscription)
  * ResponseWrapper «any»
  
 PUT /v1/orders/{orderId}
-{ 
-	"prospectId" : "45635447",
-	"canal" : 0,
-	"result" : 0,
-	"creationUser" : "",
-	"contactId" : 32124135,
-	"distributorId" : "",
-	"salesman" : "",
-	"sponsorId" : "",
-	"saleDevice" : "CRC",
+{
+   "creationUser":"string",
+   "saleDevice":"string",
+   "orderStatus":"string",
+   "email":"string",
+   "contactId":"32124135",
+   "sponsorId":"string",
+   "salesMan":"string",
+   "distributorId":"string",
+   "orderId":"string",
 	"vouchers" : [{
 	    "voucherId" : "HHFZ68746345UIGB",
 	    "voucherId" : "KZ55663456546AJH"
 	}],
-	"person" : 		
+    "person" : 		
 	{ 
 		"personId" : 19710101,
 		"civility" : "Monsieur",
@@ -3798,156 +3697,55 @@ PUT /v1/orders/{orderId}
 		"birthDate" : "1970052",
 		"segmentation" : ""
 	},
-	"address" : 
-	{   
-		"addressId": 312341,
-		"addressType": "MAIN",
-		"countryId": "FRA",
-		"street1": "130 RUE DE RIVOLI",
-		"street2": "",
-		"street3": "",
-		"postalCode": "75003",
-		"city": "PARIS",
-		"forcingIndicator" : ""
-	},
-	"phoneNumbers": [
-		{
-			"phoneNumber": "0611223344",
-			"phoneType": "MOBILE",
-			"valid": true,
-			"phoneId": null
-		},
-		{
-			"phoneNumber": "0111223344",
-			"phoneType": "DOMICILE",
-			"valid": true,
-			"phoneId": null
-		},
-		{
-			"phoneNumber": "0111223344",
-			"phoneType": "BUREAU",
-			"valid": true,
-			"phoneId": null
-		}
-	],
-	"emails": [
-		{
-			"email": "pierre.dupont@aol.com",
-			"startDate": "20100131",
-			"endDate": "20120131",
-			"invalidityReason": null,
-			"emailType": "MAIN",
-			"emailId": null
-		},
-		{
-			"email": "pierre.dupont@aol.com",
-			"startDate": "20100131",
-			"endDate": "20120131",
-			"invalidityReason": null,
-			"emailType": "MAIN",
-			"emailId": null
-		},
-		{
-			"email": "pierre.dupont@aol.com",
-			"startDate": "20100131",
-			"endDate": "20120131",
-			"invalidityReason": null,
-			"emailType": "MAIN",
-			"emailId": null
-		}
-	],
-	"payment" : 
-	{
-		"iban" : "FR76300460012900297215195464",
-		"bic" : "CEPAFRPP118",
-		"creditCardNumber" : "514124142146731",
-		"creditCardType" : "VISA",
-		"expiracyDate" : "20140115",
-		"cryptogram" : "632",
-		"thirdPayorId" : "6546",
-		"amount" : 21234.34
-	},
-	"equipments" : 
-	[
-		{
-		    "equipmentType" : "",
-		    "equipmentId" : ""
-	    },
-		{
-		    "equipmentType" : "",
-		    "equipmentId" : ""
-	    },
-		{
-		    "equipmentType" : "",
-		    "equipmentId" : ""
-	    }
-	],
-	"contracts": 
-	[
-	    {
-    		"commercialOperator" : ["CANAL", "CSAT"],
-    		"broadcastVectorId" : "broadcastVectorId",
-    		"ispId" : "ispId",
-    		"duration" : "",
-    		"methodOfPayment" : "methodOfPaiement",
-    		"origin" : "origin",
-    		"startDate" : "20120131",
-    		"subscriptionDate" : "20140115",
-    		"products" : 
-    		[
-    		    {
-    		        "product":"",
-    		        "fifthCategory":""
-    		    },
-    		    {
-    		        "product":"",
-    		        "fifthCategory":""
-    		    }
-    		]
-    	},
-	    {
-    		"commercialOperator" : ["CANAL"],
-    		"broadcastVectorId" : "broadcastVectorId",
-    		"ispId" : "ispId",
-    		"duration" : "",
-    		"methodOfPayment" : "methodOfPaiement",
-    		"origin" : "origin",
-    		"startDate" : "20120131",
-    		"subscriptionDate" : "20140115",
-    		"products" : 
-    		[
-    		    {
-    		        "product":"",
-    		        "fifthCategory":""
-    		    },
-    		    {
-    		        "product":"",
-    		        "fifthCategory":""
-    		    }
-    		]
-    	},
-	    {
-    		"commercialOperator" : ["CANAL"],
-    		"broadcastVectorId" : "broadcastVectorId",
-    		"ispId" : "ispId",
-    		"duration" : "",
-    		"methodOfPayment" : "methodOfPaiement",
-    		"origin" : "origin",
-    		"startDate" : "20120131",
-    		"subscriptionDate" : "20140115",
-    		"products" : 
-    		[
-    		    {
-    		        "product":"",
-    		        "fifthCategory":""
-    		    },
-    		    {
-    		        "product":"",
-    		        "fifthCategory":""
-    		    }
-    		]
-    	}
-	]
+   "payment":{
+      "amount":"21234.34",
+      "expiracyDate":"20140115",
+      "cryptogram":"632",
+      "thirdPayorId":"6546",
+      "creditCardNumber":"514124142146731",
+      "bic":"CEPAFRPP118",
+      "creditCardType":"VISA",
+      "iban":"FR76300460012900297215195464"
+   },
+   "address":{
+      "street2":"string",
+      "countryId":"string",
+      "street1":"string",
+      "postalCode":"string",
+      "forcingIndicator":"string",
+      "street3":"string",
+      "city":"string"
+   },
+   "equipments":[
+      {
+         "equipmentType":"string",
+         "equipmentId":"string"
+      }
+   ],
+   "contracts":[
+      {
+         "startDate":"string",
+         "duration":"string",
+         "ispId":"string",
+         "broadcastVectorId":"string",
+         "origin":"string",
+         "methodOfPayment":"string",
+         "commercialOperator":"string",
+         "subscriptionDate":"string",
+         "products":[
+            {
+               "fifthCategory":"boolean",
+               "productId":"string"
+            }
+         ]
+      }
+   ],
+   "phones":[
+      {
+         "phoneNumber":"string",
+         "phoneType":"string"
+      }
+   ]
 }
 < 200
 < X-timestamp: 1310669017000
@@ -3976,180 +3774,78 @@ GET /v1/orders/{orderId}
     "returnCode": 0,
     "message": "Process successfully completed",
     "severity": "SUCCESS",
-    "data": 
-    { 
-    	"prospectId" : "45635447",
-    	"canal" : 0,
-    	"result" : 0,
-    	"creationUser" : "",
-    	"contactId" : 32124135,
-    	"distributorId" : "",
-    	"salesman" : "",
-    	"sponsorId" : "",
-    	"saleDevice" : "CRC",
+    "data":
+    {
+       "creationUser":"string",
+       "saleDevice":"string",
+       "email":"string",
+       "contactId":"32124135",
+       "sponsorId":"string",
+       "salesMan":"string",
+       "distributorId":"string",
+       "orderId":"string",
     	"vouchers" : [{
-	        "voucherId" : "HHFZ68746345UIGB",
-	        "voucherId" : "KZ55663456546AJH"
-	    }],
-    	"person" : 		
+    	    "voucherId" : "HHFZ68746345UIGB",
+    	    "voucherId" : "KZ55663456546AJH"
+    	}],
+        "person" : 		
     	{ 
-    		"personId" : 1515705,
+    		"personId" : 19710101,
     		"civility" : "Monsieur",
     		"lastName": "DUPONT",
-    		"firstName": "PIERRE",
+            "firstName": "PIERRE",
     		"birthDate" : "1970052",
     		"segmentation" : ""
     	},
-    	"address" : 
-    	{   
-    		"addressId": 312341,
-    		"addressType": "MAIN",
-    		"countryId": "FRA",
-    		"street1": "130 RUE DE RIVOLI",
-    		"street2": "",
-    		"street3": "",
-    		"postalCode": "75003",
-    		"city": "PARIS",
-    		"forcingIndicator" : ""
-    	},
-    	"phoneNumbers": [
-    		{
-    			"phoneNumber": "0611223344",
-    			"phoneType": "MOBILE",
-    			"valid": true,
-    			"phoneId": null
-    		},
-    		{
-    			"phoneNumber": "0111223344",
-    			"phoneType": "DOMICILE",
-    			"valid": true,
-    			"phoneId": null
-    		},
-    		{
-    			"phoneNumber": "0111223344",
-    			"phoneType": "BUREAU",
-    			"valid": true,
-    			"phoneId": null
-    		}
-    	],
-    	"emails": [
-    		{
-    			"email": "pierre.dupont@aol.com",
-    			"startDate": "20100131",
-    			"endDate": "20120131",
-    			"invalidityReason": null,
-    			"emailType": "MAIN",
-    			"emailId": null
-    		},
-    		{
-    			"email": "pierre.dupont@aol.com",
-    			"startDate": "20100131",
-    			"endDate": "20120131",
-    			"invalidityReason": null,
-    			"emailType": "MAIN",
-    			"emailId": null
-    		},
-    		{
-    			"email": "pierre.dupont@aol.com",
-    			"startDate": "20100131",
-    			"endDate": "20120131",
-    			"invalidityReason": null,
-    			"emailType": "MAIN",
-    			"emailId": null
-    		}
-    	],
-    	"payment" : 
-    	{
-    		"iban" : "FR76300460012900297215195464",
-    		"bic" : "CEPAFRPP118",
-    		"creditCardNumber" : "514124142146731",
-    		"creditCardType" : "VISA",
-    		"expiracyDate" : "20140115",
-    		"cryptogram" : "632",
-    		"thirdPayorId" : "6546",
-    		"amount" : 21234.34
-    	},
-    	"equipments" : 
-    	[
-    		{
-    		    "equipmentType" : "",
-    		    "equipmentId" : ""
-		    },
-    		{
-    		    "equipmentType" : "",
-    		    "equipmentId" : ""
-		    },
-    		{
-    		    "equipmentType" : "",
-    		    "equipmentId" : ""
-		    }
-    	],
-    	"contracts": 
-    	[
-    	    {
-        		"commercialOperator" : ["CANAL", "CSAT"],
-        		"broadcastVectorId" : "broadcastVectorId",
-        		"ispId" : "ispId",
-        		"duration" : "",
-        		"methodOfPayment" : "methodOfPaiement",
-        		"origin" : "origin",
-        		"startDate" : "20120131",
-        		"subscriptionDate" : "20140115",
-        		"products" : 
-        		[
-        		    {
-        		        "product":"",
-        		        "fifthCategory":""
-        		    },
-        		    {
-        		        "product":"",
-        		        "fifthCategory":""
-        		    }
-        		]
-        	},
-    	    {
-        		"commercialOperator" : ["CANAL"],
-        		"broadcastVectorId" : "broadcastVectorId",
-        		"ispId" : "ispId",
-        		"duration" : "",
-        		"methodOfPayment" : "methodOfPaiement",
-        		"origin" : "origin",
-        		"startDate" : "20120131",
-        		"subscriptionDate" : "20140115",
-        		"products" : 
-        		[
-        		    {
-        		        "product":"",
-        		        "fifthCategory":""
-        		    },
-        		    {
-        		        "product":"",
-        		        "fifthCategory":""
-        		    }
-        		]
-        	},
-    	    {
-        		"commercialOperator" : ["CANAL"],
-        		"broadcastVectorId" : "broadcastVectorId",
-        		"ispId" : "ispId",
-        		"duration" : "",
-        		"methodOfPayment" : "methodOfPaiement",
-        		"origin" : "origin",
-        		"startDate" : "20120131",
-        		"subscriptionDate" : "20140115",
-        		"products" : 
-        		[
-        		    {
-        		        "product":"",
-        		        "fifthCategory":""
-        		    },
-        		    {
-        		        "product":"",
-        		        "fifthCategory":""
-        		    }
-        		]
-        	}
-    	]
+       "payment":{
+          "amount":"21234.34",
+          "expiracyDate":"20140115",
+          "cryptogram":"632",
+          "thirdPayorId":"6546",
+          "creditCardNumber":"514124142146731",
+          "bic":"CEPAFRPP118",
+          "creditCardType":"VISA",
+          "iban":"FR76300460012900297215195464"
+       },
+       "address":{
+          "street2":"string",
+          "countryId":"string",
+          "street1":"string",
+          "postalCode":"string",
+          "forcingIndicator":"string",
+          "street3":"string",
+          "city":"string"
+       },
+       "equipments":[
+          {
+             "equipmentType":"string",
+             "equipmentId":"string"
+          }
+       ],
+       "contracts":[
+          {
+             "startDate":"string",
+             "duration":"string",
+             "ispId":"string",
+             "broadcastVectorId":"string",
+             "origin":"string",
+             "methodOfPayment":"string",
+             "commercialOperator":"string",
+             "subscriptionDate":"string",
+             "products":[
+                {
+                   "fifthCategory":"boolean",
+                   "productId":"string"
+                }
+             ]
+          }
+       ],
+       "phones":[
+          {
+             "phoneNumber":"string",
+             "phoneType":"string"
+          }
+       ]
     }
 }
 
