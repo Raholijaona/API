@@ -3978,3 +3978,135 @@ GET /v1/equipments/{equipmentId}
 The search engine documentation can be found here.
 --
 
+*** RECOMMENDATION ***
+--
+
+--
+recommendation
+Resources Leader : Lionel HOUSSOU
+
+This service allows you to collect and aggregate data from the web services « recoOffresPerso » and « consulterPersoIndicateurs »
+
+> # Description
+>
+> Send a request GET /v1/recommendation/{idAbonne}?idContrat=xxxx&nbRecosPrgm=yyyy&nbJoursReco=kkkkk to get a recommendation data for the specified {idAbonne}.
+>
+> # Parameters
+>
+> * idAbonne (Long) : subscriber id, mandatory
+> * idContrat (Long) : contract id, optional query parameter
+> * nbRecosPrgm (Long) : number of ..., optional query parameter
+> * nbJoursReco (Long) : number of ..., optional query parameter
+>
+> # Returns
+> * responseWrapper : standard response for KISS REST Services
+>     * returnCode : return code given by the service
+>     * severity : severity of the error (NORMAL, WARNING, ERROR)
+>     * message : return message given by the service
+>     * data : data representing the response
+>        
+ 
+GET /v1/recommendation/{idAbonne}
+< 200
+< X-timestamp: 1310669017000
+< Content-Type: application/json
+{
+   "returnCode": "0",
+   "message": "Process successfully completed",
+   "severity": "SUCCESS",
+   "data":    {
+      "consulterPersoIndicateursReponse":       {
+         "idAbonne": 11329,
+         "flagImpayeCanal": false,
+         "flagImpayeCanalSat": false,
+         "flagDetentionDisqueDur": false,
+         "terminalConnecte": "Oui",
+         "enqHumeur": "pas d'enquête",
+         "enqDate": null,
+         "dateCourrierResil": null,
+         "flagCompteIcare": true,
+         "dateDerniereUtilisationTV": "2012-08-20",
+         "niveauConsoTV": "",
+         "tendanceTV": "",
+         "dateDerniereConsoALD": null,
+         "niveauConsoALD": "",
+         "tendanceALD": "",
+         "dateDerniereUtilisationME": null,
+         "niveauConsoME": "",
+         "tendanceME": "",
+         "themesPreferes": [],
+         "abonnements": [         {
+            "idContrat": 1,
+            "marque": "CSA",
+            "anciennete": 14,
+            "typeTerminalLibelle": "TERMINAL NON GERE PAR CANAL+",
+            "receptionModeLibelle": "ADSL ORANGE",
+            "flagAnnulationEnCours": false,
+            "enseigneSouscription": "",
+            "dateEffetInterruption": null,
+            "engagementOffre": "AVC ENGT",
+            "offreRecrutement": "",
+            "recidiviste": " Non Récidiviste",
+            "flagMultiEcran": false,
+            "libOffreCommCiblee": "LES CH C+ 15.90X12 + FF15E",
+            "codOffreCommCiblee": "02125-00001",
+            "actionPrioritaire": "",
+            "recommandationsPgm": [            {
+               "dateDiffusionPGM": "2014-01-31",
+               "programmeChaineHeure": "New York police judiciaire - 13EME RUE - 20:45",
+               "priorite": 1
+            }]
+         }],
+         "erreur": null
+      },
+      "recoOffresPerso":       {
+         "numAbonne": 11329,
+         "contrats": [         {
+            "numContrat": 1,
+            "perimetres":             [
+                              {
+                  "perimetreReco": "RETENTION",
+                  "bonus": "Si aucun bonus en cours, proposer un bonus (mise en clair) pour compléter la formule du client",
+                  "recos": [                  {
+                     "numReco": 2,
+                     "codpromo1": null,
+                     "libpromo1": "MIGRATION NON APPLICABLE",
+                     "codpromo2": null,
+                     "libpromo2": null,
+                     "codpromo3": null,
+                     "libpromo3": null
+                  }]
+               },
+                              {
+                  "perimetreReco": "ARPU",
+                  "bonus": null,
+                  "recos":                   [
+                                          {
+                        "numReco": 1,
+                        "codpromo1": "FC10",
+                        "libpromo1": "Proposer Canal+ les chaines Multi-écrans avec 10% de réduction sur l'offre nationale",
+                        "codpromo2": "FC10",
+                        "libpromo2": "Proposer le Cross vers Canal+ La chaine  avec 10% de réduction sur l'offre nationale",
+                        "codpromo3": null,
+                        "libpromo3": null
+                     },
+                                          {
+                        "numReco": 2,
+                        "codpromo1": "FG50",
+                        "libpromo1": "Proposer l'option CANALSAT Golf+ à 4€",
+                        "codpromo2": null,
+                        "libpromo2": null,
+                        "codpromo3": null,
+                        "libpromo3": null
+                     }
+                  ]
+               }
+            ]
+         }],
+         "retourWS":          {
+            "statutWS": "OK",
+            "codeRetour": "0"
+         }
+      }
+   }
+}
