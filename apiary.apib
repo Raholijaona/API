@@ -4191,3 +4191,34 @@ GET /v1/address/cityList
 < 200
 < X-timestamp: 1310669017000
 < Content-Type: application/json
+
+--
+*** Actes de gestion, routage conseiller et MOMA ***
+--
+
+--
+Interaction
+Resources Leader : Cédric Raholijaona [Porté par le bus]
+
+> This service is called when a customer request for an operation has to be routed to an advisor because it is a manual operation or because the automatic operation has to adjusted manually.
+>
+> * TODO define the API
+
+--
+
+> # Description
+>
+> * This service is called when a customer request for an operation has to be routed to an advisor because it is a manual operation or because the automatic operation has to adjusted manually.
+>
+> # Parameters
+>
+> * requestId : the id of the request to be routed to advisor
+>
+> # Returns
+>
+> * void
+
+PUT /v1/request/{requestId}/route-to-advisor
+< 200
+< Content-Type: application/json
+{  }
