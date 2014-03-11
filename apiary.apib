@@ -3917,7 +3917,7 @@ GET /v1/orders/{orderId}
     }
 }
 
-A resource used to get a client order details with error response
+A resource used to get a client order 
 
 # Parameters
 
@@ -3925,26 +3925,35 @@ A resource used to get a client order details with error response
 
 # Returns
 
- * ResponseWrapper«Order»
+ * Error
 
 GET /v1/orders/123
 < 200
 < Content-Type: application/json
 {
-    "returnCode": 0,
-    "message": "OrderId doesn't exist !",
-    "severity": "ERROR"
+   "returnCode": 1024,
+   "message": "Non-existent order",
+   "severity": "ERROR"
 }
 
-GET /v1/orders/321
+A resource used to get a client order 
+
+# Parameters
+
+ * 
+
+# Returns
+
+ * Fatal
+
+GET /v1/orders/&
 < 200
 < Content-Type: application/json
 {
-    "returnCode": 0,
-    "message": "OrderId doesn't exist !",
-    "severity": "FATAL"
+   "returnCode": 1000,
+   "message": "Validation Failed",
+   "severity": "FATAL"
 }
-
 --
 equipments 
 Resources Leader : José SERRA
