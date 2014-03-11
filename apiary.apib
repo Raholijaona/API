@@ -3917,6 +3917,24 @@ GET /v1/orders/{orderId}
     }
 }
 
+A resource used to get a client order details with error response
+
+# Parameters
+
+ * 
+
+# Returns
+
+ * ResponseWrapper«Order»
+
+GET /v1/orders/123
+< 200
+< Content-Type: application/json
+{
+    "returnCode": 0,
+    "message": "OrderId doesn't exist !",
+    "severity": 2,
+}
 --
 *** SGE+ ***
 --
