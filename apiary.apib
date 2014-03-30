@@ -4231,7 +4231,7 @@ GET /v1/address/cityList
 
 --
 Request
-Resources Leader : Cédric Raholijaona [Porté par le bus]
+Resources Leader : Zeina Delade [Porté par le bus]
 
 > This service is called when a customer request for an operation has to be routed to an advisor because it is a manual operation or because the automatic operation has to adjusted manually.
 >
@@ -4251,7 +4251,30 @@ Resources Leader : Cédric Raholijaona [Porté par le bus]
 >
 > * void
 
-PUT /v1/request/{requestId}/route-to-advisor
+POST /v1/actsofmanagement/form
+{
+    "urlCallback":"http://urlcallback.org",
+    "saleDevice":"WEB",
+    "date":"20120131",
+    "motif":"MOTIF",
+    "personId":"1234",
+    "params": 
+    [
+        {"key" : "par1", "value" : "val1"},        
+        {"key" : "par2", "value" : "val2"},
+        {"key" : "par3", "value" : "val3"}
+    ]
+}
 < 200
 < Content-Type: application/json
-{  }
+{
+    "returnCode": 0,
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": 
+    {
+       "idAdg": "8aa5ce8f-b5ca-11e3-af3b-8302a4150263"
+    }
+}
+
+
