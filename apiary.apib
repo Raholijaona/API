@@ -4299,19 +4299,9 @@ Resources Leader : Zeina Delade [Porté par le bus]
 >
 > * void
 
-POST /v1/returnadvisor
+POST /v1/requests/close
 {
-    "urlCallback":"http://urlcallback.org",
-    "saleDevice":"WEB",
-    "date":"20120131",
-    "motif":"119",
-    "personId":"1234",
-    "params": 
-    [
-        {"key" : "par1", "value" : "val1"},        
-        {"key" : "par2", "value" : "val2"},
-        {"key" : "par3", "value" : "val3"}
-    ]
+    "contactId":"externalId_2"
 }
 < 200
 < Content-Type: application/json
@@ -4320,7 +4310,5 @@ POST /v1/returnadvisor
     "message": "Process successfully completed",
     "severity": "SUCCESS",
     "data": 
-    {
-       "transactionId": "8aa5ce8f-b5ca-11e3-af3b-8302a4150263"
-    }
+    {}
 }
