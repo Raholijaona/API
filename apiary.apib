@@ -4313,14 +4313,15 @@ POST /v1/requests/close
     {}
 }
 
-
+-- 
 Request
-Resources Leader : Zeina Delade [Porté par le bus]
-> # Description
+Resources Leader : Zeina Delade
+--
 
+> # Description
 > * This service is called to update tje impayed levels of contract
-> # Parameters
 >
+> # Parameters
 > * No parameters
 >
 > # Returns
@@ -4329,8 +4330,7 @@ Resources Leader : Zeina Delade [Porté par le bus]
 >     * severity : severity of the error (NORMAL, WARNING, ERROR)
 >     * message : return message given by the service
 >     * data : data representing the response
-> * void
-
+> 
 POST /v1/unpaid/event
 {
   contractsUnpaid:[
