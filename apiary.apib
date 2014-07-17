@@ -4312,3 +4312,60 @@ POST /v1/requests/close
     "data": 
     {}
 }
+
+--
+Request
+Resources Leader : Zeina Delade [Porté par le bus]
+> # Description
+>
+> * This service is called to update tje impayed levels of contract
+> # Parameters
+>
+> * No parameters
+>
+> # Returns
+> * responseWrapper : standard response for KISS REST Services
+>     * returnCode : return code given by the service
+>     * severity : severity of the error (NORMAL, WARNING, ERROR)
+>     * message : return message given by the service
+>     * data : data representing the response
+>
+
+POST /v1/unpaid/event
+{
+  contractsUnpaid:[
+    {
+        "personId": 1516773, 
+        "contractId": 1, 
+        "methodOfPaiement": "01",
+        "originalLevel": 1,
+        "newLevel": 0,
+        "rejectMotifId": null,
+        "isNonRepresentable": false,
+        "soldeDG": 15.6 ,
+        "soldeAbonne": 0
+    } ,
+    {
+        "personId": 1516775, 
+        "contractId": 1,
+        "methodOfPaiement": "09",
+        "originalLevel": 0,
+        "newLevel": 1,
+        "rejectMotifId": null,
+        "isNonRepresentable": false,
+        "soldeDG": 15.6 ,
+        "soldeAbonne": -8
+    }
+    ]
+}
+
+< 200
+< Content-Type: application/json
+{
+    "returnCode": "SUCCESS",
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": null
+}
+
+--
