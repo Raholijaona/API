@@ -2152,6 +2152,21 @@ GET /v1/persons/{personId}/contracts/{contractId}/equipments
     ]
 }
 
+POST v1/contractequipment/configurationChange
+< 200
+< Content-Type: application/json
+{
+  "returnCode": "SUCCESS",
+  "message": "Process successfully completed",
+  "severity": "SUCCESS",
+  "data": {
+    "personId": "string",
+    "contractId": "string",
+    "actOfManagementId" : "string"
+    "orderId" : "string"
+  }
+}
+
 
 --
 payment-mean
