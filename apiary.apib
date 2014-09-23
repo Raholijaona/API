@@ -2153,6 +2153,26 @@ GET /v1/persons/{personId}/contracts/{contractId}/equipments
 }
 
 POST /v1/contractequipment/configurationChange
+{
+    "reasonId":"string",
+    "logisticReason":"string",
+    "affectationType":"string",
+    "equipmentConfig":"string",
+    "personId": "string",
+    "contractId": "string",
+    "skipShipmentFees": "booleen",
+    "shipmentPrice":"double",
+    "skipAvailabilityFees":"booleen",
+    "paymentCreditCard": {
+        "expirationDate": "string",
+        "cryptogram": "string",
+        "authorizationNumber": "string8",
+        "owner": "string",
+        "creditCardNumber": "string",
+        "creditCardType": "string"
+            },
+    "orderId":"string"
+}
 < 200
 < Content-Type: application/json
 {
