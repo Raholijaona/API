@@ -4405,3 +4405,43 @@ POST /v1/unpaid/event
     "data": null
 }
 
+
+--
+***GUARD PROVISIONING AVAL ***
+--
+
+--
+ressource USERS
+--
+--
+> # Description
+> * This service is called to upsert users in CGAWeb db table MNU_USER
+--
+
+POST /v1/users
+{
+   "userId":"OLIVIER",
+   "firstName":"Olivier",
+   "lastName":"Reboul",
+   "profile":"ADMIN",
+   "organization":"ARVATO",
+   "valid":false
+ }
+< 200
+< Content-Type: application/json
+{
+    "returnCode": 0,
+    "message": "Process successfully completed",
+    "severity": "SUCCESS",
+    "data": 
+    {
+           "userId":"OLIVIER",
+           "userName":"Olivier Reboul",
+           "profile":"ADMIN",
+           "organization":"ARVATO",
+           "valid":false
+    }
+}
+
+
+
